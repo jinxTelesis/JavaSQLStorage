@@ -19,8 +19,6 @@ import javax.swing.JMenuBar;
 import javax.swing.JTextArea;
 
 public class DbFrame extends JFrame {
-	
-	private int junk = 10;
 
 	private JPanel contentPane;
 	private JTextField txtnumber;
