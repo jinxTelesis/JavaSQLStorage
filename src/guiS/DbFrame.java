@@ -40,6 +40,7 @@ public class DbFrame extends JFrame {
 	private JTextField txtemailAddress;
 	private JPanel panel_1;
 	private JPanel panel_2;
+	private JTextField textField_3;
 
 	/**
 	 * Launch the application.
@@ -212,7 +213,7 @@ public class DbFrame extends JFrame {
 		lblNewLabel_2.setBounds(10, 11, 86, 14);
 		panel_3.add(lblNewLabel_2);
 		
-		JLabel lblAmout = new JLabel("Amout");
+		JLabel lblAmout = new JLabel("amount");
 		lblAmout.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblAmout.setBounds(613, 12, 72, 14);
 		panel_3.add(lblAmout);
@@ -224,6 +225,23 @@ public class DbFrame extends JFrame {
 		JTextArea textArea_1 = new JTextArea();
 		textArea_1.setBounds(597, 480, 142, 266);
 		contentPane.add(textArea_1);
+		
+		JLabel lblThankYouFor = new JLabel("Thank you for your purchase!");
+		lblThankYouFor.setForeground(Color.BLACK);
+		lblThankYouFor.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblThankYouFor.setBounds(74, 798, 328, 29);
+		contentPane.add(lblThankYouFor);
+		
+		JLabel lblTotal = new JLabel("Total");
+		lblTotal.setFont(new Font("Tahoma", Font.BOLD, 19));
+		lblTotal.setBounds(484, 799, 103, 22);
+		contentPane.add(lblTotal);
+		
+		textField_3 = new JTextField();
+		textField_3.setText("$100.00");
+		textField_3.setBounds(653, 804, 86, 20);
+		contentPane.add(textField_3);
+		textField_3.setColumns(10);
 		setTitle("Joan's SQL PRO");
 	}
 }
