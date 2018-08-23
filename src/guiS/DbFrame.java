@@ -23,11 +23,11 @@ public class DbFrame extends JFrame {
 	private JPanel contentPane;
 	private JTextField txtnumber;
 	private JTextField txtDate;
-	private JTextField textField;
+	private JTextField txtCompanyName;
 	private JTextField txtCity;
 	private JTextField txtStreet;
 	private JTextField txtZip;
-	private JTextField textField_1;
+	private JTextField txtStreetAddress_1;
 	private JLabel lblPhone;
 	private JTextField textField_2;
 	private JTextField txtname;
@@ -90,11 +90,12 @@ public class DbFrame extends JFrame {
 		contentPane.add(txtDate);
 		txtDate.setColumns(10);
 		
-		textField = new JTextField();
-		textField.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		textField.setBounds(64, 50, 146, 29);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		txtCompanyName = new JTextField();
+		txtCompanyName.setText("Company Name");
+		txtCompanyName.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		txtCompanyName.setBounds(64, 50, 146, 29);
+		contentPane.add(txtCompanyName);
+		txtCompanyName.setColumns(10);
 		
 		txtCity = new JTextField();
 		txtCity.setText("City");
@@ -114,10 +115,11 @@ public class DbFrame extends JFrame {
 		contentPane.add(txtZip);
 		txtZip.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(64, 95, 86, 20);
-		contentPane.add(textField_1);
-		textField_1.setColumns(10);
+		txtStreetAddress_1 = new JTextField();
+		txtStreetAddress_1.setText("Street Address");
+		txtStreetAddress_1.setBounds(64, 95, 86, 20);
+		contentPane.add(txtStreetAddress_1);
+		txtStreetAddress_1.setColumns(10);
 		
 		lblPhone = new JLabel("Phone");
 		lblPhone.setBounds(64, 161, 52, 20);
