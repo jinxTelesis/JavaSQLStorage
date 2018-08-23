@@ -21,6 +21,8 @@ import javax.swing.SwingConstants;
 import javax.swing.JButton;
 
 public class DbFrame extends JFrame {
+	
+	private int test = 5;
 
 	private JPanel contentPane;
 	private JTextField txtnumber;
