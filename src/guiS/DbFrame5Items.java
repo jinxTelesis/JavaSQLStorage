@@ -20,7 +20,7 @@ import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
 
-public class DbFrame extends JFrame {
+public class DbFrame5Items extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtnumber;
@@ -50,6 +50,26 @@ public class DbFrame extends JFrame {
 	private JTextField textField_2;
 	private JTextField textField_4;
 	private JTextField textField_5;
+	private JTextField textField_6;
+	private JTextField textField_7;
+	private JTextField textField_8;
+	private JTextField textField_9;
+	private JTextField textField_10;
+	private JTextField textField_11;
+	private JTextField textField_12;
+	private JTextField textField_13;
+	private JTextField textField_14;
+	private JTextField textField_15;
+	private JTextField textField_16;
+	private JTextField textField_17;
+	private JTextField textField_18;
+	private JTextField textField_19;
+	private JTextField textField_20;
+	private JTextField textField_21;
+	private JTextField textField_22;
+	private JTextField textField_23;
+	private JTextField textField_24;
+	private JTextField textField_25;
 
 	/**
 	 * Launch the application.
@@ -58,7 +78,7 @@ public class DbFrame extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					DbFrame frame = new DbFrame();
+					DbFrame5Items frame = new DbFrame5Items();
 					frame.setVisible(true);
 					frame.setLocationRelativeTo(null);
 				} catch (Exception e) {
@@ -71,7 +91,7 @@ public class DbFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public DbFrame() {
+	public DbFrame5Items() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//setBounds(150,75,950,1300);
 		//setBounds(150,75, 765, 990);
@@ -288,8 +308,108 @@ public class DbFrame extends JFrame {
 		textField_5.setColumns(10);
 		
 		JButton btnNewButton = new JButton("add Item");
-		btnNewButton.setBounds(44, 517, 89, 23);
+		btnNewButton.setBounds(44, 643, 89, 23);
 		contentPane.add(btnNewButton);
+		
+		textField_6 = new JTextField();
+		textField_6.setColumns(10);
+		textField_6.setBounds(44, 518, 345, 20);
+		contentPane.add(textField_6);
+		
+		textField_7 = new JTextField();
+		textField_7.setColumns(10);
+		textField_7.setBounds(399, 518, 70, 20);
+		contentPane.add(textField_7);
+		
+		textField_8 = new JTextField();
+		textField_8.setColumns(10);
+		textField_8.setBounds(479, 518, 70, 20);
+		contentPane.add(textField_8);
+		
+		textField_9 = new JTextField();
+		textField_9.setColumns(10);
+		textField_9.setBounds(559, 518, 70, 20);
+		contentPane.add(textField_9);
+		
+		textField_10 = new JTextField();
+		textField_10.setColumns(10);
+		textField_10.setBounds(639, 518, 100, 20);
+		contentPane.add(textField_10);
+		
+		textField_11 = new JTextField();
+		textField_11.setColumns(10);
+		textField_11.setBounds(44, 549, 345, 20);
+		contentPane.add(textField_11);
+		
+		textField_12 = new JTextField();
+		textField_12.setColumns(10);
+		textField_12.setBounds(399, 549, 70, 20);
+		contentPane.add(textField_12);
+		
+		textField_13 = new JTextField();
+		textField_13.setColumns(10);
+		textField_13.setBounds(479, 549, 70, 20);
+		contentPane.add(textField_13);
+		
+		textField_14 = new JTextField();
+		textField_14.setColumns(10);
+		textField_14.setBounds(559, 549, 70, 20);
+		contentPane.add(textField_14);
+		
+		textField_15 = new JTextField();
+		textField_15.setColumns(10);
+		textField_15.setBounds(639, 549, 100, 20);
+		contentPane.add(textField_15);
+		
+		textField_16 = new JTextField();
+		textField_16.setColumns(10);
+		textField_16.setBounds(44, 580, 345, 20);
+		contentPane.add(textField_16);
+		
+		textField_17 = new JTextField();
+		textField_17.setColumns(10);
+		textField_17.setBounds(399, 580, 70, 20);
+		contentPane.add(textField_17);
+		
+		textField_18 = new JTextField();
+		textField_18.setColumns(10);
+		textField_18.setBounds(479, 580, 70, 20);
+		contentPane.add(textField_18);
+		
+		textField_19 = new JTextField();
+		textField_19.setColumns(10);
+		textField_19.setBounds(559, 580, 70, 20);
+		contentPane.add(textField_19);
+		
+		textField_20 = new JTextField();
+		textField_20.setColumns(10);
+		textField_20.setBounds(639, 580, 100, 20);
+		contentPane.add(textField_20);
+		
+		textField_21 = new JTextField();
+		textField_21.setColumns(10);
+		textField_21.setBounds(44, 611, 345, 20);
+		contentPane.add(textField_21);
+		
+		textField_22 = new JTextField();
+		textField_22.setColumns(10);
+		textField_22.setBounds(399, 611, 70, 20);
+		contentPane.add(textField_22);
+		
+		textField_23 = new JTextField();
+		textField_23.setColumns(10);
+		textField_23.setBounds(479, 611, 70, 20);
+		contentPane.add(textField_23);
+		
+		textField_24 = new JTextField();
+		textField_24.setColumns(10);
+		textField_24.setBounds(559, 611, 70, 20);
+		contentPane.add(textField_24);
+		
+		textField_25 = new JTextField();
+		textField_25.setColumns(10);
+		textField_25.setBounds(639, 611, 100, 20);
+		contentPane.add(textField_25);
 		setTitle("Joan's SQL PRO");
 	}
 }
