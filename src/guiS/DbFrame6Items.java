@@ -13,14 +13,22 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.border.MatteBorder;
 import java.awt.Color;
 import javax.swing.border.SoftBevelBorder;
+
 import javax.swing.border.BevelBorder;
 import java.awt.SystemColor;
 import javax.swing.JMenuBar;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 
 public class DbFrame6Items extends JFrame {
+	
+	// put phone filter in company object
+	// put all the filters in the setters?
+	// other than the type parse which should be in frame
 
 	private JPanel contentPane;
 	private JTextField txtnumber;
@@ -128,6 +136,14 @@ public class DbFrame6Items extends JFrame {
 		txtDate.setColumns(10);
 		
 		txtCompanyName = new JTextField();
+		txtCompanyName.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent arg0) {
+				
+			}
+		});
+		//txtCompanyName.addFocusListener();
+		
 		txtCompanyName.setText("Company Name");
 		txtCompanyName.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		txtCompanyName.setBounds(44, 51, 146, 29);
@@ -438,4 +454,23 @@ public class DbFrame6Items extends JFrame {
 		contentPane.add(textField_30);
 		setTitle("Joan's SQL PRO");
 	}
+	
+	public class TestField implements FocusListener {
+
+		public TestField() {};
+		@Override
+		public void focusGained(FocusEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void focusLost(FocusEvent arg0) {
+			//if(!txtCompanyName.getText().equals(""))
+			
+			
+		}
+
+	}
 }
+
