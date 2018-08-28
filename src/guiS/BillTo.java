@@ -10,6 +10,16 @@ public class BillTo {
 	private int bZip;
 	private String pPhone;
 	private String bEmail;
+	private String setCallPass;
+	
+	
+	
+	public String getSetCallPass() {
+		return setCallPass;
+	}
+	public void setSetCallPass(String setCallPass) {
+		this.setCallPass = setCallPass;
+	}
 	public String getbName() {
 		return bName;
 	}
