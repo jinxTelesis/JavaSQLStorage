@@ -8,7 +8,6 @@ public class Company {
 	private String state;
 	private int zip;
 	private String  phone;
-	private String setCallPass;
 	
 	
 
@@ -20,14 +19,7 @@ public class Company {
 		zip = 0;
 		phone ="";
 	}
-	
-	public String getSetCallPass() {
-		return setCallPass;
-	}
 
-	public void setSetCallPass(String setCallPass) {
-		this.setCallPass = setCallPass;
-	}
 
 	public String getName() {
 		return name;

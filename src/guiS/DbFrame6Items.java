@@ -332,11 +332,6 @@ public class DbFrame6Items extends JFrame {
 		tFA1.setColumns(10);
 		
 		tFitem2 = new JTextField();
-		tFitem2.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusLost(FocusEvent e) {
-			}
-		});
 		tFitem2.setColumns(10);
 		tFitem2.setBounds(44, 518, 345, 20);
 		contentPane.add(tFitem2);
@@ -362,11 +357,6 @@ public class DbFrame6Items extends JFrame {
 		contentPane.add(tFA2);
 		
 		tFItem3 = new JTextField();
-		tFItem3.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusLost(FocusEvent e) {
-			}
-		});
 		tFItem3.setColumns(10);
 		tFItem3.setBounds(44, 549, 345, 20);
 		contentPane.add(tFItem3);
@@ -392,11 +382,6 @@ public class DbFrame6Items extends JFrame {
 		contentPane.add(tFA3);
 		
 		tFItem4 = new JTextField();
-		tFItem4.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusLost(FocusEvent e) {
-			}
-		});
 		tFItem4.setColumns(10);
 		tFItem4.setBounds(44, 580, 345, 20);
 		contentPane.add(tFItem4);
@@ -422,11 +407,6 @@ public class DbFrame6Items extends JFrame {
 		contentPane.add(tFA4);
 		
 		tFItem5 = new JTextField();
-		tFItem5.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusLost(FocusEvent e) {
-			}
-		});
 		tFItem5.setColumns(10);
 		tFItem5.setBounds(44, 611, 345, 20);
 		contentPane.add(tFItem5);
@@ -452,11 +432,6 @@ public class DbFrame6Items extends JFrame {
 		contentPane.add(tFA5);
 		
 		tFItem6 = new JTextField();
-		tFItem6.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusLost(FocusEvent e) {
-			}
-		});
 		tFItem6.setColumns(10);
 		tFItem6.setBounds(44, 642, 345, 20);
 		contentPane.add(tFItem6);
@@ -483,8 +458,8 @@ public class DbFrame6Items extends JFrame {
 		setTitle("Joan's SQL PRO");
 		
 		// focus listeners (lost)
-		tFComNa.addFocusListener(new FocusLChar50(tFComNa, "tFComNa")); // need to
-		tFCity.addFocusListener(new FocusLChar50(tFCity, "tFCity")); // this might cause a threading issue???
+		tFComNa.addFocusListener(new FocusLChar50(tFComNa, "tFComNa")); // might want to refactor to use a toString
+		tFCity.addFocusListener(new FocusLChar50(tFCity, "tFCity")); 
 		tFState.addFocusListener(new FocusLChar50(tFState, "tFState")); 
 		tFStreAdd.addFocusListener(new FocusLChar50(tFStreAdd, "tFStreAdd")); 
 		tFBName.addFocusListener(new FocusLChar50(tFBName,"tFBName")); 
@@ -499,6 +474,42 @@ public class DbFrame6Items extends JFrame {
 		
 		tFZip.addFocusListener(new FocusLInt5Digits(tFZip, "tFZip"));
 		tFBZip.addFocusListener(new FocusLInt5Digits(tFBZip, "tBFZip"));
+		
+		tFItem1.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+			}
+		});
+		
+		tFitem2.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+			}
+		});
+		
+		tFItem3.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+			}
+		});
+		
+		tFItem4.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+			}
+		});
+		
+		tFItem5.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+			}
+		});
+		
+		tFItem6.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+			}
+		});
 		
 	}
 	
