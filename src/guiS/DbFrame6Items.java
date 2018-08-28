@@ -33,20 +33,20 @@ public class DbFrame6Items extends JFrame {
 	private JPanel contentPane;
 	private JTextField tFNumber;
 	private JTextField tFDate;
-	private JTextField txtComNa;
-	private JTextField txtCity;
-	private JTextField txtStreet;
-	private JTextField txtZip;
-	private JTextField txtStreAdd;
-	private JTextField txtPho;
-	private JTextField txtBName;
-	private JTextField txtBcompNa;
-	private JTextField txtBStreAdd;
-	private JTextField txtBCity;
-	private JTextField txtBStre;
-	private JTextField txtBZip;
-	private JTextField txtBPho;
-	private JTextField txtBEmailAdd;
+	private JTextField tFComNa;
+	private JTextField tFCity;
+	private JTextField tFStreet;
+	private JTextField tFZip;
+	private JTextField tFStreAdd;
+	private JTextField tFPho;
+	private JTextField tFBName;
+	private JTextField tFBcompNa;
+	private JTextField tFBStreAdd;
+	private JTextField tFBCity;
+	private JTextField tFBStre;
+	private JTextField tFBZip;
+	private JTextField tFBPho;
+	private JTextField tFBEmailAdd;
 	private JPanel panel_1;
 	private JPanel panel_2;
 	private JTextField tFTotalAmo;
@@ -135,50 +135,51 @@ public class DbFrame6Items extends JFrame {
 		contentPane.add(tFDate);
 		tFDate.setColumns(10);
 		
-		txtComNa = new JTextField();
-		txtComNa.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusLost(FocusEvent arg0) {
-				
-			}
-		});
-		//txtCompanyName.addFocusListener();
+		tFComNa = new JTextField();
+		tFComNa.addFocusListener(new TestField());
+//		txtComNa.addFocusListener(new FocusAdapter() {
+//			@Override
+//			public void focusLost(FocusEvent arg0) {
+//				
+//			}
+//		});
 		
-		txtComNa.setText("Company Name");
-		txtComNa.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		txtComNa.setBounds(44, 51, 146, 29);
-		contentPane.add(txtComNa);
-		txtComNa.setColumns(10);
 		
-		txtCity = new JTextField();
-		txtCity.setText("City");
-		txtCity.setBounds(44, 131, 86, 20);
-		contentPane.add(txtCity);
-		txtCity.setColumns(10);
+		tFComNa.setText("Company Name");
+		tFComNa.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		tFComNa.setBounds(44, 51, 146, 29);
+		contentPane.add(tFComNa);
+		tFComNa.setColumns(10);
 		
-		txtStreet = new JTextField();
-		txtStreet.setText("State");
-		txtStreet.setBounds(140, 131, 86, 20);
-		contentPane.add(txtStreet);
-		txtStreet.setColumns(10);
+		tFCity = new JTextField();
+		tFCity.setText("City");
+		tFCity.setBounds(44, 131, 86, 20);
+		contentPane.add(tFCity);
+		tFCity.setColumns(10);
 		
-		txtZip = new JTextField();
-		txtZip.setText("Zip");
-		txtZip.setBounds(236, 131, 86, 20);
-		contentPane.add(txtZip);
-		txtZip.setColumns(10);
+		tFStreet = new JTextField();
+		tFStreet.setText("State");
+		tFStreet.setBounds(140, 131, 86, 20);
+		contentPane.add(tFStreet);
+		tFStreet.setColumns(10);
 		
-		txtStreAdd = new JTextField();
-		txtStreAdd.setText("Street Address");
-		txtStreAdd.setBounds(44, 96, 86, 20);
-		contentPane.add(txtStreAdd);
-		txtStreAdd.setColumns(10);
+		tFZip = new JTextField();
+		tFZip.setText("Zip");
+		tFZip.setBounds(236, 131, 86, 20);
+		contentPane.add(tFZip);
+		tFZip.setColumns(10);
 		
-		txtPho = new JTextField();
-		txtPho.setText("Phone");
-		txtPho.setBounds(44, 162, 124, 20);
-		contentPane.add(txtPho);
-		txtPho.setColumns(10);
+		tFStreAdd = new JTextField();
+		tFStreAdd.setText("Street Address");
+		tFStreAdd.setBounds(44, 96, 86, 20);
+		contentPane.add(tFStreAdd);
+		tFStreAdd.setColumns(10);
+		
+		tFPho = new JTextField();
+		tFPho.setText("Phone");
+		tFPho.setBounds(44, 162, 124, 20);
+		contentPane.add(tFPho);
+		tFPho.setColumns(10);
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
@@ -191,53 +192,53 @@ public class DbFrame6Items extends JFrame {
 		panel.add(lblNewLabel_1);
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
-		txtBName = new JTextField();
-		txtBName.setText("[Name]");
-		txtBName.setBounds(44, 257, 86, 20);
-		contentPane.add(txtBName);
-		txtBName.setColumns(10);
+		tFBName = new JTextField();
+		tFBName.setText("[Name]");
+		tFBName.setBounds(44, 257, 86, 20);
+		contentPane.add(tFBName);
+		tFBName.setColumns(10);
 		
-		txtBcompNa = new JTextField();
-		txtBcompNa.setText("[Company Name]");
-		txtBcompNa.setBounds(44, 288, 157, 20);
-		contentPane.add(txtBcompNa);
-		txtBcompNa.setColumns(10);
+		tFBcompNa = new JTextField();
+		tFBcompNa.setText("[Company Name]");
+		tFBcompNa.setBounds(44, 288, 157, 20);
+		contentPane.add(tFBcompNa);
+		tFBcompNa.setColumns(10);
 		
-		txtBStreAdd = new JTextField();
-		txtBStreAdd.setText("Street Address");
-		txtBStreAdd.setBounds(44, 319, 86, 20);
-		contentPane.add(txtBStreAdd);
-		txtBStreAdd.setColumns(10);
+		tFBStreAdd = new JTextField();
+		tFBStreAdd.setText("Street Address");
+		tFBStreAdd.setBounds(44, 319, 86, 20);
+		contentPane.add(tFBStreAdd);
+		tFBStreAdd.setColumns(10);
 		
-		txtBCity = new JTextField();
-		txtBCity.setText("[City]");
-		txtBCity.setBounds(44, 353, 86, 20);
-		contentPane.add(txtBCity);
-		txtBCity.setColumns(10);
+		tFBCity = new JTextField();
+		tFBCity.setText("[City]");
+		tFBCity.setBounds(44, 353, 86, 20);
+		contentPane.add(tFBCity);
+		tFBCity.setColumns(10);
 		
-		txtBStre = new JTextField();
-		txtBStre.setText("State");
-		txtBStre.setBounds(144, 353, 86, 20);
-		contentPane.add(txtBStre);
-		txtBStre.setColumns(10);
+		tFBStre = new JTextField();
+		tFBStre.setText("State");
+		tFBStre.setBounds(144, 353, 86, 20);
+		contentPane.add(tFBStre);
+		tFBStre.setColumns(10);
 		
-		txtBZip = new JTextField();
-		txtBZip.setText("Zip");
-		txtBZip.setBounds(247, 353, 86, 20);
-		contentPane.add(txtBZip);
-		txtBZip.setColumns(10);
+		tFBZip = new JTextField();
+		tFBZip.setText("Zip");
+		tFBZip.setBounds(247, 353, 86, 20);
+		contentPane.add(tFBZip);
+		tFBZip.setColumns(10);
 		
-		txtBPho = new JTextField();
-		txtBPho.setText("[Phone]");
-		txtBPho.setBounds(44, 384, 86, 20);
-		contentPane.add(txtBPho);
-		txtBPho.setColumns(10);
+		tFBPho = new JTextField();
+		tFBPho.setText("[Phone]");
+		tFBPho.setBounds(44, 384, 86, 20);
+		contentPane.add(tFBPho);
+		tFBPho.setColumns(10);
 		
-		txtBEmailAdd = new JTextField();
-		txtBEmailAdd.setText("[Email Address]");
-		txtBEmailAdd.setBounds(44, 415, 86, 20);
-		contentPane.add(txtBEmailAdd);
-		txtBEmailAdd.setColumns(10);
+		tFBEmailAdd = new JTextField();
+		tFBEmailAdd.setText("[Email Address]");
+		tFBEmailAdd.setBounds(44, 415, 86, 20);
+		contentPane.add(tFBEmailAdd);
+		tFBEmailAdd.setColumns(10);
 		
 		panel_1 = new JPanel();
 		panel_1.setBounds(529, 69, 86, 20);
