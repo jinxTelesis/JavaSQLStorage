@@ -12,8 +12,6 @@ public class BillTo {
 	private String bEmail;
 	private String setCallPass;
 	
-	
-	
 	public String getSetCallPass() {
 		return setCallPass;
 	}

@@ -31,6 +31,7 @@ public class DbFrame6Items extends JFrame {
 	// put all the filters in the setters?
 	// other than the type parse which should be in frame
 	private Company compObj = new Company();
+	private BillTo billtoObj = new BillTo();
 
 	private JPanel contentPane;
 	private JTextField tFNumber;
@@ -331,6 +332,11 @@ public class DbFrame6Items extends JFrame {
 		tFA1.setColumns(10);
 		
 		tFitem2 = new JTextField();
+		tFitem2.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+			}
+		});
 		tFitem2.setColumns(10);
 		tFitem2.setBounds(44, 518, 345, 20);
 		contentPane.add(tFitem2);
@@ -356,6 +362,11 @@ public class DbFrame6Items extends JFrame {
 		contentPane.add(tFA2);
 		
 		tFItem3 = new JTextField();
+		tFItem3.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+			}
+		});
 		tFItem3.setColumns(10);
 		tFItem3.setBounds(44, 549, 345, 20);
 		contentPane.add(tFItem3);
@@ -381,6 +392,11 @@ public class DbFrame6Items extends JFrame {
 		contentPane.add(tFA3);
 		
 		tFItem4 = new JTextField();
+		tFItem4.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+			}
+		});
 		tFItem4.setColumns(10);
 		tFItem4.setBounds(44, 580, 345, 20);
 		contentPane.add(tFItem4);
@@ -406,6 +422,11 @@ public class DbFrame6Items extends JFrame {
 		contentPane.add(tFA4);
 		
 		tFItem5 = new JTextField();
+		tFItem5.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+			}
+		});
 		tFItem5.setColumns(10);
 		tFItem5.setBounds(44, 611, 345, 20);
 		contentPane.add(tFItem5);
@@ -431,6 +452,11 @@ public class DbFrame6Items extends JFrame {
 		contentPane.add(tFA5);
 		
 		tFItem6 = new JTextField();
+		tFItem6.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+			}
+		});
 		tFItem6.setColumns(10);
 		tFItem6.setBounds(44, 642, 345, 20);
 		contentPane.add(tFItem6);
@@ -457,89 +483,35 @@ public class DbFrame6Items extends JFrame {
 		setTitle("Joan's SQL PRO");
 		
 		// focus listeners (lost)
-		tFComNa.addFocusListener(new FocusLChar50(tFComNa)); // need to
-		tFCity.addFocusListener(new FocusLChar50(tFCity)); 
-		tFState.addFocusListener(new FocusLChar50(tFState)); 
-		tFStreAdd.addFocusListener(new FocusLChar50(tFStreAdd)); 
-		tFBName.addFocusListener(new FocusLChar50(tFBName)); 
-		tFBState.addFocusListener(new FocusLChar50(tFBState));
-		tFBcompNa.addFocusListener(new FocusLChar50(tFBcompNa)); 
-		tFBStreAdd.addFocusListener(new FocusLChar50(tFBStreAdd)); 
-		tFBCity.addFocusListener(new FocusLChar50(tFBCity)); 
-		tFBEmailAdd.addFocusListener(new FocusLChar50(tFBEmailAdd)); 
+		tFComNa.addFocusListener(new FocusLChar50(tFComNa, "tFComNa")); // need to
+		tFCity.addFocusListener(new FocusLChar50(tFCity, "tFCity")); // this might cause a threading issue???
+		tFState.addFocusListener(new FocusLChar50(tFState, "tFState")); 
+		tFStreAdd.addFocusListener(new FocusLChar50(tFStreAdd, "tFStreAdd")); 
+		tFBName.addFocusListener(new FocusLChar50(tFBName,"tFBName")); 
+		tFBState.addFocusListener(new FocusLChar50(tFBState,"tFBState"));
+		tFBcompNa.addFocusListener(new FocusLChar50(tFBcompNa,"tFBcompNa")); 
+		tFBStreAdd.addFocusListener(new FocusLChar50(tFBStreAdd,"tFBStreAdd")); 
+		tFBCity.addFocusListener(new FocusLChar50(tFBCity,"tFBCity")); 
+		tFBEmailAdd.addFocusListener(new FocusLChar50(tFBEmailAdd,"tFBEmailAdd"));
+		
+		// focust listeners (lost)
+		// these have are for zip code limit size 5 digits, enforce only digits
+		
+		tFZip.addFocusListener(new FocusLInt5Digits(tFZip, "tFZip"));
+		tFBZip.addFocusListener(new FocusLInt5Digits(tFBZip, "tBFZip"));
+		
 	}
 	
-//	private static int returnTextData(JTextField tF) { // add calls to each now // might want to just remove this
-//		//String temp = tF.getText();
-//		int result = 0;
-//		try {
-//			result = Integer.parseInt(removePlusSign(tF.getText(),tF));
-//		}
-//		catch (NumberFormatException ex)
-//		{
-//			result = 0;
-//			JOptionPane.showMessageDialog(null, "You entered invalid characters \n positive numbers only please");
-//			tF.setText("");
-//		}
-//		
-//		if(result > 100)
-//		{
-//			result = 0;
-//			tF.setText("");
-//			JOptionPane.showMessageDialog(null, "Please enter a value lower than 100!");
-//		}
-//		
-//		if(result < 0)
-//		{
-//			result = 0;
-//			tF.setText("");
-//			JOptionPane.showMessageDialog(null, "Please enter positive numbers only!");
-//		}
-//		
-//		return result;
-//	}
-	
-//	private static int returnTextData(JTextField tF, int min, int max) { // add calls to each now
-//		//String temp = tF.getText();
-//		int result = 0;
-//		try {
-//			result = Integer.parseInt(removePlusSign(tF.getText(),tF));
-//		}
-//		catch (NumberFormatException ex)
-//		{
-//			result = 0;
-//			JOptionPane.showMessageDialog(null, "You entered invalid characters \n Please enter again");
-//			tF.setText("");
-//		}
-//		
-//		if(result > max)
-//		{
-//			result = 0;
-//			tF.setText("");
-//			JOptionPane.showMessageDialog(null, "Please enter a value lower than " + max + "!");
-//		}
-//		
-//		if(result < min)
-//		{
-//			result = 0;
-//			tF.setText("");
-//			JOptionPane.showMessageDialog(null, "Value too low! Please enter a value higher than" + min +"!");
-//		}
-//		
-//		return result;
-//	}
-	
-	public class FocusLChar50 implements FocusListener {
-		
+	public class FocusLChar250 implements FocusListener {
 		
 		private JTextField tFRef;
-		// use to string the check object?
+		private String caller;
 		
-		FocusLChar50(JTextField passedtF){
+		FocusLChar250(JTextField passedtF, String caller){
 			this.tFRef = passedtF;
-		}
+			this.caller = caller;
+		}	
 
-		public FocusLChar50() {};
 		@Override
 		public void focusGained(FocusEvent arg0) {
 			// TODO Auto-generated method stub
@@ -548,21 +520,134 @@ public class DbFrame6Items extends JFrame {
 
 		@Override
 		public void focusLost(FocusEvent arg0) {
-			//if(!txtCompanyName.getText().equals(""))
+			if(!this.tFRef.getText().equals(""))
+			{
+				if(this.tFRef.getText().length() <= 250)
+				{
+					
+				}
+			}
+		}
+		
+	}
+	
+	public class FocusLInt5Digits implements FocusListener {
+		
+		private JTextField tFRef;
+		private String caller;
+		
+		FocusLInt5Digits(JTextField passedtF, String caller){
+			this.tFRef = passedtF;
+			this.caller = caller;
+		}
+
+		@Override
+		public void focusGained(FocusEvent e) {
+			
+			
+		}
+
+		@Override
+		public void focusLost(FocusEvent e) {
+			if(!this.tFRef.getText().equals(""))
+			{
+				int result =0;
+				try {
+					result = Integer.parseInt(this.tFRef.getText());
+				}
+				catch (NumberFormatException ex)
+				{
+					result = 0;
+					JOptionPane.showMessageDialog(null, "You entered invalid characters \n Please enter again");
+					this.tFRef.setText("");
+				}
+				
+				if(result > 99999) {
+					result = 0;
+					JOptionPane.showMessageDialog(null, "Invalid zip max 5 digits", "error", result);
+					this.tFRef.setText("");
+				}
+				
+				if(this.caller.equals("tFZip") && result != 0)
+				{
+					compObj.setZip(result);
+				}
+				
+				if(this.caller.equals("tBFZip") && result != 0)
+				{
+					billtoObj.setbZip(result);
+				}
+			}
+		}
+	}
+	// write comments for this 
+	// write comments for this 
+	
+	public class FocusLChar50 implements FocusListener {
+		
+		private String caller;
+		private JTextField tFRef;
+		// use to string the check object?
+		
+		FocusLChar50(JTextField passedtF, String caller){
+			this.tFRef = passedtF;
+			this.caller = caller;
+		}
+
+		public FocusLChar50() {};
+		@Override
+		public void focusGained(FocusEvent arg0) {
+		}				//private Company compObj = new Company();
+						//private BillTo billtoObj = new BillTo();
+
+		@Override
+		public void focusLost(FocusEvent arg0) { // this should be written with get component
 			if(!this.tFRef.getText().equals(""))
 			{
 				if(this.tFRef.getText().length() <= 50)
 				{
-					compObj.setCity(getName());
+					if(this.caller.equals("tFComNa")) {
+						compObj.setName(this.tFRef.getText());} //System.out.println("this is test of get name " + compObj.getName());}
+					if(this.caller.equals("tFCity")){
+						compObj.setCity(this.tFRef.getText());}//System.out.println("this is a test of get city " + compObj.getCity());}
+					if(this.caller.equals("tFState")){
+						compObj.setState(this.tFRef.getText());}//System.out.println("this is a test of get state " + compObj.getState());}
+					if(this.caller.equals("tFStreAdd")) {
+						compObj.setStreetAddress(this.tFRef.getText());}//System.out.println("this is a test of get address " + compObj.getStreetAddress());}
+					if(this.caller.equals("tFBName")) {
+						billtoObj.setbName(this.tFRef.getText());//System.out.println("BName text!" + billtoObj.getbName());
+					}
+					if(this.caller.equals("tFBcompNa")) {
+						billtoObj.setbComp(this.tFRef.getText());
+						//System.out.println("BCompNa text!" + billtoObj.getbComp());
+					}
+					if(this.caller.equals("tFBState")) {
+						billtoObj.setbState(this.tFRef.getText());
+						//System.out.println("BState text!" + billtoObj.getbState());
+					}
+					if(this.caller.equals("tFBStreAdd"))
+					{
+						billtoObj.setbSAdd(this.tFRef.getText());
+						//System.out.println("BStreetAdd text!" + billtoObj.getbSAdd());
+					}
+					if(this.caller.equals("tFBCity")) {
+						billtoObj.setbCity(this.tFRef.getText());
+						//System.out.println("BCity text!" + billtoObj.getbCity());
+					}
+					if(this.caller.equals("tFBEmailAdd"))
+					{
+						billtoObj.setbEmail(this.tFRef.getText());
+						//System.out.println("BEmail text!" + billtoObj.getbEmail());
+					}
+						
 				}
 				else
 				{
+					this.tFRef.setText("");
 					JOptionPane.showMessageDialog(null, "Data entry too long! Please abbreviate in some way");
 				}
-			}
-			
+			}			
 		}
-
 	}
 }
 
