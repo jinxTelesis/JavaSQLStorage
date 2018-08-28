@@ -31,58 +31,58 @@ public class DbFrame6Items extends JFrame {
 	// other than the type parse which should be in frame
 
 	private JPanel contentPane;
-	private JTextField txtnumber;
-	private JTextField txtDate;
-	private JTextField txtCompanyName;
+	private JTextField tFNumber;
+	private JTextField tFDate;
+	private JTextField txtComNa;
 	private JTextField txtCity;
 	private JTextField txtStreet;
 	private JTextField txtZip;
-	private JTextField txtStreetAddress_1;
-	private JTextField txtPhone_1;
-	private JTextField txtname;
-	private JTextField txtcompanyName;
-	private JTextField txtStreetAddress;
-	private JTextField txtcity;
-	private JTextField txtStreet_1;
-	private JTextField txtZip_1;
-	private JTextField txtPhone;
-	private JTextField txtemailAddress;
+	private JTextField txtStreAdd;
+	private JTextField txtPho;
+	private JTextField txtBName;
+	private JTextField txtBcompNa;
+	private JTextField txtBStreAdd;
+	private JTextField txtBCity;
+	private JTextField txtBStre;
+	private JTextField txtBZip;
+	private JTextField txtBPho;
+	private JTextField txtBEmailAdd;
 	private JPanel panel_1;
 	private JPanel panel_2;
-	private JTextField textField_3;
+	private JTextField tFTotalAmo;
 	private JLabel lblQty;
 	private JLabel lblUnit;
 	private JLabel lblTaxed;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_6;
-	private JTextField textField_7;
-	private JTextField textField_8;
-	private JTextField textField_9;
-	private JTextField textField_10;
-	private JTextField textField_11;
-	private JTextField textField_12;
-	private JTextField textField_13;
-	private JTextField textField_14;
-	private JTextField textField_15;
-	private JTextField textField_16;
-	private JTextField textField_17;
-	private JTextField textField_18;
-	private JTextField textField_19;
-	private JTextField textField_20;
-	private JTextField textField_21;
-	private JTextField textField_22;
-	private JTextField textField_23;
-	private JTextField textField_24;
-	private JTextField textField_25;
-	private JTextField textField_26;
-	private JTextField textField_27;
-	private JTextField textField_28;
-	private JTextField textField_29;
-	private JTextField textField_30;
+	private JTextField tFItem1;
+	private JTextField tFQ1;
+	private JTextField tFU1;
+	private JTextField tFTax1;
+	private JTextField tFA1;
+	private JTextField tFitem2;
+	private JTextField tFQ2;
+	private JTextField tFU2;
+	private JTextField tFTax2;
+	private JTextField tFA2;
+	private JTextField tFItem3;
+	private JTextField tFQ3;
+	private JTextField tFU3;
+	private JTextField tFTax3;
+	private JTextField tFA3;
+	private JTextField tFItem4;
+	private JTextField tFQ4;
+	private JTextField tFU4;
+	private JTextField tFTax4;
+	private JTextField tFA4;
+	private JTextField tFItem5;
+	private JTextField tFQ5;
+	private JTextField tFU5;
+	private JTextField tFTax5;
+	private JTextField tFA5;
+	private JTextField tFItem6;
+	private JTextField tFQ6;
+	private JTextField tFU6;
+	private JTextField tFTax6;
+	private JTextField tFA6;
 
 	/**
 	 * Launch the application.
@@ -122,21 +122,21 @@ public class DbFrame6Items extends JFrame {
 		lblInvoice.setBounds(566, 29, 134, 29);
 		contentPane.add(lblInvoice);
 		
-		txtnumber = new JTextField();
-		txtnumber.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		txtnumber.setText("[number]");
-		txtnumber.setBounds(529, 96, 86, 20);
-		contentPane.add(txtnumber);
-		txtnumber.setColumns(10);
+		tFNumber = new JTextField();
+		tFNumber.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		tFNumber.setText("[number]");
+		tFNumber.setBounds(529, 96, 86, 20);
+		contentPane.add(tFNumber);
+		tFNumber.setColumns(10);
 		
-		txtDate = new JTextField();
-		txtDate.setText("1/1/2018");
-		txtDate.setBounds(625, 96, 98, 20);
-		contentPane.add(txtDate);
-		txtDate.setColumns(10);
+		tFDate = new JTextField();
+		tFDate.setText("1/1/2018");
+		tFDate.setBounds(625, 96, 98, 20);
+		contentPane.add(tFDate);
+		tFDate.setColumns(10);
 		
-		txtCompanyName = new JTextField();
-		txtCompanyName.addFocusListener(new FocusAdapter() {
+		txtComNa = new JTextField();
+		txtComNa.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent arg0) {
 				
@@ -144,11 +144,11 @@ public class DbFrame6Items extends JFrame {
 		});
 		//txtCompanyName.addFocusListener();
 		
-		txtCompanyName.setText("Company Name");
-		txtCompanyName.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		txtCompanyName.setBounds(44, 51, 146, 29);
-		contentPane.add(txtCompanyName);
-		txtCompanyName.setColumns(10);
+		txtComNa.setText("Company Name");
+		txtComNa.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		txtComNa.setBounds(44, 51, 146, 29);
+		contentPane.add(txtComNa);
+		txtComNa.setColumns(10);
 		
 		txtCity = new JTextField();
 		txtCity.setText("City");
@@ -168,17 +168,17 @@ public class DbFrame6Items extends JFrame {
 		contentPane.add(txtZip);
 		txtZip.setColumns(10);
 		
-		txtStreetAddress_1 = new JTextField();
-		txtStreetAddress_1.setText("Street Address");
-		txtStreetAddress_1.setBounds(44, 96, 86, 20);
-		contentPane.add(txtStreetAddress_1);
-		txtStreetAddress_1.setColumns(10);
+		txtStreAdd = new JTextField();
+		txtStreAdd.setText("Street Address");
+		txtStreAdd.setBounds(44, 96, 86, 20);
+		contentPane.add(txtStreAdd);
+		txtStreAdd.setColumns(10);
 		
-		txtPhone_1 = new JTextField();
-		txtPhone_1.setText("Phone");
-		txtPhone_1.setBounds(44, 162, 124, 20);
-		contentPane.add(txtPhone_1);
-		txtPhone_1.setColumns(10);
+		txtPho = new JTextField();
+		txtPho.setText("Phone");
+		txtPho.setBounds(44, 162, 124, 20);
+		contentPane.add(txtPho);
+		txtPho.setColumns(10);
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
@@ -191,53 +191,53 @@ public class DbFrame6Items extends JFrame {
 		panel.add(lblNewLabel_1);
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
-		txtname = new JTextField();
-		txtname.setText("[Name]");
-		txtname.setBounds(44, 257, 86, 20);
-		contentPane.add(txtname);
-		txtname.setColumns(10);
+		txtBName = new JTextField();
+		txtBName.setText("[Name]");
+		txtBName.setBounds(44, 257, 86, 20);
+		contentPane.add(txtBName);
+		txtBName.setColumns(10);
 		
-		txtcompanyName = new JTextField();
-		txtcompanyName.setText("[Company Name]");
-		txtcompanyName.setBounds(44, 288, 157, 20);
-		contentPane.add(txtcompanyName);
-		txtcompanyName.setColumns(10);
+		txtBcompNa = new JTextField();
+		txtBcompNa.setText("[Company Name]");
+		txtBcompNa.setBounds(44, 288, 157, 20);
+		contentPane.add(txtBcompNa);
+		txtBcompNa.setColumns(10);
 		
-		txtStreetAddress = new JTextField();
-		txtStreetAddress.setText("Street Address");
-		txtStreetAddress.setBounds(44, 319, 86, 20);
-		contentPane.add(txtStreetAddress);
-		txtStreetAddress.setColumns(10);
+		txtBStreAdd = new JTextField();
+		txtBStreAdd.setText("Street Address");
+		txtBStreAdd.setBounds(44, 319, 86, 20);
+		contentPane.add(txtBStreAdd);
+		txtBStreAdd.setColumns(10);
 		
-		txtcity = new JTextField();
-		txtcity.setText("[City]");
-		txtcity.setBounds(44, 353, 86, 20);
-		contentPane.add(txtcity);
-		txtcity.setColumns(10);
+		txtBCity = new JTextField();
+		txtBCity.setText("[City]");
+		txtBCity.setBounds(44, 353, 86, 20);
+		contentPane.add(txtBCity);
+		txtBCity.setColumns(10);
 		
-		txtStreet_1 = new JTextField();
-		txtStreet_1.setText("State");
-		txtStreet_1.setBounds(144, 353, 86, 20);
-		contentPane.add(txtStreet_1);
-		txtStreet_1.setColumns(10);
+		txtBStre = new JTextField();
+		txtBStre.setText("State");
+		txtBStre.setBounds(144, 353, 86, 20);
+		contentPane.add(txtBStre);
+		txtBStre.setColumns(10);
 		
-		txtZip_1 = new JTextField();
-		txtZip_1.setText("Zip");
-		txtZip_1.setBounds(247, 353, 86, 20);
-		contentPane.add(txtZip_1);
-		txtZip_1.setColumns(10);
+		txtBZip = new JTextField();
+		txtBZip.setText("Zip");
+		txtBZip.setBounds(247, 353, 86, 20);
+		contentPane.add(txtBZip);
+		txtBZip.setColumns(10);
 		
-		txtPhone = new JTextField();
-		txtPhone.setText("[Phone]");
-		txtPhone.setBounds(44, 384, 86, 20);
-		contentPane.add(txtPhone);
-		txtPhone.setColumns(10);
+		txtBPho = new JTextField();
+		txtBPho.setText("[Phone]");
+		txtBPho.setBounds(44, 384, 86, 20);
+		contentPane.add(txtBPho);
+		txtBPho.setColumns(10);
 		
-		txtemailAddress = new JTextField();
-		txtemailAddress.setText("[Email Address]");
-		txtemailAddress.setBounds(44, 415, 86, 20);
-		contentPane.add(txtemailAddress);
-		txtemailAddress.setColumns(10);
+		txtBEmailAdd = new JTextField();
+		txtBEmailAdd.setText("[Email Address]");
+		txtBEmailAdd.setBounds(44, 415, 86, 20);
+		contentPane.add(txtBEmailAdd);
+		txtBEmailAdd.setColumns(10);
 		
 		panel_1 = new JPanel();
 		panel_1.setBounds(529, 69, 86, 20);
@@ -262,10 +262,10 @@ public class DbFrame6Items extends JFrame {
 		contentPane.add(panel_3);
 		panel_3.setLayout(null);
 		
-		JLabel lblNewLabel_2 = new JLabel("Item Description");
-		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblNewLabel_2.setBounds(10, 10, 113, 15);
-		panel_3.add(lblNewLabel_2);
+		JLabel labItemDesc = new JLabel("Item Description");
+		labItemDesc.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		labItemDesc.setBounds(10, 10, 113, 15);
+		panel_3.add(labItemDesc);
 		
 		JLabel lblAmout = new JLabel(" Amount");
 		lblAmout.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -297,161 +297,161 @@ public class DbFrame6Items extends JFrame {
 		lblTotal.setBounds(479, 761, 103, 22);
 		contentPane.add(lblTotal);
 		
-		textField_3 = new JTextField();
-		textField_3.setText("$100.00");
-		textField_3.setBounds(653, 760, 86, 20);
-		contentPane.add(textField_3);
-		textField_3.setColumns(10);
+		tFTotalAmo = new JTextField();
+		tFTotalAmo.setText("$100.00");
+		tFTotalAmo.setBounds(653, 760, 86, 20);
+		contentPane.add(tFTotalAmo);
+		tFTotalAmo.setColumns(10);
 		
-		textField = new JTextField();
-		textField.setBounds(44, 486, 345, 20);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		tFItem1 = new JTextField();
+		tFItem1.setBounds(44, 486, 345, 20);
+		contentPane.add(tFItem1);
+		tFItem1.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(399, 486, 70, 20);
-		contentPane.add(textField_1);
-		textField_1.setColumns(10);
+		tFQ1 = new JTextField();
+		tFQ1.setBounds(399, 486, 70, 20);
+		contentPane.add(tFQ1);
+		tFQ1.setColumns(10);
 		
-		textField_2 = new JTextField();
-		textField_2.setBounds(479, 486, 70, 20);
-		contentPane.add(textField_2);
-		textField_2.setColumns(10);
+		tFU1 = new JTextField();
+		tFU1.setBounds(479, 486, 70, 20);
+		contentPane.add(tFU1);
+		tFU1.setColumns(10);
 		
-		textField_4 = new JTextField();
-		textField_4.setBounds(559, 486, 70, 20);
-		contentPane.add(textField_4);
-		textField_4.setColumns(10);
+		tFTax1 = new JTextField();
+		tFTax1.setBounds(559, 486, 70, 20);
+		contentPane.add(tFTax1);
+		tFTax1.setColumns(10);
 		
-		textField_5 = new JTextField();
-		textField_5.setBounds(639, 486, 100, 20);
-		contentPane.add(textField_5);
-		textField_5.setColumns(10);
+		tFA1 = new JTextField();
+		tFA1.setBounds(639, 486, 100, 20);
+		contentPane.add(tFA1);
+		tFA1.setColumns(10);
 		
-		textField_6 = new JTextField();
-		textField_6.setColumns(10);
-		textField_6.setBounds(44, 518, 345, 20);
-		contentPane.add(textField_6);
+		tFitem2 = new JTextField();
+		tFitem2.setColumns(10);
+		tFitem2.setBounds(44, 518, 345, 20);
+		contentPane.add(tFitem2);
 		
-		textField_7 = new JTextField();
-		textField_7.setColumns(10);
-		textField_7.setBounds(399, 518, 70, 20);
-		contentPane.add(textField_7);
+		tFQ2 = new JTextField();
+		tFQ2.setColumns(10);
+		tFQ2.setBounds(399, 518, 70, 20);
+		contentPane.add(tFQ2);
 		
-		textField_8 = new JTextField();
-		textField_8.setColumns(10);
-		textField_8.setBounds(479, 518, 70, 20);
-		contentPane.add(textField_8);
+		tFU2 = new JTextField();
+		tFU2.setColumns(10);
+		tFU2.setBounds(479, 518, 70, 20);
+		contentPane.add(tFU2);
 		
-		textField_9 = new JTextField();
-		textField_9.setColumns(10);
-		textField_9.setBounds(559, 518, 70, 20);
-		contentPane.add(textField_9);
+		tFTax2 = new JTextField();
+		tFTax2.setColumns(10);
+		tFTax2.setBounds(559, 518, 70, 20);
+		contentPane.add(tFTax2);
 		
-		textField_10 = new JTextField();
-		textField_10.setColumns(10);
-		textField_10.setBounds(639, 518, 100, 20);
-		contentPane.add(textField_10);
+		tFA2 = new JTextField();
+		tFA2.setColumns(10);
+		tFA2.setBounds(639, 518, 100, 20);
+		contentPane.add(tFA2);
 		
-		textField_11 = new JTextField();
-		textField_11.setColumns(10);
-		textField_11.setBounds(44, 549, 345, 20);
-		contentPane.add(textField_11);
+		tFItem3 = new JTextField();
+		tFItem3.setColumns(10);
+		tFItem3.setBounds(44, 549, 345, 20);
+		contentPane.add(tFItem3);
 		
-		textField_12 = new JTextField();
-		textField_12.setColumns(10);
-		textField_12.setBounds(399, 549, 70, 20);
-		contentPane.add(textField_12);
+		tFQ3 = new JTextField();
+		tFQ3.setColumns(10);
+		tFQ3.setBounds(399, 549, 70, 20);
+		contentPane.add(tFQ3);
 		
-		textField_13 = new JTextField();
-		textField_13.setColumns(10);
-		textField_13.setBounds(479, 549, 70, 20);
-		contentPane.add(textField_13);
+		tFU3 = new JTextField();
+		tFU3.setColumns(10);
+		tFU3.setBounds(479, 549, 70, 20);
+		contentPane.add(tFU3);
 		
-		textField_14 = new JTextField();
-		textField_14.setColumns(10);
-		textField_14.setBounds(559, 549, 70, 20);
-		contentPane.add(textField_14);
+		tFTax3 = new JTextField();
+		tFTax3.setColumns(10);
+		tFTax3.setBounds(559, 549, 70, 20);
+		contentPane.add(tFTax3);
 		
-		textField_15 = new JTextField();
-		textField_15.setColumns(10);
-		textField_15.setBounds(639, 549, 100, 20);
-		contentPane.add(textField_15);
+		tFA3 = new JTextField();
+		tFA3.setColumns(10);
+		tFA3.setBounds(639, 549, 100, 20);
+		contentPane.add(tFA3);
 		
-		textField_16 = new JTextField();
-		textField_16.setColumns(10);
-		textField_16.setBounds(44, 580, 345, 20);
-		contentPane.add(textField_16);
+		tFItem4 = new JTextField();
+		tFItem4.setColumns(10);
+		tFItem4.setBounds(44, 580, 345, 20);
+		contentPane.add(tFItem4);
 		
-		textField_17 = new JTextField();
-		textField_17.setColumns(10);
-		textField_17.setBounds(399, 580, 70, 20);
-		contentPane.add(textField_17);
+		tFQ4 = new JTextField();
+		tFQ4.setColumns(10);
+		tFQ4.setBounds(399, 580, 70, 20);
+		contentPane.add(tFQ4);
 		
-		textField_18 = new JTextField();
-		textField_18.setColumns(10);
-		textField_18.setBounds(479, 580, 70, 20);
-		contentPane.add(textField_18);
+		tFU4 = new JTextField();
+		tFU4.setColumns(10);
+		tFU4.setBounds(479, 580, 70, 20);
+		contentPane.add(tFU4);
 		
-		textField_19 = new JTextField();
-		textField_19.setColumns(10);
-		textField_19.setBounds(559, 580, 70, 20);
-		contentPane.add(textField_19);
+		tFTax4 = new JTextField();
+		tFTax4.setColumns(10);
+		tFTax4.setBounds(559, 580, 70, 20);
+		contentPane.add(tFTax4);
 		
-		textField_20 = new JTextField();
-		textField_20.setColumns(10);
-		textField_20.setBounds(639, 580, 100, 20);
-		contentPane.add(textField_20);
+		tFA4 = new JTextField();
+		tFA4.setColumns(10);
+		tFA4.setBounds(639, 580, 100, 20);
+		contentPane.add(tFA4);
 		
-		textField_21 = new JTextField();
-		textField_21.setColumns(10);
-		textField_21.setBounds(44, 611, 345, 20);
-		contentPane.add(textField_21);
+		tFItem5 = new JTextField();
+		tFItem5.setColumns(10);
+		tFItem5.setBounds(44, 611, 345, 20);
+		contentPane.add(tFItem5);
 		
-		textField_22 = new JTextField();
-		textField_22.setColumns(10);
-		textField_22.setBounds(399, 611, 70, 20);
-		contentPane.add(textField_22);
+		tFQ5 = new JTextField();
+		tFQ5.setColumns(10);
+		tFQ5.setBounds(399, 611, 70, 20);
+		contentPane.add(tFQ5);
 		
-		textField_23 = new JTextField();
-		textField_23.setColumns(10);
-		textField_23.setBounds(479, 611, 70, 20);
-		contentPane.add(textField_23);
+		tFU5 = new JTextField();
+		tFU5.setColumns(10);
+		tFU5.setBounds(479, 611, 70, 20);
+		contentPane.add(tFU5);
 		
-		textField_24 = new JTextField();
-		textField_24.setColumns(10);
-		textField_24.setBounds(559, 611, 70, 20);
-		contentPane.add(textField_24);
+		tFTax5 = new JTextField();
+		tFTax5.setColumns(10);
+		tFTax5.setBounds(559, 611, 70, 20);
+		contentPane.add(tFTax5);
 		
-		textField_25 = new JTextField();
-		textField_25.setColumns(10);
-		textField_25.setBounds(639, 611, 100, 20);
-		contentPane.add(textField_25);
+		tFA5 = new JTextField();
+		tFA5.setColumns(10);
+		tFA5.setBounds(639, 611, 100, 20);
+		contentPane.add(tFA5);
 		
-		textField_26 = new JTextField();
-		textField_26.setColumns(10);
-		textField_26.setBounds(44, 642, 345, 20);
-		contentPane.add(textField_26);
+		tFItem6 = new JTextField();
+		tFItem6.setColumns(10);
+		tFItem6.setBounds(44, 642, 345, 20);
+		contentPane.add(tFItem6);
 		
-		textField_27 = new JTextField();
-		textField_27.setColumns(10);
-		textField_27.setBounds(399, 642, 70, 20);
-		contentPane.add(textField_27);
+		tFQ6 = new JTextField();
+		tFQ6.setColumns(10);
+		tFQ6.setBounds(399, 642, 70, 20);
+		contentPane.add(tFQ6);
 		
-		textField_28 = new JTextField();
-		textField_28.setColumns(10);
-		textField_28.setBounds(479, 642, 70, 20);
-		contentPane.add(textField_28);
+		tFU6 = new JTextField();
+		tFU6.setColumns(10);
+		tFU6.setBounds(479, 642, 70, 20);
+		contentPane.add(tFU6);
 		
-		textField_29 = new JTextField();
-		textField_29.setColumns(10);
-		textField_29.setBounds(559, 642, 70, 20);
-		contentPane.add(textField_29);
+		tFTax6 = new JTextField();
+		tFTax6.setColumns(10);
+		tFTax6.setBounds(559, 642, 70, 20);
+		contentPane.add(tFTax6);
 		
-		textField_30 = new JTextField();
-		textField_30.setColumns(10);
-		textField_30.setBounds(639, 642, 100, 20);
-		contentPane.add(textField_30);
+		tFA6 = new JTextField();
+		tFA6.setColumns(10);
+		tFA6.setBounds(639, 642, 100, 20);
+		contentPane.add(tFA6);
 		setTitle("Joan's SQL PRO");
 	}
 	
