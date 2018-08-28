@@ -9,6 +9,8 @@ public class Company {
 	private int zip;
 	private String  phone;
 	
+	
+
 	Company(){
 		name ="";
 		streetAddress ="";
@@ -17,6 +19,7 @@ public class Company {
 		zip = 0;
 		phone ="";
 	}
+
 
 	public String getName() {
 		return name;

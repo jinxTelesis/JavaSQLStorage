@@ -10,6 +10,7 @@ public class BillTo {
 	private int bZip;
 	private String pPhone;
 	private String bEmail;
+	
 	public String getbName() {
 		return bName;
 	}

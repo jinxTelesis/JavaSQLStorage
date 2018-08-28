@@ -17,6 +17,7 @@ import javax.swing.border.SoftBevelBorder;
 import javax.swing.border.BevelBorder;
 import java.awt.SystemColor;
 import javax.swing.JMenuBar;
+import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
@@ -29,24 +30,26 @@ public class DbFrame6Items extends JFrame {
 	// put phone filter in company object
 	// put all the filters in the setters?
 	// other than the type parse which should be in frame
+	private Company compObj = new Company();
+	private BillTo billtoObj = new BillTo();
 
 	private JPanel contentPane;
 	private JTextField tFNumber;
 	private JTextField tFDate;
-	private JTextField txtComNa;
-	private JTextField txtCity;
-	private JTextField txtStreet;
-	private JTextField txtZip;
-	private JTextField txtStreAdd;
-	private JTextField txtPho;
-	private JTextField txtBName;
-	private JTextField txtBcompNa;
-	private JTextField txtBStreAdd;
-	private JTextField txtBCity;
-	private JTextField txtBStre;
-	private JTextField txtBZip;
-	private JTextField txtBPho;
-	private JTextField txtBEmailAdd;
+	private JTextField tFComNa;
+	private JTextField tFCity;
+	private JTextField tFState;
+	private JTextField tFZip;
+	private JTextField tFStreAdd;
+	private JTextField tFPho;
+	private JTextField tFBName;
+	private JTextField tFBcompNa;
+	private JTextField tFBStreAdd;
+	private JTextField tFBCity;
+	private JTextField tFBState;
+	private JTextField tFBZip;
+	private JTextField tFBPho;
+	private JTextField tFBEmailAdd;
 	private JPanel panel_1;
 	private JPanel panel_2;
 	private JTextField tFTotalAmo;
@@ -135,50 +138,50 @@ public class DbFrame6Items extends JFrame {
 		contentPane.add(tFDate);
 		tFDate.setColumns(10);
 		
-		txtComNa = new JTextField();
-		txtComNa.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusLost(FocusEvent arg0) {
-				
-			}
-		});
-		//txtCompanyName.addFocusListener();
+		tFComNa = new JTextField();
 		
-		txtComNa.setText("Company Name");
-		txtComNa.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		txtComNa.setBounds(44, 51, 146, 29);
-		contentPane.add(txtComNa);
-		txtComNa.setColumns(10);
+//		txtComNa.addFocusListener(new FocusAdapter() {
+//			@Override
+//			public void focusLost(FocusEvent arg0) {
+//				
+//			}
+//		});
 		
-		txtCity = new JTextField();
-		txtCity.setText("City");
-		txtCity.setBounds(44, 131, 86, 20);
-		contentPane.add(txtCity);
-		txtCity.setColumns(10);
+		tFComNa.setText("Company Name");
+		tFComNa.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		tFComNa.setBounds(44, 51, 146, 29);
+		contentPane.add(tFComNa);
+		tFComNa.setColumns(10);
 		
-		txtStreet = new JTextField();
-		txtStreet.setText("State");
-		txtStreet.setBounds(140, 131, 86, 20);
-		contentPane.add(txtStreet);
-		txtStreet.setColumns(10);
+		tFCity = new JTextField();
+		tFCity.setText("City");
+		tFCity.setBounds(44, 131, 86, 20);
+		contentPane.add(tFCity);
+		tFCity.setColumns(10);
 		
-		txtZip = new JTextField();
-		txtZip.setText("Zip");
-		txtZip.setBounds(236, 131, 86, 20);
-		contentPane.add(txtZip);
-		txtZip.setColumns(10);
+		tFState = new JTextField();
+		tFState.setText("State");
+		tFState.setBounds(140, 131, 86, 20);
+		contentPane.add(tFState);
+		tFState.setColumns(10);
 		
-		txtStreAdd = new JTextField();
-		txtStreAdd.setText("Street Address");
-		txtStreAdd.setBounds(44, 96, 86, 20);
-		contentPane.add(txtStreAdd);
-		txtStreAdd.setColumns(10);
+		tFZip = new JTextField();
+		tFZip.setText("Zip");
+		tFZip.setBounds(236, 131, 86, 20);
+		contentPane.add(tFZip);
+		tFZip.setColumns(10);
 		
-		txtPho = new JTextField();
-		txtPho.setText("Phone");
-		txtPho.setBounds(44, 162, 124, 20);
-		contentPane.add(txtPho);
-		txtPho.setColumns(10);
+		tFStreAdd = new JTextField();
+		tFStreAdd.setText("Street Address");
+		tFStreAdd.setBounds(44, 96, 86, 20);
+		contentPane.add(tFStreAdd);
+		tFStreAdd.setColumns(10);
+		
+		tFPho = new JTextField();
+		tFPho.setText("Phone");
+		tFPho.setBounds(44, 162, 124, 20);
+		contentPane.add(tFPho);
+		tFPho.setColumns(10);
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
@@ -191,53 +194,53 @@ public class DbFrame6Items extends JFrame {
 		panel.add(lblNewLabel_1);
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
-		txtBName = new JTextField();
-		txtBName.setText("[Name]");
-		txtBName.setBounds(44, 257, 86, 20);
-		contentPane.add(txtBName);
-		txtBName.setColumns(10);
+		tFBName = new JTextField();
+		tFBName.setText("[Name]");
+		tFBName.setBounds(44, 257, 157, 20);
+		contentPane.add(tFBName);
+		tFBName.setColumns(10);
 		
-		txtBcompNa = new JTextField();
-		txtBcompNa.setText("[Company Name]");
-		txtBcompNa.setBounds(44, 288, 157, 20);
-		contentPane.add(txtBcompNa);
-		txtBcompNa.setColumns(10);
+		tFBcompNa = new JTextField();
+		tFBcompNa.setText("[Company Name]");
+		tFBcompNa.setBounds(44, 288, 157, 20);
+		contentPane.add(tFBcompNa);
+		tFBcompNa.setColumns(10);
 		
-		txtBStreAdd = new JTextField();
-		txtBStreAdd.setText("Street Address");
-		txtBStreAdd.setBounds(44, 319, 86, 20);
-		contentPane.add(txtBStreAdd);
-		txtBStreAdd.setColumns(10);
+		tFBStreAdd = new JTextField();
+		tFBStreAdd.setText("Street Address");
+		tFBStreAdd.setBounds(44, 319, 157, 20);
+		contentPane.add(tFBStreAdd);
+		tFBStreAdd.setColumns(10);
 		
-		txtBCity = new JTextField();
-		txtBCity.setText("[City]");
-		txtBCity.setBounds(44, 353, 86, 20);
-		contentPane.add(txtBCity);
-		txtBCity.setColumns(10);
+		tFBCity = new JTextField();
+		tFBCity.setText("[City]");
+		tFBCity.setBounds(44, 350, 86, 20);
+		contentPane.add(tFBCity);
+		tFBCity.setColumns(10);
 		
-		txtBStre = new JTextField();
-		txtBStre.setText("State");
-		txtBStre.setBounds(144, 353, 86, 20);
-		contentPane.add(txtBStre);
-		txtBStre.setColumns(10);
+		tFBState = new JTextField();
+		tFBState.setText("State");
+		tFBState.setBounds(140, 350, 82, 20);
+		contentPane.add(tFBState);
+		tFBState.setColumns(10);
 		
-		txtBZip = new JTextField();
-		txtBZip.setText("Zip");
-		txtBZip.setBounds(247, 353, 86, 20);
-		contentPane.add(txtBZip);
-		txtBZip.setColumns(10);
+		tFBZip = new JTextField();
+		tFBZip.setText("Zip");
+		tFBZip.setBounds(233, 350, 86, 20);
+		contentPane.add(tFBZip);
+		tFBZip.setColumns(10);
 		
-		txtBPho = new JTextField();
-		txtBPho.setText("[Phone]");
-		txtBPho.setBounds(44, 384, 86, 20);
-		contentPane.add(txtBPho);
-		txtBPho.setColumns(10);
+		tFBPho = new JTextField();
+		tFBPho.setText("[Phone]");
+		tFBPho.setBounds(44, 384, 157, 20);
+		contentPane.add(tFBPho);
+		tFBPho.setColumns(10);
 		
-		txtBEmailAdd = new JTextField();
-		txtBEmailAdd.setText("[Email Address]");
-		txtBEmailAdd.setBounds(44, 415, 86, 20);
-		contentPane.add(txtBEmailAdd);
-		txtBEmailAdd.setColumns(10);
+		tFBEmailAdd = new JTextField();
+		tFBEmailAdd.setText("[Email Address]");
+		tFBEmailAdd.setBounds(44, 415, 157, 20);
+		contentPane.add(tFBEmailAdd);
+		tFBEmailAdd.setColumns(10);
 		
 		panel_1 = new JPanel();
 		panel_1.setBounds(529, 69, 86, 20);
@@ -453,11 +456,73 @@ public class DbFrame6Items extends JFrame {
 		tFA6.setBounds(639, 642, 100, 20);
 		contentPane.add(tFA6);
 		setTitle("Joan's SQL PRO");
+		
+		// focus listeners (lost)
+		tFComNa.addFocusListener(new FocusLChar50(tFComNa, "tFComNa")); // might want to refactor to use a toString
+		tFCity.addFocusListener(new FocusLChar50(tFCity, "tFCity")); 
+		tFState.addFocusListener(new FocusLChar50(tFState, "tFState")); 
+		tFStreAdd.addFocusListener(new FocusLChar50(tFStreAdd, "tFStreAdd")); 
+		tFBName.addFocusListener(new FocusLChar50(tFBName,"tFBName")); 
+		tFBState.addFocusListener(new FocusLChar50(tFBState,"tFBState"));
+		tFBcompNa.addFocusListener(new FocusLChar50(tFBcompNa,"tFBcompNa")); 
+		tFBStreAdd.addFocusListener(new FocusLChar50(tFBStreAdd,"tFBStreAdd")); 
+		tFBCity.addFocusListener(new FocusLChar50(tFBCity,"tFBCity")); 
+		tFBEmailAdd.addFocusListener(new FocusLChar50(tFBEmailAdd,"tFBEmailAdd"));
+		
+		// focust listeners (lost)
+		// these have are for zip code limit size 5 digits, enforce only digits
+		
+		tFZip.addFocusListener(new FocusLInt5Digits(tFZip, "tFZip"));
+		tFBZip.addFocusListener(new FocusLInt5Digits(tFBZip, "tBFZip"));
+		
+		tFItem1.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+			}
+		});
+		
+		tFitem2.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+			}
+		});
+		
+		tFItem3.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+			}
+		});
+		
+		tFItem4.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+			}
+		});
+		
+		tFItem5.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+			}
+		});
+		
+		tFItem6.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+			}
+		});
+		
 	}
 	
-	public class TestField implements FocusListener {
+	public class FocusLChar250 implements FocusListener {
+		
+		private JTextField tFRef;
+		private String caller;
+		
+		FocusLChar250(JTextField passedtF, String caller){
+			this.tFRef = passedtF;
+			this.caller = caller;
+		}	
 
-		public TestField() {};
 		@Override
 		public void focusGained(FocusEvent arg0) {
 			// TODO Auto-generated method stub
@@ -466,11 +531,134 @@ public class DbFrame6Items extends JFrame {
 
 		@Override
 		public void focusLost(FocusEvent arg0) {
-			//if(!txtCompanyName.getText().equals(""))
+			if(!this.tFRef.getText().equals(""))
+			{
+				if(this.tFRef.getText().length() <= 250)
+				{
+					
+				}
+			}
+		}
+		
+	}
+	
+	public class FocusLInt5Digits implements FocusListener {
+		
+		private JTextField tFRef;
+		private String caller;
+		
+		FocusLInt5Digits(JTextField passedtF, String caller){
+			this.tFRef = passedtF;
+			this.caller = caller;
+		}
+
+		@Override
+		public void focusGained(FocusEvent e) {
 			
 			
 		}
 
+		@Override
+		public void focusLost(FocusEvent e) {
+			if(!this.tFRef.getText().equals(""))
+			{
+				int result =0;
+				try {
+					result = Integer.parseInt(this.tFRef.getText());
+				}
+				catch (NumberFormatException ex)
+				{
+					result = 0;
+					JOptionPane.showMessageDialog(null, "You entered invalid characters \n Please enter again");
+					this.tFRef.setText("");
+				}
+				
+				if(result > 99999) {
+					result = 0;
+					JOptionPane.showMessageDialog(null, "Invalid zip max 5 digits", "error", result);
+					this.tFRef.setText("");
+				}
+				
+				if(this.caller.equals("tFZip") && result != 0)
+				{
+					compObj.setZip(result);
+				}
+				
+				if(this.caller.equals("tBFZip") && result != 0)
+				{
+					billtoObj.setbZip(result);
+				}
+			}
+		}
+	}
+	// write comments for this 
+	// write comments for this 
+	
+	public class FocusLChar50 implements FocusListener {
+		
+		private String caller;
+		private JTextField tFRef;
+		// use to string the check object?
+		
+		FocusLChar50(JTextField passedtF, String caller){
+			this.tFRef = passedtF;
+			this.caller = caller;
+		}
+
+		public FocusLChar50() {};
+		@Override
+		public void focusGained(FocusEvent arg0) {
+		}				//private Company compObj = new Company();
+						//private BillTo billtoObj = new BillTo();
+
+		@Override
+		public void focusLost(FocusEvent arg0) { // this should be written with get component
+			if(!this.tFRef.getText().equals(""))
+			{
+				if(this.tFRef.getText().length() <= 50)
+				{
+					if(this.caller.equals("tFComNa")) {
+						compObj.setName(this.tFRef.getText());} //System.out.println("this is test of get name " + compObj.getName());}
+					if(this.caller.equals("tFCity")){
+						compObj.setCity(this.tFRef.getText());}//System.out.println("this is a test of get city " + compObj.getCity());}
+					if(this.caller.equals("tFState")){
+						compObj.setState(this.tFRef.getText());}//System.out.println("this is a test of get state " + compObj.getState());}
+					if(this.caller.equals("tFStreAdd")) {
+						compObj.setStreetAddress(this.tFRef.getText());}//System.out.println("this is a test of get address " + compObj.getStreetAddress());}
+					if(this.caller.equals("tFBName")) {
+						billtoObj.setbName(this.tFRef.getText());//System.out.println("BName text!" + billtoObj.getbName());
+					}
+					if(this.caller.equals("tFBcompNa")) {
+						billtoObj.setbComp(this.tFRef.getText());
+						//System.out.println("BCompNa text!" + billtoObj.getbComp());
+					}
+					if(this.caller.equals("tFBState")) {
+						billtoObj.setbState(this.tFRef.getText());
+						//System.out.println("BState text!" + billtoObj.getbState());
+					}
+					if(this.caller.equals("tFBStreAdd"))
+					{
+						billtoObj.setbSAdd(this.tFRef.getText());
+						//System.out.println("BStreetAdd text!" + billtoObj.getbSAdd());
+					}
+					if(this.caller.equals("tFBCity")) {
+						billtoObj.setbCity(this.tFRef.getText());
+						//System.out.println("BCity text!" + billtoObj.getbCity());
+					}
+					if(this.caller.equals("tFBEmailAdd"))
+					{
+						billtoObj.setbEmail(this.tFRef.getText());
+						//System.out.println("BEmail text!" + billtoObj.getbEmail());
+					}
+						
+				}
+				else
+				{
+					this.tFRef.setText("");
+					JOptionPane.showMessageDialog(null, "Data entry too long! Please abbreviate in some way");
+				}
+			}			
+		}
 	}
 }
 
