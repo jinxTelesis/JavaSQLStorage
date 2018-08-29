@@ -33,6 +33,7 @@ public class DbFrame6Items extends JFrame {
 	private Company compObj = new Company();
 	private BillTo billtoObj = new BillTo();
 	private Items[] itemArr = new Items[6]; // issue with java or c++ cross over this is just array of references no objects exist
+	private boolean[] userOveride = new boolean[6];
 
 	private JPanel contentPane;
 	private JTextField tFNumber;
@@ -145,14 +146,6 @@ public class DbFrame6Items extends JFrame {
 		tFDate.setColumns(10);
 		
 		tFComNa = new JTextField();
-		
-//		txtComNa.addFocusListener(new FocusAdapter() {
-//			@Override
-//			public void focusLost(FocusEvent arg0) {
-//				
-//			}
-//		});
-		
 		tFComNa.setText("Company Name");
 		tFComNa.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		tFComNa.setBounds(44, 51, 146, 29);
@@ -496,7 +489,228 @@ public class DbFrame6Items extends JFrame {
 		tFQ4.addFocusListener(new FocusLIntMax10000(tFQ4, "tFQ4"));
 		tFQ5.addFocusListener(new FocusLIntMax10000(tFQ5, "tFQ5"));
 		tFQ6.addFocusListener(new FocusLIntMax10000(tFQ6, "tFQ6"));
+		
+		tFU1.addFocusListener(new FocusLDouMax9999999(tFU1, "tFU1"));
+		tFU2.addFocusListener(new FocusLDouMax9999999(tFU2, "tFU2"));
+		tFU3.addFocusListener(new FocusLDouMax9999999(tFU3, "tFU3"));
+		tFU4.addFocusListener(new FocusLDouMax9999999(tFU4, "tFU4"));
+		tFU5.addFocusListener(new FocusLDouMax9999999(tFU5, "tFU5"));
+		tFU6.addFocusListener(new FocusLDouMax9999999(tFU6, "tFU6"));
+		
+		tFTax1.addFocusListener(new FocusLDouMax300(tFTax1, "tFTax1"));
+		tFTax2.addFocusListener(new FocusLDouMax300(tFTax2, "tFTax2"));
+		tFTax3.addFocusListener(new FocusLDouMax300(tFTax3, "tFTax3"));
+		tFTax4.addFocusListener(new FocusLDouMax300(tFTax4, "tFTax4"));
+		tFTax5.addFocusListener(new FocusLDouMax300(tFTax5, "tFTax5"));
+		tFTax6.addFocusListener(new FocusLDouMax300(tFTax6, "tFTax6"));
+		
+		tFA1.addFocusListener(new FocusLDouMax_999_999_999(tFA1,"tFA1"));
+		tFA2.addFocusListener(new FocusLDouMax_999_999_999(tFA2,"tFA2"));;
+		tFA3.addFocusListener(new FocusLDouMax_999_999_999(tFA3,"tFA3"));
+		tFA4.addFocusListener(new FocusLDouMax_999_999_999(tFA4,"tFA4"));
+		tFA5.addFocusListener(new FocusLDouMax_999_999_999(tFA5,"tFA5"));
+		tFA6.addFocusListener(new FocusLDouMax_999_999_999(tFA6,"tFA6"));
+		
+	}
+	
+	public class FocusLDouMax300 implements FocusListener{
+		
+		private JTextField tFRef;
+		private String caller;
+		
+		FocusLDouMax300(JTextField passedtF, String caller){
+			this.tFRef = passedtF;
+			this.caller = caller;
+		}
 
+		@Override
+		public void focusGained(FocusEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void focusLost(FocusEvent arg0) {
+			if(!this.tFRef.getText().equals(""))
+			{
+				double result =0;
+				try {
+					result = Double.parseDouble(this.tFRef.getText());
+				}
+				catch (NumberFormatException ex)
+				{
+					result = 0;
+					JOptionPane.showMessageDialog(null, "You entered invalid characters \n Please"
+							+ " enter again \n please only enter the number example 30% would be 30");
+					this.tFRef.setText("");
+				}
+				
+				if(result > 300) {
+					result = 0;
+					JOptionPane.showMessageDialog(null, "percentage of tax too large, max 300 percent", "error", 0);
+					this.tFRef.setText("");
+				}
+				
+				if(!this.tFRef.getText().equals(""))
+				{
+					for(int i = 0; i < itemArr.length; i++)
+					{
+						if(this.caller.equals("tFTax" + (i + 1)))
+						{
+							itemArr[i].setTaxed(result);//.setUnit(result);
+							if(itemArr[i].getTaxed() != 0)
+							{
+								System.out.println(itemArr[i].getTaxed());
+							}
+						}
+					}
+				}
+			}
+			
+		}
+		
+	}
+	
+	public class FocusLDouMax_999_999_999 implements FocusListener{
+		
+		private JTextField tFRef;
+		private String caller;
+		
+		FocusLDouMax_999_999_999(JTextField passedtF, String caller){
+			this.tFRef = passedtF;
+			this.caller = caller;
+		}
+
+		@Override
+		public void focusGained(FocusEvent e) {
+			// TODO Auto-generated method stub
+			// code gained to check if they really want to edit
+			
+		}
+
+		@Override
+		public void focusLost(FocusEvent e) {
+			if(!this.tFRef.getText().equals(""))
+			{
+				int dialogButton = JOptionPane.YES_NO_OPTION;
+				int dialogResult = JOptionPane.showConfirmDialog(null, "Do you really want to override the amount? (not recommended) /n "
+						+ "it is calculated automatically", "Authorization to override amount.", dialogButton);
+				if(dialogResult == 0) {
+					for(int i = 0; i < itemArr.length; i++)
+					{
+						if(this.caller.equals("tFA" + (i + 1)))
+						{
+							userOveride[i] = true;
+							if(itemArr[i].getAmount() != 0)
+							{
+								System.out.println(itemArr[i].getAmount());
+							}
+						}
+					}
+					System.out.println("Yes option");
+				} else {
+				  System.out.println("No Option");
+				  for(int i = 0; i < itemArr.length; i++)
+					{
+						if(this.caller.equals("tFA" + (i + 1)))
+						{
+							userOveride[i] = false;
+						}
+					}
+				} 
+				
+				double result =0;
+				try {
+					result = Double.parseDouble(this.tFRef.getText());
+				}
+				catch (NumberFormatException ex)
+				{
+					result = 0;
+					JOptionPane.showMessageDialog(null, "Invalid characters decimal numbers only please");
+					this.tFRef.setText("");
+				}
+				
+				if(result > 999999999) {
+					result = 0;
+					JOptionPane.showMessageDialog(null, "resulting amount too high, please split up the order \n over multiple line items", "error", 0);
+					this.tFRef.setText("");
+				}
+				
+				if(!this.tFRef.getText().equals(""))
+				{
+					for(int i = 0; i < itemArr.length; i++)
+					{
+						if(this.caller.equals("tFA" + (i + 1)))
+						{
+							itemArr[i].setAmount(result);//.setUnit(result);
+							if(itemArr[i].getAmount() != 0)
+							{
+								System.out.println(itemArr[i].getAmount());
+							}
+						}
+					}
+				}
+			}
+			
+		}
+		
+	}
+	
+	
+	public class FocusLDouMax9999999 implements FocusListener{
+		
+		private JTextField tFRef;
+		private String caller;
+		
+		FocusLDouMax9999999(JTextField passedtF, String caller){
+			this.tFRef = passedtF;
+			this.caller = caller;
+		}
+
+		@Override
+		public void focusGained(FocusEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void focusLost(FocusEvent arg0) {
+			if(!this.tFRef.getText().equals(""))
+			{
+				double result =0;
+				try {
+					result = Double.parseDouble(this.tFRef.getText());
+				}
+				catch (NumberFormatException ex)
+				{
+					result = 0;
+					JOptionPane.showMessageDialog(null, "You entered invalid characters \n Please enter again");
+					this.tFRef.setText("");
+				}
+				
+				if(result > 9999999) {
+					result = 0;
+					JOptionPane.showMessageDialog(null, "Qty too large, max 9999999", "error", 0);
+					this.tFRef.setText("");
+				}
+				
+				if(!this.tFRef.getText().equals(""))
+				{
+					for(int i = 0; i < itemArr.length; i++)
+					{
+						if(this.caller.equals("tFU" + (i + 1)))
+						{
+							itemArr[i].setUnit(result);
+							if(itemArr[i].getUnit() != 0)
+							{
+								System.out.println(itemArr[i].getUnit());
+							}
+						}
+					}
+				}
+			}
+			
+		}
 		
 	}
 	
@@ -584,7 +798,7 @@ public class DbFrame6Items extends JFrame {
 							itemArr[i].setItemD(this.tFRef.getText());
 							if(itemArr[i].getItemD() != null || itemArr[i].getItemD() != "")
 							{
-								System.out.println("worked!" + itemArr[i].getItemD());
+								System.out.println("blah blah blah chicken!" + itemArr[i].getItemD());
 							}
 						}
 					}					
