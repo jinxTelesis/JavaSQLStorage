@@ -2,41 +2,45 @@ package guiS;
 
 public class Items {
 	
-	private String[] itemD;
-	private int[] qty;
-	private double[] unit;
-	private double[] taxed;
-	private double[] amount;
+	// rewrite items to be singular and make an array if items class.
+	// rewrite items to be singular and make an array of items classes
 	
-	public String[] getItemD() {
+	private String itemD;
+	private int qty;
+	private double unit;
+	private double taxed;
+	private double amount;
+	
+	public String getItemD() {
 		return itemD;
 	}
-	public void setItemD(String[] itemD) {
+	public void setItemD(String itemD) {
 		this.itemD = itemD;
 	}
-	public int[] getQty() {
+	public int getQty() {
 		return qty;
 	}
-	public void setQty(int[] qty) {
+	public void setQty(int qty) {
 		this.qty = qty;
 	}
-	public double[] getUnit() {
+	public double getUnit() {
 		return unit;
 	}
-	public void setUnit(double[] unit) {
+	public void setUnit(double unit) {
 		this.unit = unit;
 	}
-	public double[] getTaxed() {
+	public double getTaxed() {
 		return taxed;
 	}
-	public void setTaxed(double[] taxed) {
+	public void setTaxed(double taxed) {
 		this.taxed = taxed;
 	}
-	public double[] getAmount() {
+	public double getAmount() {
 		return amount;
 	}
-	public void setAmount(double[] amount) {
+	public void setAmount(double amount) {
 		this.amount = amount;
 	}
+
 
 }
