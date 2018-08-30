@@ -24,6 +24,8 @@ import javax.swing.JButton;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import org.eclipse.wb.swing.FocusTraversalOnArray;
+import java.awt.Component;
 
 public class DbFrame6Items extends JFrame {
 	
@@ -33,7 +35,7 @@ public class DbFrame6Items extends JFrame {
 	private Company compObj = new Company();
 	private BillTo billtoObj = new BillTo();
 	private Items[] itemArr = new Items[6]; // issue with java or c++ cross over this is just array of references no objects exist
-	private boolean[] userOveride = new boolean[6];
+	private boolean[] userOverride = new boolean[6];
 
 	private JPanel contentPane;
 	private JTextField tFNumber;
@@ -457,6 +459,10 @@ public class DbFrame6Items extends JFrame {
 		setTitle("Joan's SQL PRO");
 		
 		// focus listeners (lost)
+		// was bored wanted to see how difficult it would be to write events
+		// without getactioncommand and getsource
+		// uses a constructor in the classes
+		
 		tFComNa.addFocusListener(new FocusLChar50(tFComNa, "tFComNa")); // might want to refactor to use a toString
 		tFCity.addFocusListener(new FocusLChar50(tFCity, "tFCity")); 
 		tFState.addFocusListener(new FocusLChar50(tFState, "tFState")); 
@@ -483,33 +489,44 @@ public class DbFrame6Items extends JFrame {
 		tFItem5.addFocusListener(new FocusLChar250(tFItem5, "tFItem5"));
 		tFItem6.addFocusListener(new FocusLChar250(tFItem6, "tFItem6"));
 		
-		tFQ1.addFocusListener(new FocusLIntMax10000(tFQ1, "tFQ1"));
-		tFQ2.addFocusListener(new FocusLIntMax10000(tFQ2, "tFQ2"));
-		tFQ3.addFocusListener(new FocusLIntMax10000(tFQ3, "tFQ3"));
-		tFQ4.addFocusListener(new FocusLIntMax10000(tFQ4, "tFQ4"));
-		tFQ5.addFocusListener(new FocusLIntMax10000(tFQ5, "tFQ5"));
-		tFQ6.addFocusListener(new FocusLIntMax10000(tFQ6, "tFQ6"));
+		// if these were made into arrays or used action command source wouldnt need
 		
-		tFU1.addFocusListener(new FocusLDouMax9999999(tFU1, "tFU1"));
-		tFU2.addFocusListener(new FocusLDouMax9999999(tFU2, "tFU2"));
-		tFU3.addFocusListener(new FocusLDouMax9999999(tFU3, "tFU3"));
-		tFU4.addFocusListener(new FocusLDouMax9999999(tFU4, "tFU4"));
-		tFU5.addFocusListener(new FocusLDouMax9999999(tFU5, "tFU5"));
-		tFU6.addFocusListener(new FocusLDouMax9999999(tFU6, "tFU6"));
+		tFQ1.addFocusListener(new FocusLIntMax10000(tFQ1, "tFQ1" ,tFA1)); // need to pass to Q
+		tFQ2.addFocusListener(new FocusLIntMax10000(tFQ2, "tFQ2" ,tFA2));
+		tFQ3.addFocusListener(new FocusLIntMax10000(tFQ3, "tFQ3", tFA3));
+		tFQ4.addFocusListener(new FocusLIntMax10000(tFQ4, "tFQ4", tFA4));
+		tFQ5.addFocusListener(new FocusLIntMax10000(tFQ5, "tFQ5", tFA5));
+		tFQ6.addFocusListener(new FocusLIntMax10000(tFQ6, "tFQ6", tFA6));
 		
-		tFTax1.addFocusListener(new FocusLDouMax300(tFTax1, "tFTax1"));
-		tFTax2.addFocusListener(new FocusLDouMax300(tFTax2, "tFTax2"));
-		tFTax3.addFocusListener(new FocusLDouMax300(tFTax3, "tFTax3"));
-		tFTax4.addFocusListener(new FocusLDouMax300(tFTax4, "tFTax4"));
-		tFTax5.addFocusListener(new FocusLDouMax300(tFTax5, "tFTax5"));
-		tFTax6.addFocusListener(new FocusLDouMax300(tFTax6, "tFTax6"));
+		// if these were made into arrays or used action command source wouldnt need
 		
-		tFA1.addFocusListener(new FocusLDouMax_999_999_999(tFA1,"tFA1"));
-		tFA2.addFocusListener(new FocusLDouMax_999_999_999(tFA2,"tFA2"));;
-		tFA3.addFocusListener(new FocusLDouMax_999_999_999(tFA3,"tFA3"));
-		tFA4.addFocusListener(new FocusLDouMax_999_999_999(tFA4,"tFA4"));
-		tFA5.addFocusListener(new FocusLDouMax_999_999_999(tFA5,"tFA5"));
-		tFA6.addFocusListener(new FocusLDouMax_999_999_999(tFA6,"tFA6"));
+		tFU1.addFocusListener(new FocusLDouMax9999999(tFU1, "tFU1",tFA1)); // need to pass to unit
+		tFU2.addFocusListener(new FocusLDouMax9999999(tFU2, "tFU2",tFA2));
+		tFU3.addFocusListener(new FocusLDouMax9999999(tFU3, "tFU3",tFA3));
+		tFU4.addFocusListener(new FocusLDouMax9999999(tFU4, "tFU4",tFA4));
+		tFU5.addFocusListener(new FocusLDouMax9999999(tFU5, "tFU5",tFA5));
+		tFU6.addFocusListener(new FocusLDouMax9999999(tFU6, "tFU6",tFA6));
+		
+		// if these were made into arrays or used action command source wouldnt need
+		
+		tFTax1.addFocusListener(new FocusLDouMax300(tFTax1, "tFTax1", tFA1)); // need to pass to tax
+		tFTax2.addFocusListener(new FocusLDouMax300(tFTax2, "tFTax2", tFA2));
+		tFTax3.addFocusListener(new FocusLDouMax300(tFTax3, "tFTax3", tFA3));
+		tFTax4.addFocusListener(new FocusLDouMax300(tFTax4, "tFTax4", tFA4));
+		tFTax5.addFocusListener(new FocusLDouMax300(tFTax5, "tFTax5", tFA5));
+		tFTax6.addFocusListener(new FocusLDouMax300(tFTax6, "tFTax6", tFA6));
+		
+		// if these were made into arrays or used action command source wouldnt need
+		
+		tFA1.addFocusListener(new FocusLDouMax_999_999_999(tFA1,"tFA1", tFA1)); // don't need to pass to this one
+		tFA2.addFocusListener(new FocusLDouMax_999_999_999(tFA2,"tFA2", tFA2));;
+		tFA3.addFocusListener(new FocusLDouMax_999_999_999(tFA3,"tFA3", tFA3));
+		tFA4.addFocusListener(new FocusLDouMax_999_999_999(tFA4,"tFA4", tFA4));
+		tFA5.addFocusListener(new FocusLDouMax_999_999_999(tFA5,"tFA5", tFA5));
+		tFA6.addFocusListener(new FocusLDouMax_999_999_999(tFA6,"tFA6", tFA6));
+		contentPane.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{tFComNa, tFStreAdd, tFNumber, tFDate, tFCity, tFState, tFZip, tFPho, tFBName, tFBcompNa, tFBStreAdd, tFBCity, tFBState, tFBZip, tFBPho, tFBEmailAdd, tFItem1, tFQ1, tFU1, tFTax1, tFItem2, tFQ2, tFU2, tFTax2, tFItem3, tFQ3, tFU3, tFTax3, tFItem4, tFQ4, tFU4, tFTax4, tFItem5, tFQ5, tFU5, tFTax5, tFItem6, tFQ6, tFU6, tFTax6, lblInvoice, lblInvoiceId, panel_2, lblNewLabel_1, labItemDesc, lblQty, lblUnit, lblTaxed, panel_3, lblAmout, lblThankYouFor, lblTotal, tFTotalAmo, panel, panel_1, lblNewLabel, tFA1, tFA2, tFA3, tFA4, tFA5, tFA6}));
+		
+		// could solve by passing in the correct tfA to everything that calculates
 		
 	}
 	
@@ -517,16 +534,27 @@ public class DbFrame6Items extends JFrame {
 		
 		private JTextField tFRef;
 		private String caller;
+		private JTextField amountTF; // maybe remove
 		
-		FocusLDouMax300(JTextField passedtF, String caller){
+		FocusLDouMax300(JTextField passedtF, String caller, JTextField amountTF){
 			this.tFRef = passedtF;
 			this.caller = caller;
+			this.amountTF = amountTF; // maybe remove
 		}
 
 		@Override
 		public void focusGained(FocusEvent arg0) {
-			// TODO Auto-generated method stub
 			
+			for(int i = 0; i < itemArr.length; i++)
+			{
+				
+				if(itemArr[i].getQty() != 0 && itemArr[i].getUnit() != 0 && userOverride[i] != true)
+				{
+					double otherResult = 0;
+					otherResult = calc(itemArr,userOverride,i);
+					this.amountTF.setText(Double.toString(otherResult));
+				}
+			}
 		}
 
 		@Override
@@ -575,16 +603,27 @@ public class DbFrame6Items extends JFrame {
 		
 		private JTextField tFRef;
 		private String caller;
+		private JTextField amountTF; // maybe remove
 		
-		FocusLDouMax_999_999_999(JTextField passedtF, String caller){
+		FocusLDouMax_999_999_999(JTextField passedtF, String caller, JTextField amountTF){
 			this.tFRef = passedtF;
 			this.caller = caller;
+			this.amountTF = amountTF; // maybe remove
 		}
 
 		@Override
 		public void focusGained(FocusEvent e) {
 			// TODO Auto-generated method stub
-			// code gained to check if they really want to edit
+			for(int i = 0; i < itemArr.length; i++)
+			{
+				
+				if(itemArr[i].getQty() != 0 && itemArr[i].getUnit() != 0 && userOverride[i] != true)
+				{
+					double otherResult = 0;
+					otherResult = calc(itemArr,userOverride,i);
+					this.amountTF.setText(Double.toString(otherResult));
+				}
+			}
 			
 		}
 
@@ -600,7 +639,7 @@ public class DbFrame6Items extends JFrame {
 					{
 						if(this.caller.equals("tFA" + (i + 1)))
 						{
-							userOveride[i] = true;
+							userOverride[i] = true;
 							if(itemArr[i].getAmount() != 0)
 							{
 								System.out.println(itemArr[i].getAmount());
@@ -614,7 +653,7 @@ public class DbFrame6Items extends JFrame {
 					{
 						if(this.caller.equals("tFA" + (i + 1)))
 						{
-							userOveride[i] = false;
+							userOverride[i] = false;
 						}
 					}
 				} 
@@ -650,10 +689,8 @@ public class DbFrame6Items extends JFrame {
 						}
 					}
 				}
-			}
-			
+			}	
 		}
-		
 	}
 	
 	
@@ -661,16 +698,26 @@ public class DbFrame6Items extends JFrame {
 		
 		private JTextField tFRef;
 		private String caller;
+		private JTextField amountTF; // maybe remove
 		
-		FocusLDouMax9999999(JTextField passedtF, String caller){
+		FocusLDouMax9999999(JTextField passedtF, String caller, JTextField amountTF){
 			this.tFRef = passedtF;
 			this.caller = caller;
+			this.amountTF = amountTF; // maybe remove
 		}
 
 		@Override
 		public void focusGained(FocusEvent arg0) {
-			// TODO Auto-generated method stub
-			
+			for(int i = 0; i < itemArr.length; i++)
+			{
+				
+				if(itemArr[i].getQty() != 0 && itemArr[i].getUnit() != 0 && userOverride[i] != true)
+				{
+					double otherResult = 0;
+					otherResult = calc(itemArr,userOverride,i);
+					this.amountTF.setText(Double.toString(otherResult));
+				}
+			}
 		}
 
 		@Override
@@ -717,16 +764,25 @@ public class DbFrame6Items extends JFrame {
 	public class FocusLIntMax10000 implements FocusListener{
 		private JTextField tFRef;
 		private String caller;
+		private JTextField amountTF; // maybe remove
 		
-		FocusLIntMax10000(JTextField passedtF, String caller){
+		FocusLIntMax10000(JTextField passedtF, String caller, JTextField amountTF){
 			this.tFRef = passedtF;
 			this.caller = caller;
+			this.amountTF = amountTF; // maybe remove
 		}
 
 		@Override
 		public void focusGained(FocusEvent e) {
-			// TODO Auto-generated method stub
-			
+			for(int i = 0; i < itemArr.length; i++)
+			{
+				if(itemArr[i].getQty() != 0 && itemArr[i].getUnit() != 0 && userOverride[i] != true)
+				{
+					double otherResult = 0;
+					otherResult = calc(itemArr,userOverride,i);
+					this.amountTF.setText(Double.toString(otherResult));
+				}
+			}
 		}
 
 		@Override
@@ -925,6 +981,30 @@ public class DbFrame6Items extends JFrame {
 				}
 			}			
 		}
+	}
+	// needs items object, and boolean and needs to be called by gained and lost events
+	public static double calc(Items[] itemArr, boolean[] userOverride, int i2) {
+		double result = 0;
+		// 1 + Taxed prevents errors
+		result = itemArr[i2].getQty() * itemArr[i2].getUnit() * (1 + itemArr[i2].getTaxed());
+		
+		
+//		if(itemArr[i2].getQty() != 0 && itemArr[i2].getUnit() != 0 && userOverride[i2] != true)
+//		{
+//			// 1 + Taxed prevents errors
+//			result = itemArr[i2].getQty() * itemArr[i2].getUnit() * (1 + itemArr[i2].getTaxed());
+//		}
+//		for(int i = 0; i < itemArr.length;i++)
+//		{
+//			if(itemArr[i].getQty() != 0 && itemArr[i].getUnit() != 0 && userOverride[i] != true)
+//			{
+//				// 1 + Taxed prevents errors
+//				result = itemArr[i].getQty() * itemArr[i].getUnit() * (1 + itemArr[i].getTaxed());
+//			}
+//		}
+		
+		return result;
+		
 	}
 }
 
