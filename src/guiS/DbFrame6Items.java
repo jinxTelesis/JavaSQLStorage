@@ -1,16 +1,13 @@
 package guiS;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.FocusTraversalPolicy;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextField;
-import javax.swing.border.EtchedBorder;
-import javax.swing.border.MatteBorder;
 import java.awt.Color;
 import javax.swing.border.SoftBevelBorder;
 
@@ -24,6 +21,12 @@ import javax.swing.JButton;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.util.Vector;
+
+import org.eclipse.wb.swing.FocusTraversalOnArray;
+
+import java.awt.Component;
+import java.awt.Container;
 
 public class DbFrame6Items extends JFrame {
 	
@@ -33,7 +36,9 @@ public class DbFrame6Items extends JFrame {
 	private Company compObj = new Company();
 	private BillTo billtoObj = new BillTo();
 	private Items[] itemArr = new Items[6]; // issue with java or c++ cross over this is just array of references no objects exist
-	private boolean[] userOveride = new boolean[6];
+	private boolean[] userOverride = new boolean[6];
+	static MyOwnFocusTraversalPolicy newPolicy;
+	static Vector<Component> order = new Vector<Component>(7);
 
 	private JPanel contentPane;
 	private JTextField tFNumber;
@@ -99,6 +104,8 @@ public class DbFrame6Items extends JFrame {
 					DbFrame6Items frame = new DbFrame6Items();
 					frame.setVisible(true);
 					frame.setLocationRelativeTo(null);
+					newPolicy = new MyOwnFocusTraversalPolicy(order);
+			        frame.setFocusTraversalPolicy(newPolicy);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -126,6 +133,7 @@ public class DbFrame6Items extends JFrame {
 		contentPane.setBorder(null);
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
 		
 		JLabel lblInvoice = new JLabel("INVOICE");
 		lblInvoice.setFont(new Font("Tahoma", Font.BOLD, 24));
@@ -456,7 +464,68 @@ public class DbFrame6Items extends JFrame {
 		contentPane.add(tFA6);
 		setTitle("Joan's SQL PRO");
 		
+		
+		// tab policy 
+		// seems like it works 
+		order.add(tFNumber);
+        order.add(tFDate);
+        order.add(tFComNa);
+        order.add(tFStreAdd);
+        order.add(tFCity);
+        order.add(tFState);
+        order.add(tFZip);
+        order.add(tFPho);
+        order.add(tFBName);
+        order.add(tFBcompNa);
+        order.add(tFBStreAdd);
+        order.add(tFBCity);
+        order.add(tFBState);
+        order.add(tFBZip);
+        order.add(tFBPho);
+        order.add(tFBEmailAdd);
+        // bottom orders 
+        // take out for other frames. 
+        order.add(tFItem1);
+        order.add(tFQ1);
+        order.add(tFU1);
+        order.add(tFTax1);
+        
+        order.add(tFItem2);
+        order.add(tFQ2);
+        order.add(tFU2);
+        order.add(tFTax2);
+        
+        order.add(tFItem3);
+        order.add(tFQ3);
+        order.add(tFU3);
+        order.add(tFTax3);
+        
+        order.add(tFItem4);
+        order.add(tFQ4);
+        order.add(tFU4);
+        order.add(tFTax4);
+        
+        order.add(tFItem5);
+        order.add(tFQ5);
+        order.add(tFU5);
+        order.add(tFTax5);
+        
+        order.add(tFItem6);
+        order.add(tFQ6);
+        order.add(tFU6);
+        order.add(tFTax6);
+        
+
+        
+		
+		
+		
+		
 		// focus listeners (lost)
+		// was bored wanted to see how difficult it would be to write events
+		// without getactioncommand and getsource
+		// uses a constructor in the classes
+		
 		tFComNa.addFocusListener(new FocusLChar50(tFComNa, "tFComNa")); // might want to refactor to use a toString
 		tFCity.addFocusListener(new FocusLChar50(tFCity, "tFCity")); 
 		tFState.addFocusListener(new FocusLChar50(tFState, "tFState")); 
@@ -483,33 +552,167 @@ public class DbFrame6Items extends JFrame {
 		tFItem5.addFocusListener(new FocusLChar250(tFItem5, "tFItem5"));
 		tFItem6.addFocusListener(new FocusLChar250(tFItem6, "tFItem6"));
 		
-		tFQ1.addFocusListener(new FocusLIntMax10000(tFQ1, "tFQ1"));
-		tFQ2.addFocusListener(new FocusLIntMax10000(tFQ2, "tFQ2"));
-		tFQ3.addFocusListener(new FocusLIntMax10000(tFQ3, "tFQ3"));
-		tFQ4.addFocusListener(new FocusLIntMax10000(tFQ4, "tFQ4"));
-		tFQ5.addFocusListener(new FocusLIntMax10000(tFQ5, "tFQ5"));
-		tFQ6.addFocusListener(new FocusLIntMax10000(tFQ6, "tFQ6"));
+		// if these were made into arrays or used action command source wouldnt need
 		
-		tFU1.addFocusListener(new FocusLDouMax9999999(tFU1, "tFU1"));
-		tFU2.addFocusListener(new FocusLDouMax9999999(tFU2, "tFU2"));
-		tFU3.addFocusListener(new FocusLDouMax9999999(tFU3, "tFU3"));
-		tFU4.addFocusListener(new FocusLDouMax9999999(tFU4, "tFU4"));
-		tFU5.addFocusListener(new FocusLDouMax9999999(tFU5, "tFU5"));
-		tFU6.addFocusListener(new FocusLDouMax9999999(tFU6, "tFU6"));
+		tFQ1.addFocusListener(new FocusLIntMax10000(tFQ1, "tFQ1" ,tFA1)); // need to pass to Q
+		tFQ2.addFocusListener(new FocusLIntMax10000(tFQ2, "tFQ2" ,tFA2));
+		tFQ3.addFocusListener(new FocusLIntMax10000(tFQ3, "tFQ3", tFA3));
+		tFQ4.addFocusListener(new FocusLIntMax10000(tFQ4, "tFQ4", tFA4));
+		tFQ5.addFocusListener(new FocusLIntMax10000(tFQ5, "tFQ5", tFA5));
+		tFQ6.addFocusListener(new FocusLIntMax10000(tFQ6, "tFQ6", tFA6));
 		
-		tFTax1.addFocusListener(new FocusLDouMax300(tFTax1, "tFTax1"));
-		tFTax2.addFocusListener(new FocusLDouMax300(tFTax2, "tFTax2"));
-		tFTax3.addFocusListener(new FocusLDouMax300(tFTax3, "tFTax3"));
-		tFTax4.addFocusListener(new FocusLDouMax300(tFTax4, "tFTax4"));
-		tFTax5.addFocusListener(new FocusLDouMax300(tFTax5, "tFTax5"));
-		tFTax6.addFocusListener(new FocusLDouMax300(tFTax6, "tFTax6"));
+		// if these were made into arrays or used action command source wouldnt need
 		
-		tFA1.addFocusListener(new FocusLDouMax_999_999_999(tFA1,"tFA1"));
-		tFA2.addFocusListener(new FocusLDouMax_999_999_999(tFA2,"tFA2"));;
-		tFA3.addFocusListener(new FocusLDouMax_999_999_999(tFA3,"tFA3"));
-		tFA4.addFocusListener(new FocusLDouMax_999_999_999(tFA4,"tFA4"));
-		tFA5.addFocusListener(new FocusLDouMax_999_999_999(tFA5,"tFA5"));
-		tFA6.addFocusListener(new FocusLDouMax_999_999_999(tFA6,"tFA6"));
+		tFU1.addFocusListener(new FocusLDouMax9999999(tFU1, "tFU1",tFA1)); // need to pass to unit
+		tFU2.addFocusListener(new FocusLDouMax9999999(tFU2, "tFU2",tFA2));
+		tFU3.addFocusListener(new FocusLDouMax9999999(tFU3, "tFU3",tFA3));
+		tFU4.addFocusListener(new FocusLDouMax9999999(tFU4, "tFU4",tFA4));
+		tFU5.addFocusListener(new FocusLDouMax9999999(tFU5, "tFU5",tFA5));
+		tFU6.addFocusListener(new FocusLDouMax9999999(tFU6, "tFU6",tFA6));
+		
+		// if these were made into arrays or used action command source wouldnt need
+		
+		tFTax1.addFocusListener(new FocusLDouMax300(tFTax1, "tFTax1", tFA1)); // need to pass to tax
+		tFTax2.addFocusListener(new FocusLDouMax300(tFTax2, "tFTax2", tFA2));
+		tFTax3.addFocusListener(new FocusLDouMax300(tFTax3, "tFTax3", tFA3));
+		tFTax4.addFocusListener(new FocusLDouMax300(tFTax4, "tFTax4", tFA4));
+		tFTax5.addFocusListener(new FocusLDouMax300(tFTax5, "tFTax5", tFA5));
+		tFTax6.addFocusListener(new FocusLDouMax300(tFTax6, "tFTax6", tFA6));
+		
+		// if these were made into arrays or used action command source wouldnt need
+		
+		tFA1.addFocusListener(new FocusLDouMax_999_999_999(tFA1,"tFA1", tFA1)); // don't need to pass to this one
+		tFA2.addFocusListener(new FocusLDouMax_999_999_999(tFA2,"tFA2", tFA2));;
+		tFA3.addFocusListener(new FocusLDouMax_999_999_999(tFA3,"tFA3", tFA3));
+		tFA4.addFocusListener(new FocusLDouMax_999_999_999(tFA4,"tFA4", tFA4));
+		tFA5.addFocusListener(new FocusLDouMax_999_999_999(tFA5,"tFA5", tFA5));
+		tFA6.addFocusListener(new FocusLDouMax_999_999_999(tFA6,"tFA6", tFA6));
+		contentPane.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{tFComNa, tFStreAdd, tFNumber, tFDate, tFCity, tFState, tFZip, tFPho, tFBName, tFBcompNa, tFBStreAdd, tFBCity, tFBState, tFBZip, tFBPho, tFBEmailAdd, tFItem1, tFQ1, tFU1, tFTax1, tFItem2, tFQ2, tFU2, tFTax2, tFItem3, tFQ3, tFU3, tFTax3, tFItem4, tFQ4, tFU4, tFTax4, tFItem5, tFQ5, tFU5, tFTax5, tFItem6, tFQ6, tFU6, tFTax6, lblInvoiceId, lblInvoice, panel_2, lblNewLabel_1, panel, labItemDesc, lblQty, lblUnit, lblTaxed, panel_3, panel_1, lblNewLabel, lblAmout, lblThankYouFor, lblTotal, tFTotalAmo, tFA1, tFA2, tFA3, tFA4, tFA5, tFA6}));
+		
+//		contentPane.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{tFComNa, tFStreAdd, tFNumber, tFDate, tFCity, tFState,
+//		tFZip, tFPho, tFBName, tFBcompNa, tFBStreAdd, tFBCity, tFBState, tFBZip, tFBPho, tFBEmailAdd, tFItem1, tFQ1, tFU1, tFTax1, tFItem2,
+//		tFQ2, tFU2, tFTax2, tFItem3, tFQ3, tFU3, tFTax3, tFItem4, tFQ4, tFU4, tFTax4, tFItem5, tFQ5, tFU5,
+//		tFTax5, tFItem6, tFQ6, tFU6, tFTax6,lblQty, lblUnit, lblTaxed, tFTotalAmo}));
+		//contentPane.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{tFComNa, tFStreAdd, tFNumber, tFDate, tFCity, tFState, tFZip, tFPho, tFBName, tFBcompNa, tFBStreAdd, tFBCity, tFBState, tFBZip, tFBPho, tFBEmailAdd, tFItem1, tFQ1, tFU1, tFTax1, tFItem2, tFQ2, tFU2, tFTax2, tFItem3, tFQ3, tFU3, tFTax3, tFItem4, tFQ4, tFU4, tFTax4, tFItem5, tFQ5, tFU5, tFTax5, tFItem6, tFQ6, tFU6, tFTax6, lblInvoice, lblInvoiceId, panel_2, lblNewLabel_1, labItemDesc, lblQty, lblUnit, lblTaxed, panel_3, lblAmout, lblThankYouFor, lblTotal, tFTotalAmo, panel, panel_1, lblNewLabel, tFA1, tFA2, tFA3, tFA4, tFA5, tFA6}));
+		// could solve by passing in the correct tfA to everything that calculates
+		
+		tFPho.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent arg0) {
+				
+				if(tFPho.getText().equals(""))
+				{	
+					String temp = tFPho.getText();
+					if(temp.length() != 11 || temp.length() != 14)
+					{
+						tFPho.setText("");
+						JOptionPane.showMessageDialog(null, "Please enter phone number as either 11 digits or \n enter phone number as 1-DDD-DDD-DDDD ", "error", 0);
+					}
+					
+					for (int i = 0; i < temp.length(); i++)
+					{
+						
+					}
+				}
+				
+			}
+		});
+		
+		tFBPho.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+				if(!tFBPho.getText().equals(""))
+				{	
+					String temp = tFBPho.getText();
+					boolean pass = false;
+					if(temp.length() == 11)
+					{
+						pass = true;
+					}
+					
+					if(temp.length() == 14)
+					{
+						pass = true;
+					}
+					
+					if(!pass)
+					{
+						tFBPho.setText("");
+						temp = "";
+						JOptionPane.showMessageDialog(null, "Please enter phone number as either 11 digits or \n enter phone number as 1-DDD-DDD-DDDD ", "error", 0);
+					}
+					
+//					if(temp.length() == 11)
+//					{
+//						try {
+//							Integer.parseInt(tFBPho.getText());
+//							compObj.setPhone((tFBPho.getText()));
+//						}
+//						catch (NumberFormatException ex)
+//						{
+//							tFBPho.setText("");
+//							JOptionPane.showMessageDialog(null, "Invalid input Please enter phone number as either 11 digits or \n enter phone number as 1-DDD-DDD-DDDD ");
+//							temp = "";
+//						}
+//						
+//						
+//					}
+					
+					System.out.println("Got here");
+					System.out.println(temp.length());
+					
+					if(temp.length() == 14)
+					{
+						int truthinc=0;
+						
+						if(temp.charAt(1) == '-')
+						{
+							++truthinc;
+							System.out.println(truthinc);
+						}
+						
+						if(temp.charAt(5) == '-')
+						{
+							++truthinc;
+							System.out.println(truthinc);
+						}
+						
+						if(temp.charAt(9) == '-')
+						{
+							++truthinc;
+							System.out.println(truthinc);
+						}
+						
+						System.out.println("Got here");
+						for (int i = 0; i < temp.length(); i++)
+						{	
+							Character testChar = temp.charAt(i);
+							if(Character.isDigit(testChar))
+							{
+								++truthinc;
+								System.out.println(truthinc);
+							}
+						}
+						
+						if(truthinc == 14)
+						{
+							compObj.setPhone((tFBPho.getText()));
+							System.out.println(truthinc);
+							truthinc =0;
+							System.out.println("Worked!");
+						}
+						else
+						{
+							//tFBPho.setText("");
+							//JOptionPane.showMessageDialog(null, "Invalid input Please enter phone number as either 11 digits or \n enter phone number as 1-DDD-DDD-DDDD ");
+							//temp = "";
+						}
+					}
+					
+					
+				}
+			}
+		});
 		
 	}
 	
@@ -517,16 +720,60 @@ public class DbFrame6Items extends JFrame {
 		
 		private JTextField tFRef;
 		private String caller;
+		private JTextField amountTF; // maybe remove
 		
-		FocusLDouMax300(JTextField passedtF, String caller){
+		FocusLDouMax300(JTextField passedtF, String caller, JTextField amountTF){
 			this.tFRef = passedtF;
 			this.caller = caller;
+			this.amountTF = amountTF; // maybe remove
 		}
 
 		@Override
 		public void focusGained(FocusEvent arg0) {
-			// TODO Auto-generated method stub
 			
+			for(int i = 0; i < itemArr.length; i++)
+			{
+				
+				if(itemArr[i].getQty() != 0 && itemArr[i].getUnit() != 0 && userOverride[i] != true)
+				{
+					double otherResult = 0;
+					if(caller.equals("tFTax1") && i+1 == 1) {
+					otherResult = calc(itemArr,userOverride,i);
+					this.amountTF.setText(Double.toString(otherResult));
+					otherResult = 0;
+					}
+					
+					if(caller.equals("tFTax2") && i+1 == 2) {
+						otherResult = calc(itemArr,userOverride,i);
+						this.amountTF.setText(Double.toString(otherResult));
+						otherResult = 0;
+					}
+					
+					if(caller.equals("tFTax3") && i+1 == 3) {
+						otherResult = calc(itemArr,userOverride,i);
+						this.amountTF.setText(Double.toString(otherResult));
+						otherResult = 0;
+					}
+					
+					if(caller.equals("tFTax4") && i+1 == 4) {
+						otherResult = calc(itemArr,userOverride,i);
+						this.amountTF.setText(Double.toString(otherResult));
+						otherResult = 0;
+					}
+					
+					if(caller.equals("tFTax5") && i+1 == 5) {
+						otherResult = calc(itemArr,userOverride,i);
+						this.amountTF.setText(Double.toString(otherResult));
+						otherResult = 0;
+					}
+					
+					if(caller.equals("tFTax5") && i+1 == 6) {
+						otherResult = calc(itemArr,userOverride,i);
+						this.amountTF.setText(Double.toString(otherResult));
+						otherResult = 0;
+					}
+				}
+			}
 		}
 
 		@Override
@@ -575,17 +822,60 @@ public class DbFrame6Items extends JFrame {
 		
 		private JTextField tFRef;
 		private String caller;
+		private JTextField amountTF; // maybe remove
 		
-		FocusLDouMax_999_999_999(JTextField passedtF, String caller){
+		FocusLDouMax_999_999_999(JTextField passedtF, String caller, JTextField amountTF){
 			this.tFRef = passedtF;
 			this.caller = caller;
+			this.amountTF = amountTF; // maybe remove
 		}
 
 		@Override
 		public void focusGained(FocusEvent e) {
 			// TODO Auto-generated method stub
-			// code gained to check if they really want to edit
-			
+			for(int i = 0; i < itemArr.length; i++)
+			{
+				
+				if(itemArr[i].getQty() != 0 && itemArr[i].getUnit() != 0 && userOverride[i] != true)
+				{
+					double otherResult = 0;
+					if(caller.equals("tFA1") && i+1 == 1) {
+					otherResult = calc(itemArr,userOverride,i);
+					this.amountTF.setText(Double.toString(otherResult));
+					otherResult = 0;
+					}
+					
+					if(caller.equals("tFA2") && i+1 == 2) {
+						otherResult = calc(itemArr,userOverride,i);
+						this.amountTF.setText(Double.toString(otherResult));
+						otherResult = 0;
+					}
+					
+					if(caller.equals("tFA3") && i+1 == 3) {
+						otherResult = calc(itemArr,userOverride,i);
+						this.amountTF.setText(Double.toString(otherResult));
+						otherResult = 0;
+					}
+					
+					if(caller.equals("tFA4") && i+1 == 4) {
+						otherResult = calc(itemArr,userOverride,i);
+						this.amountTF.setText(Double.toString(otherResult));
+						otherResult = 0;
+					}
+					
+					if(caller.equals("tFA5") && i+1 == 5) {
+						otherResult = calc(itemArr,userOverride,i);
+						this.amountTF.setText(Double.toString(otherResult));
+						otherResult = 0;
+					}
+					
+					if(caller.equals("tFA6") && i+1 == 6) {
+						otherResult = calc(itemArr,userOverride,i);
+						this.amountTF.setText(Double.toString(otherResult));
+						otherResult = 0;
+					}
+				}
+			}	
 		}
 
 		@Override
@@ -593,14 +883,14 @@ public class DbFrame6Items extends JFrame {
 			if(!this.tFRef.getText().equals(""))
 			{
 				int dialogButton = JOptionPane.YES_NO_OPTION;
-				int dialogResult = JOptionPane.showConfirmDialog(null, "Do you really want to override the amount? (not recommended) /n "
+				int dialogResult = JOptionPane.showConfirmDialog(null, "Do you really want to override the amount? (not recommended) \n "
 						+ "it is calculated automatically", "Authorization to override amount.", dialogButton);
 				if(dialogResult == 0) {
 					for(int i = 0; i < itemArr.length; i++)
 					{
 						if(this.caller.equals("tFA" + (i + 1)))
 						{
-							userOveride[i] = true;
+							userOverride[i] = true;
 							if(itemArr[i].getAmount() != 0)
 							{
 								System.out.println(itemArr[i].getAmount());
@@ -614,7 +904,7 @@ public class DbFrame6Items extends JFrame {
 					{
 						if(this.caller.equals("tFA" + (i + 1)))
 						{
-							userOveride[i] = false;
+							userOverride[i] = false;
 						}
 					}
 				} 
@@ -650,10 +940,8 @@ public class DbFrame6Items extends JFrame {
 						}
 					}
 				}
-			}
-			
+			}	
 		}
-		
 	}
 	
 	
@@ -661,16 +949,59 @@ public class DbFrame6Items extends JFrame {
 		
 		private JTextField tFRef;
 		private String caller;
+		private JTextField amountTF; // maybe remove
 		
-		FocusLDouMax9999999(JTextField passedtF, String caller){
+		FocusLDouMax9999999(JTextField passedtF, String caller, JTextField amountTF){
 			this.tFRef = passedtF;
 			this.caller = caller;
+			this.amountTF = amountTF; // maybe remove
 		}
 
 		@Override
 		public void focusGained(FocusEvent arg0) {
-			// TODO Auto-generated method stub
-			
+			for(int i = 0; i < itemArr.length; i++)
+			{
+				
+				if(itemArr[i].getQty() != 0 && itemArr[i].getUnit() != 0 && userOverride[i] != true)
+				{
+					double otherResult = 0;
+					if(caller.equals("tFU1") && i+1 == 1) {
+					otherResult = calc(itemArr,userOverride,i);
+					this.amountTF.setText(Double.toString(otherResult));
+					otherResult = 0;
+					}
+					
+					if(caller.equals("tFU2") && i+1 == 2) {
+						otherResult = calc(itemArr,userOverride,i);
+						this.amountTF.setText(Double.toString(otherResult));
+						otherResult = 0;
+					}
+					
+					if(caller.equals("tFU3") && i+1 == 3) {
+						otherResult = calc(itemArr,userOverride,i);
+						this.amountTF.setText(Double.toString(otherResult));
+						otherResult = 0;
+					}
+					
+					if(caller.equals("tFU4") && i+1 == 4) {
+						otherResult = calc(itemArr,userOverride,i);
+						this.amountTF.setText(Double.toString(otherResult));
+						otherResult = 0;
+					}
+					
+					if(caller.equals("tFU5") && i+1 == 5) {
+						otherResult = calc(itemArr,userOverride,i);
+						this.amountTF.setText(Double.toString(otherResult));
+						otherResult = 0;
+					}
+					
+					if(caller.equals("tFU6") && i+1 == 6) {
+						otherResult = calc(itemArr,userOverride,i);
+						this.amountTF.setText(Double.toString(otherResult));
+						otherResult = 0;
+					}
+				}
+			}
 		}
 
 		@Override
@@ -717,16 +1048,59 @@ public class DbFrame6Items extends JFrame {
 	public class FocusLIntMax10000 implements FocusListener{
 		private JTextField tFRef;
 		private String caller;
+		private JTextField amountTF; // maybe remove
 		
-		FocusLIntMax10000(JTextField passedtF, String caller){
+		FocusLIntMax10000(JTextField passedtF, String caller, JTextField amountTF){
 			this.tFRef = passedtF;
 			this.caller = caller;
+			this.amountTF = amountTF; // maybe remove
 		}
 
 		@Override
 		public void focusGained(FocusEvent e) {
-			// TODO Auto-generated method stub
-			
+			for(int i = 0; i < itemArr.length; i++)
+			{
+				
+				if(itemArr[i].getQty() != 0 && itemArr[i].getUnit() != 0 && userOverride[i] != true)
+				{
+					double otherResult = 0;
+					if(caller.equals("tFQ1") && i+1 == 1) {
+					otherResult = calc(itemArr,userOverride,i);
+					this.amountTF.setText(Double.toString(otherResult));
+					otherResult = 0;
+					}
+					
+					if(caller.equals("tFQ2") && i+1 == 2) {
+						otherResult = calc(itemArr,userOverride,i);
+						this.amountTF.setText(Double.toString(otherResult));
+						otherResult = 0;
+					}
+					
+					if(caller.equals("tFQ3") && i+1 == 3) {
+						otherResult = calc(itemArr,userOverride,i);
+						this.amountTF.setText(Double.toString(otherResult));
+						otherResult = 0;
+					}
+					
+					if(caller.equals("tFQ4") && i+1 == 4) {
+						otherResult = calc(itemArr,userOverride,i);
+						this.amountTF.setText(Double.toString(otherResult));
+						otherResult = 0;
+					}
+					
+					if(caller.equals("tFQ5") && i+1 == 5) {
+						otherResult = calc(itemArr,userOverride,i);
+						this.amountTF.setText(Double.toString(otherResult));
+						otherResult = 0;
+					}
+					
+					if(caller.equals("tFQ6") && i+1 == 6) {
+						otherResult = calc(itemArr,userOverride,i);
+						this.amountTF.setText(Double.toString(otherResult));
+						otherResult = 0;
+					}
+				}
+			}
 		}
 
 		@Override
@@ -926,5 +1300,95 @@ public class DbFrame6Items extends JFrame {
 			}			
 		}
 	}
+	// needs items object, and boolean and needs to be called by gained and lost events
+	public static double calc(Items[] itemArr, boolean[] userOverride, int i2) {
+		double result = 0;
+		// 1 + Taxed prevents errors
+		result = itemArr[i2].getQty() * itemArr[i2].getUnit() * (1 + itemArr[i2].getTaxed());
+		
+		
+//		if(itemArr[i2].getQty() != 0 && itemArr[i2].getUnit() != 0 && userOverride[i2] != true)
+//		{
+//			// 1 + Taxed prevents errors
+//			result = itemArr[i2].getQty() * itemArr[i2].getUnit() * (1 + itemArr[i2].getTaxed());
+//		}
+//		for(int i = 0; i < itemArr.length;i++)
+//		{
+//			if(itemArr[i].getQty() != 0 && itemArr[i].getUnit() != 0 && userOverride[i] != true)
+//			{
+//				// 1 + Taxed prevents errors
+//				result = itemArr[i].getQty() * itemArr[i].getUnit() * (1 + itemArr[i].getTaxed());
+//			}
+//		}
+		
+		return result;
+		
+	}
+	
+	// slight alteration of orcale documentation follows 
+	/*
+	 * Copyright (c) 1995, 2008, Oracle and/or its affiliates. All rights reserved.
+	 *
+	 * Redistribution and use in source and binary forms, with or without
+	 * modification, are permitted provided that the following conditions
+	 * are met:
+	 *
+	 *   - Redistributions of source code must retain the above copyright
+	 *     notice, this list of conditions and the following disclaimer.
+	 *
+	 *   - Redistributions in binary form must reproduce the above copyright
+	 *     notice, this list of conditions and the following disclaimer in the
+	 *     documentation and/or other materials provided with the distribution.
+	 *
+	 *   - Neither the name of Oracle or the names of its
+	 *     contributors may be used to endorse or promote products derived
+	 *     from this software without specific prior written permission.
+	 *
+	 * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
+	 * IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+	 * THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+	 * PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+	 * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+	 * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+	 * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+	 * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+	 * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+	 * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+	 * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+	 */
+	
+	 public static class MyOwnFocusTraversalPolicy extends FocusTraversalPolicy
+	 {
+		 Vector<Component> order;
+
+		 public MyOwnFocusTraversalPolicy(Vector<Component> order) {
+			 this.order = new Vector<Component>(order.size());
+			 this.order.addAll(order);
+		 }
+		 public Component getComponentAfter(Container focusCycleRoot,Component aComponent){
+			 int idx = (order.indexOf(aComponent) + 1) % order.size();
+			 return order.get(idx);
+		 }
+
+		 public Component getComponentBefore(Container focusCycleRoot,Component aComponent){
+			 int idx = order.indexOf(aComponent) - 1;
+			 if (idx < 0) {
+				 idx = order.size() - 1;
+			 }
+			 return order.get(idx);
+			 }
+		 
+		 public Component getDefaultComponent(Container focusCycleRoot) {
+			 return order.get(0);
+		 }
+
+		 public Component getLastComponent(Container focusCycleRoot) {
+			 return order.lastElement();
+		 }
+
+		 public Component getFirstComponent(Container focusCycleRoot) {
+			 return order.get(0);
+		 }
+	 }
 }
 
