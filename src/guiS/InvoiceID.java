@@ -2,20 +2,13 @@ package guiS;
 
 public class InvoiceID {
 	
-	private int invoiceID =0;
+	private String invoiceID ="";
 	private String Date ="";
-	
-	
-	public int getInvoiceID() {
+
+	public String getInvoiceID() {
 		return invoiceID;
 	}
-	public void setInvoiceID(int invoiceID) {
-		
-		if(invoiceID < 0)
-		{
-			invoiceID =0;
-			System.out.println("Error id shouldn't be negative");
-		}
+	public void setInvoiceID(String invoiceID) {
 		this.invoiceID = invoiceID;
 	}
 	public String getDate() {

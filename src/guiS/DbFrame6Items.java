@@ -35,6 +35,7 @@ public class DbFrame6Items extends JFrame {
 	// other than the type parse which should be in frame
 	private Company compObj = new Company();
 	private BillTo billtoObj = new BillTo();
+	private InvoiceID inVoiceObj = new InvoiceID();
 	private Items[] itemArr = new Items[6]; // issue with java or c++ cross over this is just array of references no objects exist
 	private boolean[] userOverride = new boolean[6];
 	static MyOwnFocusTraversalPolicy newPolicy;
@@ -514,13 +515,8 @@ public class DbFrame6Items extends JFrame {
         order.add(tFQ6);
         order.add(tFU6);
         order.add(tFTax6);
+     
         
-
-        
-		
-		
-		
-		
 		// focus listeners (lost)
 		// was bored wanted to see how difficult it would be to write events
 		// without getactioncommand and getsource
@@ -596,31 +592,38 @@ public class DbFrame6Items extends JFrame {
 		//contentPane.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{tFComNa, tFStreAdd, tFNumber, tFDate, tFCity, tFState, tFZip, tFPho, tFBName, tFBcompNa, tFBStreAdd, tFBCity, tFBState, tFBZip, tFBPho, tFBEmailAdd, tFItem1, tFQ1, tFU1, tFTax1, tFItem2, tFQ2, tFU2, tFTax2, tFItem3, tFQ3, tFU3, tFTax3, tFItem4, tFQ4, tFU4, tFTax4, tFItem5, tFQ5, tFU5, tFTax5, tFItem6, tFQ6, tFU6, tFTax6, lblInvoice, lblInvoiceId, panel_2, lblNewLabel_1, labItemDesc, lblQty, lblUnit, lblTaxed, panel_3, lblAmout, lblThankYouFor, lblTotal, tFTotalAmo, panel, panel_1, lblNewLabel, tFA1, tFA2, tFA3, tFA4, tFA5, tFA6}));
 		// could solve by passing in the correct tfA to everything that calculates
 		
+		// read the date later
+		// read the date later
+		// read the date later
+		
+		tFDate.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent arg0) {
+			}
+		});
+		
+		tFNumber.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+				if(tFNumber.getText().equals(""))
+				{
+					if(tFNumber.getText().length() <= 10)
+					{
+						inVoiceObj.setInvoiceID(tFNumber.getText());
+					}
+					else
+					{
+						tFNumber.setText("");
+						JOptionPane.showMessageDialog(null, " Invalid date ", "error", 0);
+					}
+				}
+			}
+		});
+		
 		tFPho.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent arg0) {
 				
-				if(tFPho.getText().equals(""))
-				{	
-					String temp = tFPho.getText();
-					if(temp.length() != 11 || temp.length() != 14)
-					{
-						tFPho.setText("");
-						JOptionPane.showMessageDialog(null, "Please enter phone number as either 11 digits or \n enter phone number as 1-DDD-DDD-DDDD ", "error", 0);
-					}
-					
-					for (int i = 0; i < temp.length(); i++)
-					{
-						
-					}
-				}
-				
-			}
-		});
-		
-		tFBPho.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusLost(FocusEvent e) {
 				if(!tFBPho.getText().equals(""))
 				{	
 					String temp = tFBPho.getText();
@@ -642,21 +645,21 @@ public class DbFrame6Items extends JFrame {
 						JOptionPane.showMessageDialog(null, "Please enter phone number as either 11 digits or \n enter phone number as 1-DDD-DDD-DDDD ", "error", 0);
 					}
 					
-//					if(temp.length() == 11)
-//					{
-//						try {
-//							Integer.parseInt(tFBPho.getText());
-//							compObj.setPhone((tFBPho.getText()));
-//						}
-//						catch (NumberFormatException ex)
-//						{
-//							tFBPho.setText("");
-//							JOptionPane.showMessageDialog(null, "Invalid input Please enter phone number as either 11 digits or \n enter phone number as 1-DDD-DDD-DDDD ");
-//							temp = "";
-//						}
-//						
-//						
-//					}
+					if(temp.length() == 11)
+					{
+						try {
+							Integer.parseInt(tFBPho.getText());
+							compObj.setPhone((tFBPho.getText()));
+						}
+						catch (NumberFormatException ex)
+						{
+							tFBPho.setText("");
+							JOptionPane.showMessageDialog(null, "Invalid input Please enter phone number as either 11 digits or \n enter phone number as 1-DDD-DDD-DDDD ");
+							temp = "";
+						}
+						
+						
+					}
 					
 					System.out.println("Got here");
 					System.out.println(temp.length());
@@ -703,9 +706,106 @@ public class DbFrame6Items extends JFrame {
 						}
 						else
 						{
-							//tFBPho.setText("");
-							//JOptionPane.showMessageDialog(null, "Invalid input Please enter phone number as either 11 digits or \n enter phone number as 1-DDD-DDD-DDDD ");
-							//temp = "";
+							tFBPho.setText("");
+							JOptionPane.showMessageDialog(null, "Invalid input Please enter phone number as either 11 digits or \n enter phone number as 1-DDD-DDD-DDDD ");
+							temp = "";
+						}
+					}
+					
+					
+				}
+				
+			}
+		});
+		
+		tFBPho.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+				if(!tFBPho.getText().equals(""))
+				{	
+					String temp = tFBPho.getText();
+					boolean pass = false;
+					if(temp.length() == 11)
+					{
+						pass = true;
+					}
+					
+					if(temp.length() == 14)
+					{
+						pass = true;
+					}
+					
+					if(!pass)
+					{
+						tFBPho.setText("");
+						temp = "";
+						JOptionPane.showMessageDialog(null, "Please enter phone number as either 11 digits or \n enter phone number as 1-DDD-DDD-DDDD ", "error", 0);
+					}
+					
+					if(temp.length() == 11)
+					{
+						try {
+							Integer.parseInt(tFBPho.getText());
+							compObj.setPhone((tFBPho.getText()));
+						}
+						catch (NumberFormatException ex)
+						{
+							tFBPho.setText("");
+							JOptionPane.showMessageDialog(null, "Invalid input Please enter phone number as either 11 digits or \n enter phone number as 1-DDD-DDD-DDDD ");
+							temp = "";
+						}
+						
+						
+					}
+					
+					System.out.println("Got here");
+					System.out.println(temp.length());
+					
+					if(temp.length() == 14)
+					{
+						int truthinc=0;
+						
+						if(temp.charAt(1) == '-')
+						{
+							++truthinc;
+							System.out.println(truthinc);
+						}
+						
+						if(temp.charAt(5) == '-')
+						{
+							++truthinc;
+							System.out.println(truthinc);
+						}
+						
+						if(temp.charAt(9) == '-')
+						{
+							++truthinc;
+							System.out.println(truthinc);
+						}
+						
+						System.out.println("Got here");
+						for (int i = 0; i < temp.length(); i++)
+						{	
+							Character testChar = temp.charAt(i);
+							if(Character.isDigit(testChar))
+							{
+								++truthinc;
+								System.out.println(truthinc);
+							}
+						}
+						
+						if(truthinc == 14)
+						{
+							compObj.setPhone((tFBPho.getText()));
+							System.out.println(truthinc);
+							truthinc =0;
+							System.out.println("Worked!");
+						}
+						else
+						{
+							tFBPho.setText("");
+							JOptionPane.showMessageDialog(null, "Invalid input Please enter phone number as either 11 digits or \n enter phone number as 1-DDD-DDD-DDDD ");
+							temp = "";
 						}
 					}
 					
