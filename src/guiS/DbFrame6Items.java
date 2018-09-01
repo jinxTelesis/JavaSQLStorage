@@ -21,18 +21,27 @@ import javax.swing.JButton;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Vector;
 
 import org.eclipse.wb.swing.FocusTraversalOnArray;
 
+
 import java.awt.Component;
 import java.awt.Container;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class DbFrame6Items extends JFrame {
 	
 	// put phone filter in company object
 	// put all the filters in the setters?
 	// other than the type parse which should be in frame
+	
+	static Connection con = null;
+	
 	private Company compObj = new Company();
 	private BillTo billtoObj = new BillTo();
 	private InvoiceID inVoiceObj = new InvoiceID();
@@ -94,10 +103,9 @@ public class DbFrame6Items extends JFrame {
 	private JTextField tFU6;
 	private JTextField tFTax6;
 	private JTextField tFA6;
-
-	/**
-	 * Launch the application.
-	 */
+	private JButton btnNewButton;
+	private DRESConnectionSQL DRESConOBJ = null;
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -114,15 +122,25 @@ public class DbFrame6Items extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
+
 	public DbFrame6Items() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		for(int i = 0; i < itemArr.length; i++) {
 			itemArr[i] = new Items();
 		}
+		
+		DRESConOBJ = new DRESConnectionSQL();
+		try {
+			con = DRESConOBJ.getConnection();
+			System.out.println("connection worked");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("connection failed");
+		}
+		
+		
 		
 		//setBounds(150,75,950,1300);
 		//setBounds(150,75, 765, 990);
@@ -583,6 +601,31 @@ public class DbFrame6Items extends JFrame {
 		tFA4.addFocusListener(new FocusLDouMax_999_999_999(tFA4,"tFA4", tFA4));
 		tFA5.addFocusListener(new FocusLDouMax_999_999_999(tFA5,"tFA5", tFA5));
 		tFA6.addFocusListener(new FocusLDouMax_999_999_999(tFA6,"tFA6", tFA6));
+		
+		JButton btnConnectAndSave = new JButton("Connect and Save");
+		btnConnectAndSave.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent arg0) {
+				
+			}
+		});
+		btnConnectAndSave.setBounds(44, 17, 124, 23);
+		contentPane.add(btnConnectAndSave);
+		
+		btnNewButton = new JButton("Create Table");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				// write call to createtable 
+				try {
+					createTable();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
+		btnNewButton.setBounds(187, 17, 98, 23);
+		contentPane.add(btnNewButton);
 		contentPane.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{tFComNa, tFStreAdd, tFNumber, tFDate, tFCity, tFState, tFZip, tFPho, tFBName, tFBcompNa, tFBStreAdd, tFBCity, tFBState, tFBZip, tFBPho, tFBEmailAdd, tFItem1, tFQ1, tFU1, tFTax1, tFItem2, tFQ2, tFU2, tFTax2, tFItem3, tFQ3, tFU3, tFTax3, tFItem4, tFQ4, tFU4, tFTax4, tFItem5, tFQ5, tFU5, tFTax5, tFItem6, tFQ6, tFU6, tFTax6, lblInvoiceId, lblInvoice, panel_2, lblNewLabel_1, panel, labItemDesc, lblQty, lblUnit, lblTaxed, panel_3, panel_1, lblNewLabel, lblAmout, lblThankYouFor, lblTotal, tFTotalAmo, tFA1, tFA2, tFA3, tFA4, tFA5, tFA6}));
 		
 //		contentPane.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{tFComNa, tFStreAdd, tFNumber, tFDate, tFCity, tFState,
@@ -599,6 +642,18 @@ public class DbFrame6Items extends JFrame {
 		tFDate.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent arg0) {
+				if(tFNumber.getText().equals(""))
+				{
+					if(tFNumber.getText().length() <= 10)
+					{
+						inVoiceObj.setDate(tFNumber.getText());
+					}
+					else
+					{
+						tFNumber.setText("");
+						JOptionPane.showMessageDialog(null, " Invalid invoice id ", "error", 0);
+					}
+				}
 			}
 		});
 		
@@ -614,7 +669,7 @@ public class DbFrame6Items extends JFrame {
 					else
 					{
 						tFNumber.setText("");
-						JOptionPane.showMessageDialog(null, " Invalid date ", "error", 0);
+						JOptionPane.showMessageDialog(null, " Invalid invoice id ", "error", 0);
 					}
 				}
 			}
@@ -1405,22 +1460,7 @@ public class DbFrame6Items extends JFrame {
 		double result = 0;
 		// 1 + Taxed prevents errors
 		result = itemArr[i2].getQty() * itemArr[i2].getUnit() * (1 + itemArr[i2].getTaxed());
-		
-		
-//		if(itemArr[i2].getQty() != 0 && itemArr[i2].getUnit() != 0 && userOverride[i2] != true)
-//		{
-//			// 1 + Taxed prevents errors
-//			result = itemArr[i2].getQty() * itemArr[i2].getUnit() * (1 + itemArr[i2].getTaxed());
-//		}
-//		for(int i = 0; i < itemArr.length;i++)
-//		{
-//			if(itemArr[i].getQty() != 0 && itemArr[i].getUnit() != 0 && userOverride[i] != true)
-//			{
-//				// 1 + Taxed prevents errors
-//				result = itemArr[i].getQty() * itemArr[i].getUnit() * (1 + itemArr[i].getTaxed());
-//			}
-//		}
-		
+	
 		return result;
 		
 	}
@@ -1490,5 +1530,32 @@ public class DbFrame6Items extends JFrame {
 			 return order.get(0);
 		 }
 	 }
-}
+	 
+	 public static void createTable() throws SQLException {
+		 	String dbName = "sql_invoice_pro";
+		 
+		    String createString =
+		        "create table " + dbName +
+		        ".SUPPLIERS " +
+		        "(SUP_ID integer NOT NULL, " +
+		        "SUP_NAME varchar(40) NOT NULL, " +
+		        "STREET varchar(40) NOT NULL, " +
+		        "CITY varchar(20) NOT NULL, " +
+		        "STATE char(2) NOT NULL, " +
+		        "ZIP char(5), " +
+		        "PRIMARY KEY (SUP_ID))";
+
+		    Statement stmt = null;
+		    try {
+		        stmt = con.createStatement();
+		        stmt.executeUpdate(createString);
+		    } catch (SQLException e) {
+		        System.out.println(e);
+		    } finally {
+		        if (stmt != null) { stmt.close(); }
+		    }
+		}
+	 
+	 
+} // don't comment this out
 
