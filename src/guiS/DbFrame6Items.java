@@ -618,6 +618,7 @@ public class DbFrame6Items extends JFrame {
 				// write call to createtable 
 				try {
 					createTable();
+					createTableInvoice();
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -1544,6 +1545,66 @@ public class DbFrame6Items extends JFrame {
 		        "STATE char(2) NOT NULL, " +
 		        "ZIP char(5), " +
 		        "PRIMARY KEY (SUP_ID))";
+
+		    Statement stmt = null;
+		    try {
+		        stmt = con.createStatement();
+		        stmt.executeUpdate(createString);
+		    } catch (SQLException e) {
+		        System.out.println(e);
+		    } finally {
+		        if (stmt != null) { stmt.close(); }
+		    }
+		}
+	 
+	 public static void createTableInvoice() throws SQLException {
+		 	String dbName = "sql_invoice_pro";
+		 
+		    String createString =
+		        "create table " + dbName +
+		        ".INVOICE " +
+		        "(INVID char(10) NOT NULL unique, " + //
+		        "IDate date NOT NULL, " + //
+		        "CompanyName Char(50) NOT NULL, " + //
+		        "StreetAddress Char(50) NOT NULL, " + //
+		        "City Char(50) NOT NULL, " + //
+		        "State Char(50) NOT NULL, " + //
+		        "Zip Int NOT NULL, " + //
+		        "Phone Char(15) NOT NULL, " + //
+		        "BName Char(50) NOT NULL, " + //
+		        "BCompanyName Char(50) NOT NULL, " + //
+		        "BStreetAddress Char(50) NOT NULL, " + //
+		        "BCity Char(50) NOT NULL, " + //
+		        "BState Char(50) NOT NULL, " + //
+		        "BZip int NOT NULL, " + //
+		        "BPhone Char(15) NOT NULL, " + //
+		        "BEmailAddress Char(50) NOT NULL, " + // 17
+		        "Item1Desc Char(250) NOT NULL," + //
+		        "Qty1 int NOT NULL," + //
+		        "Unit1 double NOT NULL," + //
+		        "Taxed1 double NOT NULL," + // 
+		        "Amount1 double NOT NULL," + //
+		        "Item2desc Char(250) NULL," + //
+		        "Qty2 int NULL," + // 
+		        "Qunit2 double NULL," + //
+		        "Taxed2 double NULL," + //
+		        "Amount2 double NULL," + // 
+		        "Item3desc Char(250) NULL," + //
+		        "Qty3 int NULL," + //
+		        "Unit3 double NULL," + //
+		        "Taxed3 double NULL," + //
+		        "Amount3 double NULL," + //
+		        "Item4desc Char(250) NULL," + //
+		        "Qty4 int NULL," + //
+		        "Unit4 double NULL," + //
+		        "Taxed4 double NULL," + //
+		        "Amount4 double NULL," + // 37
+		        "Item5desc Char(250) NULL," +
+		        "Qty5 int NULL," +
+		        "Unit5 double NULL," +
+		        "Taxed5 double NULL," +
+		        "Amount5 double NULL," +
+		        "Constraint INVOICE_PK PRIMARY KEY(INVID))";
 
 		    Statement stmt = null;
 		    try {
