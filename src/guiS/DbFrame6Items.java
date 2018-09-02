@@ -22,6 +22,7 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Vector;
@@ -41,6 +42,7 @@ public class DbFrame6Items extends JFrame {
 	// other than the type parse which should be in frame
 	
 	static Connection con = null;
+	static boolean wrote = false;
 	
 	private Company compObj = new Company();
 	private BillTo billToObj = new BillTo();
@@ -620,10 +622,19 @@ public class DbFrame6Items extends JFrame {
 					createTable();
 					createTableCof();
 					createTableInvoice();
+					populateTableCof();
 					populateTable();
 					populateTableInvoice();
+					
+					// view table works
+					//viewTable10();
+					dbReader();
+					// view table works
+					
+					// static that keeps track if database is null or not
+					wrote = true;
+					
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -1541,61 +1552,56 @@ public class DbFrame6Items extends JFrame {
 	 }
 	 
 	 
+	 // the following code has a normal string and a test string in it
+	 // use createString for the real program
+	 // ****
+	 // ****
+	 // ****
+	 // ****
+	 // use create String for the real program
+	 
 	 public static void createTableInvoice() throws SQLException {
 		 	String dbName = "sql_invoice_pro";
-		 	
-//		 	String createString = 
-//		 			"create table " + dbName +
-//		 			".INVOICE " + 
-//		 			"values(x100, " + "'1/19/2015'" +
-//		 			"PRIMARY KEY (INVID))";
-//		 			
-//		 	
-//		 	"insert into " + dbName +
-//            ".SUPPLIERS " +
-//            "values(49, 'Superior Coffee', " +
-//            "'1 Party Place', " +
-//            "'Mendocino', 'CA', '95460')");
 		 
 		    String createString =
 		        "create table " + dbName +
 		        ".INVOICE " +
-		        "(INVID char(10) NOT NULL unique, " + //
-		        "IDate char(10) NOT NULL, " + //
-		        "CompanyName Char(50) NOT NULL, " + //
-		        "StreetAddress Char(50) NOT NULL, " + //
-		        "City Char(50) NOT NULL, " + //
-		        "State Char(50) NOT NULL, " + //
-		        "Zip Int NOT NULL, " + //
-		        "Phone Char(15) NOT NULL, " + //
-		        "BName Char(50) NOT NULL, " + //
-		        "BCompanyName Char(50) NOT NULL, " + //
-		        "BStreetAddress Char(50) NOT NULL, " + //
-		        "BCity Char(50) NOT NULL, " + //
-		        "BState Char(50) NOT NULL, " + //
-		        "BZip int NOT NULL, " + //
-		        "BPhone Char(15) NOT NULL, " + //
-		        "BEmailAddress Char(50) NOT NULL, " + // 17
-		        "Item1Desc Char(250) NOT NULL," + //
-		        "Qty1 int NOT NULL," + //
-		        "Unit1 double NOT NULL," + //
-		        "Taxed1 double NOT NULL," + // 
-		        "Amount1 double NOT NULL," + //
-		        "Item2desc Char(250) NULL," + //
-		        "Qty2 int NULL," + // 
-		        "Qunit2 double NULL," + //
-		        "Taxed2 double NULL," + //
-		        "Amount2 double NULL," + // 
-		        "Item3desc Char(250) NULL," + //
-		        "Qty3 int NULL," + //
-		        "Unit3 double NULL," + //
-		        "Taxed3 double NULL," + //
-		        "Amount3 double NULL," + //
-		        "Item4desc Char(250) NULL," + //
-		        "Qty4 int NULL," + //
-		        "Unit4 double NULL," + //
-		        "Taxed4 double NULL," + //
-		        "Amount4 double NULL," + // 37
+		        "(INVID char(10) NOT NULL unique, " + 
+		        "IDate char(10) NOT NULL, " + 
+		        "CompanyName Char(50) NOT NULL, " + 
+		        "StreetAddress Char(50) NOT NULL, " + 
+		        "City Char(50) NOT NULL, " + 
+		        "State Char(50) NOT NULL, " + 
+		        "Zip Int NOT NULL, " + 
+		        "Phone Char(15) NOT NULL, " + 
+		        "BName Char(50) NOT NULL, " + 
+		        "BCompanyName Char(50) NOT NULL, " + 
+		        "BStreetAddress Char(50) NOT NULL, " + 
+		        "BCity Char(50) NOT NULL, " + 
+		        "BState Char(50) NOT NULL, " + 
+		        "BZip int NOT NULL, " + 
+		        "BPhone Char(15) NOT NULL, " + 
+		        "BEmailAddress Char(50) NOT NULL, " + 
+		        "Item1Desc Char(250) NOT NULL," + 
+		        "Qty1 int NOT NULL," + 
+		        "Unit1 double NOT NULL," + 
+		        "Taxed1 double NOT NULL," +  
+		        "Amount1 double NOT NULL," + 
+		        "Item2desc Char(250) NULL," + 
+		        "Qty2 int NULL," +  
+		        "Qunit2 double NULL," + 
+		        "Taxed2 double NULL," + 
+		        "Amount2 double NULL," +  
+		        "Item3desc Char(250) NULL," + 
+		        "Qty3 int NULL," + 
+		        "Unit3 double NULL," + 
+		        "Taxed3 double NULL," + 
+		        "Amount3 double NULL," + 
+		        "Item4desc Char(250) NULL," + 
+		        "Qty4 int NULL," + 
+		        "Unit4 double NULL," + 
+		        "Taxed4 double NULL," + 
+		        "Amount4 double NULL," + 
 		        "Item5desc Char(250) NULL," +
 		        "Qty5 int NULL," +
 		        "Unit5 double NULL," +
@@ -1606,42 +1612,42 @@ public class DbFrame6Items extends JFrame {
 		    String createStringTest =
 			        "create table " + dbName +
 			        ".INVOICE " +
-			        "(INVID char(10) NOT NULL unique, " + //
-			        "IDate char(10) NULL, " + //
-			        "CompanyName Char(50) NULL, " + //
-			        "StreetAddress Char(50) NULL, " + //
-			        "City Char(50) NULL, " + //
-			        "State Char(50) NULL, " + //
-			        "Zip Int NULL, " + //
-			        "Phone Char(15) NULL, " + //
-			        "BName Char(50) NULL, " + //
-			        "BCompanyName Char(50) NULL, " + //
-			        "BStreetAddress Char(50) NULL, " + //
-			        "BCity Char(50) NULL, " + //
-			        "BState Char(50) NULL, " + //
-			        "BZip int NULL, " + //
-			        "BPhone Char(15) NULL, " + //
-			        "BEmailAddress Char(50) NULL, " + // 17
-			        "Item1Desc Char(250) NULL," + //
-			        "Qty1 int NULL," + //
-			        "Unit1 double NULL," + //
-			        "Taxed1 double NULL," + // 
-			        "Amount1 double NULL," + //
-			        "Item2desc Char(250) NULL," + //
-			        "Qty2 int NULL," + // 
-			        "Qunit2 double NULL," + //
-			        "Taxed2 double NULL," + //
-			        "Amount2 double NULL," + // 
-			        "Item3desc Char(250) NULL," + //
-			        "Qty3 int NULL," + //
-			        "Unit3 double NULL," + //
-			        "Taxed3 double NULL," + //
-			        "Amount3 double NULL," + //
-			        "Item4desc Char(250) NULL," + //
-			        "Qty4 int NULL," + //
-			        "Unit4 double NULL," + //
-			        "Taxed4 double NULL," + //
-			        "Amount4 double NULL," + // 37
+			        "(INVID char(10) NOT NULL unique, " + 
+			        "IDate char(10) NULL, " + 
+			        "CompanyName Char(50) NULL, " + 
+			        "StreetAddress Char(50) NULL, " + 
+			        "City Char(50) NULL, " + 
+			        "State Char(50) NULL, " + 
+			        "Zip Int NULL, " + 
+			        "Phone Char(15) NULL, " + 
+			        "BName Char(50) NULL, " + 
+			        "BCompanyName Char(50) NULL, " + 
+			        "BStreetAddress Char(50) NULL, " + 
+			        "BCity Char(50) NULL, " + 
+			        "BState Char(50) NULL, " + 
+			        "BZip int NULL, " + 
+			        "BPhone Char(15) NULL, " + 
+			        "BEmailAddress Char(50) NULL, " + 
+			        "Item1Desc Char(250) NULL," + 
+			        "Qty1 int NULL," + 
+			        "Unit1 double NULL," + 
+			        "Taxed1 double NULL," + 
+			        "Amount1 double NULL," + 
+			        "Item2desc Char(250) NULL," + 
+			        "Qty2 int NULL," + 
+			        "Qunit2 double NULL," + 
+			        "Taxed2 double NULL," + 
+			        "Amount2 double NULL," +  
+			        "Item3desc Char(250) NULL," + 
+			        "Qty3 int NULL," + 
+			        "Unit3 double NULL," + 
+			        "Taxed3 double NULL," + 
+			        "Amount3 double NULL," + 
+			        "Item4desc Char(250) NULL," + 
+			        "Qty4 int NULL," + 
+			        "Unit4 double NULL," + 
+			        "Taxed4 double NULL," + 
+			        "Amount4 double NULL," + 
 			        "Item5desc Char(250) NULL," +
 			        "Qty5 int NULL," +
 			        "Unit5 double NULL," +
@@ -1659,6 +1665,8 @@ public class DbFrame6Items extends JFrame {
 		        if (stmt != null) { stmt.close(); }
 		    }
 		}
+	 
+	 // oracle documentation for testing
 	 
 	 public static void createTable() throws SQLException {
 		 	String dbName = "sql_invoice_pro";
@@ -1685,6 +1693,8 @@ public class DbFrame6Items extends JFrame {
 		    }
 		}
 	 
+	 // oracle documentation for testing
+	 
 	 public static void createTableCof() throws SQLException {
 		 String dbName = "sql_invoice_pro";
 		    String createString =
@@ -1709,6 +1719,8 @@ public class DbFrame6Items extends JFrame {
 		        if (stmt != null) { stmt.close(); }
 		    }
 		}
+	 
+	 // oracle documentation for testing
 	 
 	 public void populateTable() throws SQLException {
 		 	
@@ -1743,6 +1755,159 @@ public class DbFrame6Items extends JFrame {
 		        if (stmt != null) { stmt.close(); }
 		    }
 		}
+	 
+	 // from oracle documentation for testing reasons 
+	 
+	 public static void viewTable() //Connection conwd4r
+			    throws SQLException {
+		 
+		 String dbName = "sql_invoice_pro";
+
+			    Statement stmt = null;
+			    String query =
+			        "select COF_NAME, SUP_ID, PRICE, " +
+			        "SALES, TOTAL " +
+			        "from " + dbName + ".COFFEES";
+
+			    try {
+			        stmt = con.createStatement();
+			        ResultSet rs = stmt.executeQuery(query);
+			        while (rs.next()) {
+			            String coffeeName = rs.getString("COF_NAME");
+			            int supplierID = rs.getInt("SUP_ID");
+			            float price = rs.getFloat("PRICE");
+			            int sales = rs.getInt("SALES");
+			            int total = rs.getInt("TOTAL");
+			            System.out.println(coffeeName + "\t" + supplierID +
+			                               "\t" + price + "\t" + sales +
+			                               "\t" + total);
+			        }
+			    } catch (SQLException e ) {
+			        System.out.println(e);
+			    } finally {
+			        if (stmt != null) { stmt.close(); }
+			    }
+			}
+	 
+	 
+	 // oracle documentation for testing
+
+		public void populateTableCof() throws SQLException {
+			String dbName = "sql_invoice_pro";
+		    Statement stmt = null;
+		    try {
+		        stmt = con.createStatement();
+		        stmt.executeUpdate(
+		            "insert into " + dbName +
+		            ".COFFEES " +
+		            "values('Colombian', 00101, " +
+		            "7.99, 0, 0)");
+
+		        stmt.executeUpdate(
+		            "insert into " + dbName +
+		            ".COFFEES " +
+		            "values('French_Roast', " +
+		            "00049, 8.99, 0, 0)");
+
+		        stmt.executeUpdate(
+		            "insert into " + dbName +
+		            ".COFFEES " +
+		            "values('Espresso', 00150, 9.99, 0, 0)");
+
+		        stmt.executeUpdate(
+		            "insert into " + dbName +
+		            ".COFFEES " +
+		            "values('Colombian_Decaf', " +
+		            "00101, 8.99, 0, 0)");
+
+		        stmt.executeUpdate(
+		            "insert into " + dbName +
+		            ".COFFEES " +
+		            "values('French_Roast_Decaf', " +
+		            "00049, 9.99, 0, 0)");
+		    } catch (SQLException e) {
+		        System.out.println(e);
+		    } finally {
+		        if (stmt != null) {
+		          stmt.close();
+		        }
+		    }
+		}
+		
+//		 String query =
+//			        "select COF_NAME, SUP_ID, PRICE, " +
+//			        "SALES, TOTAL " +
+//			        "from " + dbName + ".COFFEES";
+		
+		public static void dbReader() throws SQLException
+		{
+			String dbName = "sql_invoice_pro";
+			Statement stmt = null;
+			String query = "select INVID, IDate, CompanyName, " + 
+				"StreetAddress, City " +
+				"from " + dbName + ".INVOICE";
+			
+			try {
+				stmt = con.createStatement();
+		        ResultSet rs = stmt.executeQuery(query);
+		        while (rs.next()) {
+//		            String INVID = rs.getString("INVID");
+//		            String IDate = rs.getString("IDate");
+//		            String CompanyName = rs.getString("CompanyName");
+//		            String StreetAddress = rs.getString("StreetAddress");
+//		            String City = rs.getString("City");
+//		            System.out.println(INVID + "\t" + IDate +
+//		                               "\t" + CompanyName + "\t" + StreetAddress +
+//		                               "\t" + City);
+		            String INVID = rs.getString(1);
+		            String IDate = rs.getString(2);
+		            String CompanyName = rs.getString(3);
+		            String StreetAddress = rs.getString(4);
+		            String City = rs.getString(5);
+		            System.out.println(INVID + "\t" + IDate +
+		                               "\t" + CompanyName + "\t" + StreetAddress +
+		                               "\t" + City);
+				
+		        }
+		    } catch (SQLException e) {
+		        System.out.println(e);
+		    } finally {
+		        if (stmt != null) { stmt.close(); }
+		    }
+			
+			
+		}
+
+
+	public static void viewTable10()
+	    throws SQLException {
+		String dbName = "sql_invoice_pro";
+
+	    Statement stmt = null;
+	    String query =
+	        "select COF_NAME, SUP_ID, PRICE, " +
+	        "SALES, TOTAL " +
+	        "from " + dbName + ".COFFEES";
+
+	    try {
+	        stmt = con.createStatement();
+	        ResultSet rs = stmt.executeQuery(query);
+	        while (rs.next()) {
+	            String coffeeName = rs.getString("COF_NAME");
+	            int supplierID = rs.getInt("SUP_ID");
+	            float price = rs.getFloat("PRICE");
+	            int sales = rs.getInt("SALES");
+	            int total = rs.getInt("TOTAL");
+	            System.out.println(coffeeName + "\t" + supplierID +
+	                               "\t" + price + "\t" + sales +
+	                               "\t" + total);
+	        }
+	    } catch (SQLException e ) {
+	        System.out.println(e);
+	    } finally {
+	        if (stmt != null) { stmt.close(); }
+	    }
+	}
 	 
 	 public void populateTableInvoice() throws SQLException {
 		 String dbName = "sql_invoice_pro";
