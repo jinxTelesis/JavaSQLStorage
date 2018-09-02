@@ -618,6 +618,7 @@ public class DbFrame6Items extends JFrame {
 				// write call to createtable 
 				try {
 					createTable();
+					createTableCof();
 					createTableInvoice();
 					populateTable();
 					populateTableInvoice();
@@ -1672,6 +1673,31 @@ public class DbFrame6Items extends JFrame {
 		        "STATE char(2) NOT NULL, " +
 		        "ZIP char(5), " +
 		        "PRIMARY KEY (SUP_ID))";
+
+		    Statement stmt = null;
+		    try {
+		        stmt = con.createStatement();
+		        stmt.executeUpdate(createString);
+		    } catch (SQLException e) {
+		        System.out.println(e);
+		    } finally {
+		        if (stmt != null) { stmt.close(); }
+		    }
+		}
+	 
+	 public static void createTableCof() throws SQLException {
+		 String dbName = "sql_invoice_pro";
+		    String createString =
+		        "create table " + dbName +
+		        ".COFFEES " +
+		        "(COF_NAME varchar(32) NOT NULL, " +
+		        "SUP_ID int NOT NULL, " +
+		        "PRICE float NOT NULL, " +
+		        "SALES integer NOT NULL, " +
+		        "TOTAL integer NOT NULL, " +
+		        "PRIMARY KEY (COF_NAME), " +
+		        "FOREIGN KEY (SUP_ID) REFERENCES " +
+		        dbName + ".SUPPLIERS (SUP_ID))";
 
 		    Statement stmt = null;
 		    try {
