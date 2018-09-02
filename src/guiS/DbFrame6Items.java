@@ -22,6 +22,7 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Vector;
@@ -620,6 +621,7 @@ public class DbFrame6Items extends JFrame {
 					createTable();
 					createTableCof();
 					createTableInvoice();
+					populateTableCof();
 					populateTable();
 					populateTableInvoice();
 				} catch (SQLException e) {
@@ -1541,21 +1543,16 @@ public class DbFrame6Items extends JFrame {
 	 }
 	 
 	 
+	 // the following code has a normal string and a test string in it
+	 // use createString for the real program
+	 // ****
+	 // ****
+	 // ****
+	 // ****
+	 // use create String for the real program
+	 
 	 public static void createTableInvoice() throws SQLException {
 		 	String dbName = "sql_invoice_pro";
-		 	
-//		 	String createString = 
-//		 			"create table " + dbName +
-//		 			".INVOICE " + 
-//		 			"values(x100, " + "'1/19/2015'" +
-//		 			"PRIMARY KEY (INVID))";
-//		 			
-//		 	
-//		 	"insert into " + dbName +
-//            ".SUPPLIERS " +
-//            "values(49, 'Superior Coffee', " +
-//            "'1 Party Place', " +
-//            "'Mendocino', 'CA', '95460')");
 		 
 		    String createString =
 		        "create table " + dbName +
@@ -1660,6 +1657,8 @@ public class DbFrame6Items extends JFrame {
 		    }
 		}
 	 
+	 // oracle documentation for testing
+	 
 	 public static void createTable() throws SQLException {
 		 	String dbName = "sql_invoice_pro";
 		 
@@ -1685,6 +1684,8 @@ public class DbFrame6Items extends JFrame {
 		    }
 		}
 	 
+	 // oracle documentation for testing
+	 
 	 public static void createTableCof() throws SQLException {
 		 String dbName = "sql_invoice_pro";
 		    String createString =
@@ -1709,6 +1710,8 @@ public class DbFrame6Items extends JFrame {
 		        if (stmt != null) { stmt.close(); }
 		    }
 		}
+	 
+	 // oracle documentation for testing
 	 
 	 public void populateTable() throws SQLException {
 		 	
@@ -1743,6 +1746,114 @@ public class DbFrame6Items extends JFrame {
 		        if (stmt != null) { stmt.close(); }
 		    }
 		}
+	 
+	 // from oracle documentation for testing reasons 
+	 
+	 public static void viewTable() //Connection conwd4r
+			    throws SQLException {
+		 
+		 String dbName = "sql_invoice_pro";
+
+			    Statement stmt = null;
+			    String query =
+			        "select COF_NAME, SUP_ID, PRICE, " +
+			        "SALES, TOTAL " +
+			        "from " + dbName + ".COFFEES";
+
+			    try {
+			        stmt = con.createStatement();
+			        ResultSet rs = stmt.executeQuery(query);
+			        while (rs.next()) {
+			            String coffeeName = rs.getString("COF_NAME");
+			            int supplierID = rs.getInt("SUP_ID");
+			            float price = rs.getFloat("PRICE");
+			            int sales = rs.getInt("SALES");
+			            int total = rs.getInt("TOTAL");
+			            System.out.println(coffeeName + "\t" + supplierID +
+			                               "\t" + price + "\t" + sales +
+			                               "\t" + total);
+			        }
+			    } catch (SQLException e ) {
+			        System.out.println(e);
+			    } finally {
+			        if (stmt != null) { stmt.close(); }
+			    }
+			}
+	 
+	 
+	 // oracle documentation for testing
+
+		public void populateTableCof() throws SQLException {
+			String dbName = "sql_invoice_pro";
+		    Statement stmt = null;
+		    try {
+		        stmt = con.createStatement();
+		        stmt.executeUpdate(
+		            "insert into " + dbName +
+		            ".COFFEES " +
+		            "values('Colombian', 00101, " +
+		            "7.99, 0, 0)");
+
+		        stmt.executeUpdate(
+		            "insert into " + dbName +
+		            ".COFFEES " +
+		            "values('French_Roast', " +
+		            "00049, 8.99, 0, 0)");
+
+		        stmt.executeUpdate(
+		            "insert into " + dbName +
+		            ".COFFEES " +
+		            "values('Espresso', 00150, 9.99, 0, 0)");
+
+		        stmt.executeUpdate(
+		            "insert into " + dbName +
+		            ".COFFEES " +
+		            "values('Colombian_Decaf', " +
+		            "00101, 8.99, 0, 0)");
+
+		        stmt.executeUpdate(
+		            "insert into " + dbName +
+		            ".COFFEES " +
+		            "values('French_Roast_Decaf', " +
+		            "00049, 9.99, 0, 0)");
+		    } catch (SQLException e) {
+		        System.out.println(e);
+		    } finally {
+		        if (stmt != null) {
+		          stmt.close();
+		        }
+		    }
+		}
+		
+	// from oracle documentation will be removed in a short time
+		public static void alternateViewTable() // Connection con
+			    throws SQLException {
+
+			    Statement stmt = null;
+			    String query =
+			        "select COF_NAME, SUP_ID, PRICE, " +
+			        "SALES, TOTAL from COFFEES";
+
+			    try {
+			        stmt = con.createStatement();
+			        ResultSet rs = stmt.executeQuery(query);
+			        while (rs.next()) {
+			            String coffeeName = rs.getString(1);
+			            int supplierID = rs.getInt(2);
+			            float price = rs.getFloat(3);
+			            int sales = rs.getInt(4);
+			            int total = rs.getInt(5);
+			            System.out.println(coffeeName + "\t" + supplierID +
+			                               "\t" + price + "\t" + sales +
+			                               "\t" + total);
+			        }
+			    } catch (SQLException e ) {
+			        System.out.println(e);
+			    } finally {
+			        if (stmt != null) { stmt.close(); }
+			    }
+			}
+		
 	 
 	 public void populateTableInvoice() throws SQLException {
 		 String dbName = "sql_invoice_pro";
