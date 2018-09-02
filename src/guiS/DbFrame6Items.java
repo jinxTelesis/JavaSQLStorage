@@ -619,6 +619,8 @@ public class DbFrame6Items extends JFrame {
 				try {
 					createTable();
 					createTableInvoice();
+					populateTable();
+					populateTableInvoice();
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -643,15 +645,18 @@ public class DbFrame6Items extends JFrame {
 		tFDate.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent arg0) {
-				if(tFNumber.getText().equals(""))
+				System.out.println("WTF");
+				if(!tFDate.getText().equals(""))
 				{
-					if(tFNumber.getText().length() <= 10)
+					String lengthTest = tFDate.getText();
+					if(tFDate.getText().length() <= 10)
 					{
-						inVoiceObj.setDate(tFNumber.getText());
+						inVoiceObj.setDate(tFDate.getText());
+						System.out.println("text collection worked!" + inVoiceObj.getDate());
 					}
 					else
 					{
-						tFNumber.setText("");
+						tFDate.setText("");
 						JOptionPane.showMessageDialog(null, " Invalid invoice id ", "error", 0);
 					}
 				}
@@ -661,16 +666,18 @@ public class DbFrame6Items extends JFrame {
 		tFNumber.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
-				if(tFNumber.getText().equals(""))
+				if(!tFNumber.getText().equals(""))
 				{
+					//String lengthTest = tFNumber.getText();
 					if(tFNumber.getText().length() <= 10)
 					{
 						inVoiceObj.setInvoiceID(tFNumber.getText());
+						//System.out.println("text collection worked!" + inVoiceObj.getInvoiceID());
 					}
 					else
 					{
 						tFNumber.setText("");
-						JOptionPane.showMessageDialog(null, " Invalid invoice id ", "error", 0);
+						//JOptionPane.showMessageDialog(null, " Invalid invoice id ", "error", 0);
 					}
 				}
 			}
@@ -1532,39 +1539,28 @@ public class DbFrame6Items extends JFrame {
 		 }
 	 }
 	 
-	 public static void createTable() throws SQLException {
-		 	String dbName = "sql_invoice_pro";
-		 
-		    String createString =
-		        "create table " + dbName +
-		        ".SUPPLIERS " +
-		        "(SUP_ID integer NOT NULL, " +
-		        "SUP_NAME varchar(40) NOT NULL, " +
-		        "STREET varchar(40) NOT NULL, " +
-		        "CITY varchar(20) NOT NULL, " +
-		        "STATE char(2) NOT NULL, " +
-		        "ZIP char(5), " +
-		        "PRIMARY KEY (SUP_ID))";
-
-		    Statement stmt = null;
-		    try {
-		        stmt = con.createStatement();
-		        stmt.executeUpdate(createString);
-		    } catch (SQLException e) {
-		        System.out.println(e);
-		    } finally {
-		        if (stmt != null) { stmt.close(); }
-		    }
-		}
 	 
 	 public static void createTableInvoice() throws SQLException {
 		 	String dbName = "sql_invoice_pro";
+		 	
+//		 	String createString = 
+//		 			"create table " + dbName +
+//		 			".INVOICE " + 
+//		 			"values(x100, " + "'1/19/2015'" +
+//		 			"PRIMARY KEY (INVID))";
+//		 			
+//		 	
+//		 	"insert into " + dbName +
+//            ".SUPPLIERS " +
+//            "values(49, 'Superior Coffee', " +
+//            "'1 Party Place', " +
+//            "'Mendocino', 'CA', '95460')");
 		 
 		    String createString =
 		        "create table " + dbName +
 		        ".INVOICE " +
 		        "(INVID char(10) NOT NULL unique, " + //
-		        "IDate date NOT NULL, " + //
+		        "IDate char(10) NOT NULL, " + //
 		        "CompanyName Char(50) NOT NULL, " + //
 		        "StreetAddress Char(50) NOT NULL, " + //
 		        "City Char(50) NOT NULL, " + //
@@ -1605,6 +1601,77 @@ public class DbFrame6Items extends JFrame {
 		        "Taxed5 double NULL," +
 		        "Amount5 double NULL," +
 		        "Constraint INVOICE_PK PRIMARY KEY(INVID))";
+		    
+		    String createStringTest =
+			        "create table " + dbName +
+			        ".INVOICE " +
+			        "(INVID char(10) NOT NULL unique, " + //
+			        "IDate char(10) NULL, " + //
+			        "CompanyName Char(50) NULL, " + //
+			        "StreetAddress Char(50) NULL, " + //
+			        "City Char(50) NULL, " + //
+			        "State Char(50) NULL, " + //
+			        "Zip Int NULL, " + //
+			        "Phone Char(15) NULL, " + //
+			        "BName Char(50) NULL, " + //
+			        "BCompanyName Char(50) NULL, " + //
+			        "BStreetAddress Char(50) NULL, " + //
+			        "BCity Char(50) NULL, " + //
+			        "BState Char(50) NULL, " + //
+			        "BZip int NULL, " + //
+			        "BPhone Char(15) NULL, " + //
+			        "BEmailAddress Char(50) NULL, " + // 17
+			        "Item1Desc Char(250) NULL," + //
+			        "Qty1 int NULL," + //
+			        "Unit1 double NULL," + //
+			        "Taxed1 double NULL," + // 
+			        "Amount1 double NULL," + //
+			        "Item2desc Char(250) NULL," + //
+			        "Qty2 int NULL," + // 
+			        "Qunit2 double NULL," + //
+			        "Taxed2 double NULL," + //
+			        "Amount2 double NULL," + // 
+			        "Item3desc Char(250) NULL," + //
+			        "Qty3 int NULL," + //
+			        "Unit3 double NULL," + //
+			        "Taxed3 double NULL," + //
+			        "Amount3 double NULL," + //
+			        "Item4desc Char(250) NULL," + //
+			        "Qty4 int NULL," + //
+			        "Unit4 double NULL," + //
+			        "Taxed4 double NULL," + //
+			        "Amount4 double NULL," + // 37
+			        "Item5desc Char(250) NULL," +
+			        "Qty5 int NULL," +
+			        "Unit5 double NULL," +
+			        "Taxed5 double NULL," +
+			        "Amount5 double NULL," +
+			        "Constraint INVOICE_PK PRIMARY KEY(INVID))";
+
+		    Statement stmt = null;
+		    try {
+		        stmt = con.createStatement();
+		        stmt.executeUpdate(createStringTest);
+		    } catch (SQLException e) {
+		        System.out.println(e);
+		    } finally {
+		        if (stmt != null) { stmt.close(); }
+		    }
+		}
+	 
+	 public static void createTable() throws SQLException {
+		 	String dbName = "sql_invoice_pro";
+		 
+		    String createString =
+		        "create table " + dbName +
+		        ".SUPPLIERS " +
+		        "(SUP_ID integer NOT NULL, " +
+		        "SUP_NAME varchar(40) NOT NULL, " +
+		        "STREET varchar(40) NOT NULL, " +
+		        "CITY varchar(20) NOT NULL, " +
+		        "STATE char(2) NOT NULL, " +
+		        "ZIP char(5), " +
+		        "PRIMARY KEY (SUP_ID))";
 
 		    Statement stmt = null;
 		    try {
@@ -1617,6 +1684,89 @@ public class DbFrame6Items extends JFrame {
 		    }
 		}
 	 
+	 public void populateTable() throws SQLException {
+		 	
+		 String dbName = "sql_invoice_pro";
+		    Statement stmt = null;
+		    try {
+		        stmt = con.createStatement();
+		        stmt.executeUpdate(
+		            "insert into " + dbName +
+		            ".SUPPLIERS " +
+		            "values(49, 'Superior Coffee', " +
+		            "'1 Party Place', " +
+		            "'Mendocino', 'CA', '95460')");
+
+		        stmt.executeUpdate(
+		            "insert into " + dbName +
+		            ".SUPPLIERS " +
+		            "values(101, 'Acme, Inc.', " +
+		            "'99 Market Street', " +
+		            "'Groundsville', 'CA', '95199')");
+
+		        stmt.executeUpdate(
+		            "insert into " + dbName +
+		            ".SUPPLIERS " +
+		            "values(150, " +
+		            "'The High Ground', " +
+		            "'100 Coffee Lane', " +
+		            "'Meadows', 'CA', '93966')");
+		    } catch (SQLException e) {
+		        System.out.println(e);
+		    } finally {
+		        if (stmt != null) { stmt.close(); }
+		    }
+		}
 	 
-} // don't comment this out
+	 public void populateTableInvoice() throws SQLException {
+		 String dbName = "sql_invoice_pro";
+		 	String createString = 
+		 	"INSERT INTO " + dbName +
+			".INVOICE " + 
+			"values('x100'," + "'1/19/2015', " + "'Xero Company')";
+		 	
+		 	String createStringObj = 
+		 	"INSERT INTO " + dbName +
+		 	".INVOICE " + "values('" +  inVoiceObj.getInvoiceID() + "','" +
+		 	inVoiceObj.getDate() + "','" +	
+		 	compObj.getName() + "','" + // + "+ "')";
+		 	compObj.getStreetAddress() + "','" +
+		 	compObj.getCity() + "','" +
+		 	compObj.getState() + "'," +
+		 	compObj.getZip() + ",'" +
+		 	compObj.getPhone() + "')";
+		 	
+//			 Company compObj =
+//			 BillTo billtoObj = 
+//			 InvoiceID inVoiceObj = 
+//			 Items[] itemArr =  	
+		    
+		    Statement stmt = null;
+		    try {
+		        stmt = con.createStatement();
+		        stmt.executeUpdate(createStringObj);
+
+//		        stmt.executeUpdate(
+//		            "insert into " + dbName +
+//		            ".SUPPLIERS " +
+//		            "values(101, 'Acme, Inc.', " +
+//		            "'99 Market Street', " +
+//		            "'Groundsville', 'CA', '95199')");
+	//
+//		        stmt.executeUpdate(
+//		            "insert into " + dbName +
+//		            ".SUPPLIERS " +
+//		            "values(150, " +
+//		            "'The High Ground', " +
+//		            "'100 Coffee Lane', " +
+//		            "'Meadows', 'CA', '93966')");
+		 	
+		    } catch (SQLException e) {
+		        System.out.println(e);
+		    } finally {
+		        if (stmt != null) { stmt.close(); }
+		    }
+	 }
+	 
+} // don't comment this out by mistake
 
