@@ -1737,7 +1737,51 @@ public class DbFrame6Items extends JFrame {
 		 	compObj.getPhone() + "','" + //"')";
 		 	billToObj.getbName() + "','" +
 		 	billToObj.getbComp() + "','" +
-		 	billToObj.getbSAdd() + "','";
+		 	billToObj.getbSAdd() + "','" +
+		 	billToObj.getbCity() + "','" +
+		 	billToObj.getbState() + "'," +
+		 	billToObj.getbZip() + ",'" +
+		 	billToObj.getpPhone() + "','" +
+		 	billToObj.getbEmail() + "','" +
+		 	
+		 	// faster to write out like this sql ending chars are consistent in the loop
+		 	// could put if statements to deal with it but manual index works fine
+		 	itemArr[0].getItemD() + "'," +
+	 		itemArr[0].getQty() + "," +
+	 	 	itemArr[0].getUnit() + "," +
+			itemArr[0].getTaxed() + "," +
+	 		itemArr[0].getAmount() + ",'" +
+	 		itemArr[1].getItemD() + "'," +
+	 		itemArr[1].getQty() + "," +
+	 	 	itemArr[1].getUnit() + "," +
+			itemArr[1].getTaxed() + "," +
+	 		itemArr[1].getAmount() + ",'" +
+	 		itemArr[2].getItemD() + "'," +
+	 		itemArr[2].getQty() + "," +
+	 	 	itemArr[2].getUnit() + "," +
+			itemArr[2].getTaxed() + "," +
+	 		itemArr[2].getAmount() + ",'" +
+	 		itemArr[3].getItemD() + "'," +
+	 		itemArr[3].getQty() + "," +
+	 	 	itemArr[3].getUnit() + "," +
+			itemArr[3].getTaxed() + "," +
+	 		itemArr[3].getAmount() + ",'" +
+	 		itemArr[4].getItemD() + "'," +
+	 		itemArr[4].getQty() + "," +
+	 	 	itemArr[4].getUnit() + "," +
+			itemArr[4].getTaxed() + "," +
+	 		itemArr[4].getAmount() + ",'" +
+	 		itemArr[5].getItemD() + "'," +
+	 		itemArr[5].getQty() + "," +
+	 	 	itemArr[5].getUnit() + "," +
+			itemArr[5].getTaxed() + "," +
+	 		itemArr[5].getAmount() + ")";
+		 	
+//		 	itemArr[0].getItemD() + "'," +
+//		 	itemArr[0].getQty() + "," +
+//		 	itemArr[0].getUnit() + "," +
+//		 	itemArr[0].getTaxed() + "," +
+//		 	itemArr[0].getAmount() + ")";
 		 	
 //			 Company compObj =
 //			 BillTo billtoObj = 
