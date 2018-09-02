@@ -43,7 +43,7 @@ public class DbFrame6Items extends JFrame {
 	static Connection con = null;
 	
 	private Company compObj = new Company();
-	private BillTo billtoObj = new BillTo();
+	private BillTo billToObj = new BillTo();
 	private InvoiceID inVoiceObj = new InvoiceID();
 	private Items[] itemArr = new Items[6]; // issue with java or c++ cross over this is just array of references no objects exist
 	private boolean[] userOverride = new boolean[6];
@@ -1389,7 +1389,7 @@ public class DbFrame6Items extends JFrame {
 				
 				if(this.caller.equals("tBFZip") && result != 0)
 				{
-					billtoObj.setbZip(result);
+					billToObj.setbZip(result);
 				}
 			}
 		}
@@ -1429,28 +1429,28 @@ public class DbFrame6Items extends JFrame {
 					if(this.caller.equals("tFStreAdd")) {
 						compObj.setStreetAddress(this.tFRef.getText());}//System.out.println("this is a test of get address " + compObj.getStreetAddress());}
 					if(this.caller.equals("tFBName")) {
-						billtoObj.setbName(this.tFRef.getText());//System.out.println("BName text!" + billtoObj.getbName());
+						billToObj.setbName(this.tFRef.getText());//System.out.println("BName text!" + billtoObj.getbName());
 					}
 					if(this.caller.equals("tFBcompNa")) {
-						billtoObj.setbComp(this.tFRef.getText());
+						billToObj.setbComp(this.tFRef.getText());
 						//System.out.println("BCompNa text!" + billtoObj.getbComp());
 					}
 					if(this.caller.equals("tFBState")) {
-						billtoObj.setbState(this.tFRef.getText());
+						billToObj.setbState(this.tFRef.getText());
 						//System.out.println("BState text!" + billtoObj.getbState());
 					}
 					if(this.caller.equals("tFBStreAdd"))
 					{
-						billtoObj.setbSAdd(this.tFRef.getText());
+						billToObj.setbSAdd(this.tFRef.getText());
 						//System.out.println("BStreetAdd text!" + billtoObj.getbSAdd());
 					}
 					if(this.caller.equals("tFBCity")) {
-						billtoObj.setbCity(this.tFRef.getText());
+						billToObj.setbCity(this.tFRef.getText());
 						//System.out.println("BCity text!" + billtoObj.getbCity());
 					}
 					if(this.caller.equals("tFBEmailAdd"))
 					{
-						billtoObj.setbEmail(this.tFRef.getText());
+						billToObj.setbEmail(this.tFRef.getText());
 						//System.out.println("BEmail text!" + billtoObj.getbEmail());
 					}
 						
@@ -1734,7 +1734,10 @@ public class DbFrame6Items extends JFrame {
 		 	compObj.getCity() + "','" +
 		 	compObj.getState() + "'," +
 		 	compObj.getZip() + ",'" +
-		 	compObj.getPhone() + "')";
+		 	compObj.getPhone() + "','" + //"')";
+		 	billToObj.getbName() + "','" +
+		 	billToObj.getbComp() + "','" +
+		 	billToObj.getbSAdd() + "','";
 		 	
 //			 Company compObj =
 //			 BillTo billtoObj = 
