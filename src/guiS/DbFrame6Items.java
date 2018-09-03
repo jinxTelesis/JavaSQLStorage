@@ -108,6 +108,8 @@ public class DbFrame6Items extends JFrame {
 	private JButton btnCreateTable;
 	private DRESConnectionSQL DRESConOBJ = null;
 	private JButton btnDeleteAll;
+	private JButton btnLoadInvoice;
+	private JButton btnLoadTestData;
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -397,7 +399,7 @@ public class DbFrame6Items extends JFrame {
 		
 		btnDeleteAll = new JButton("Delete All");
 		
-		btnDeleteAll.setBounds(306, 17, 100, 23);
+		btnDeleteAll.setBounds(335, 17, 134, 23);
 		
 		tFU3 = new JTextField();
 		tFU3.setColumns(10);
@@ -489,6 +491,14 @@ public class DbFrame6Items extends JFrame {
 		tFA6.setBounds(639, 642, 100, 20);
 		contentPane.add(tFA6);
 		setTitle("Joan's SQL PRO");
+		
+		btnLoadInvoice = new JButton("Load Invoice");
+		btnLoadInvoice.setBounds(213, 56, 109, 23);
+		contentPane.add(btnLoadInvoice);
+		
+		btnLoadTestData = new JButton("Load Test Data");
+		btnLoadTestData.setBounds(335, 56, 134, 23);
+		contentPane.add(btnLoadTestData);
 		
 		
 		// tab policy 
@@ -609,6 +619,18 @@ public class DbFrame6Items extends JFrame {
 		tFA5.addFocusListener(new FocusLDouMax_999_999_999(tFA5,"tFA5", tFA5));
 		tFA6.addFocusListener(new FocusLDouMax_999_999_999(tFA6,"tFA6", tFA6));
 		
+		
+		btnLoadTestData.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		
+		btnLoadInvoice.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		
+		
 		JButton btnConnectAndSave = new JButton("Connect and Save");
 		btnConnectAndSave.addFocusListener(new FocusAdapter() {
 			@Override
@@ -616,7 +638,7 @@ public class DbFrame6Items extends JFrame {
 				
 			}
 		});
-		btnConnectAndSave.setBounds(44, 17, 124, 23);
+		btnConnectAndSave.setBounds(44, 17, 134, 23);
 		contentPane.add(btnConnectAndSave);
 		
 		btnCreateTable = new JButton("Create Table");
@@ -643,10 +665,11 @@ public class DbFrame6Items extends JFrame {
 		});
 		
 		
-		btnCreateTable.setBounds(187, 17, 98, 23);
+		btnCreateTable.setBounds(213, 17, 109, 23);
 		contentPane.add(btnCreateTable);
 		
 		contentPane.add(btnDeleteAll);
+		
 		//contentPane.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{tFComNa, tFStreAdd, tFNumber, tFDate, tFCity, tFState, tFZip, tFPho, tFBName, tFBcompNa, tFBStreAdd, tFBCity, tFBState, tFBZip, tFBPho, tFBEmailAdd, tFItem1, tFQ1, tFU1, tFTax1, tFItem2, tFQ2, tFU2, tFTax2, tFItem3, tFQ3, tFU3, tFTax3, tFItem4, tFQ4, tFU4, tFTax4, tFItem5, tFQ5, tFU5, tFTax5, tFItem6, tFQ6, tFU6, tFTax6, lblInvoiceId, lblInvoice, panel_2, lblNewLabel_1, panel, labItemDesc, lblQty, lblUnit, lblTaxed, panel_3, panel_1, lblNewLabel, lblAmout, lblThankYouFor, lblTotal, tFTotalAmo, tFA1, tFA2, tFA3, tFA4, tFA5, tFA6}));
 		
 //		contentPane.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{tFComNa, tFStreAdd, tFNumber, tFDate, tFCity, tFState,

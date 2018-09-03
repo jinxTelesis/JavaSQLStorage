@@ -26,6 +26,15 @@ public class Company {
 		this.zip = 0;
 		this.phone = "";
 	}
+	
+	public void loadTestData() {
+		this.name = "Big Company";
+		this.streetAddress = "10 Baker st";
+		this.city = "Melville";
+		this.state = "NY";
+		this.zip = 11747;
+		this.phone = "1-603-567-7777";
+	}
 
 
 	public String getName() {

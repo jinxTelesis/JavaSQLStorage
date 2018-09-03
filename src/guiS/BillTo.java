@@ -22,6 +22,17 @@ public class BillTo {
 		this.bEmail = "";
 	}
 	
+	public void loadTestData() {
+		this.bName = "Jimmy P";
+		this.bComp = "Munford and Sons";
+		this.bSAdd = "20 Water Street";
+		this.bCity = "Melville";
+		this.bState = "NM";
+		this.bZip = 17881;
+		this.bPhone = "1-999-999-999";
+		this.bEmail = "George.com@busyst";
+	}
+	
 	public String getbName() {
 		return bName;
 	}

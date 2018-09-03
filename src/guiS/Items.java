@@ -19,6 +19,14 @@ public class Items {
 		this.amount = 0.0;
 	}
 	
+	public void loadTestData() {
+		this.itemD = "tank";
+		this.qty = 0;
+		this.unit = 0.0;
+		this.taxed = 0.0;
+		this.amount = 0.0;
+	}
+	
 	public String getItemD() {
 		return itemD;
 	}

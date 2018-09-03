@@ -9,6 +9,11 @@ public class InvoiceID {
 		this.invoiceID = "";
 		this.Date = "";
 	}
+	
+	public void loadTestData() {
+		this.invoiceID = "z1000x";
+		this.Date = "1/18/2019";
+	}
 
 	public String getInvoiceID() {
 		return invoiceID;
