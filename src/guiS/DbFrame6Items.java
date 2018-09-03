@@ -105,8 +105,11 @@ public class DbFrame6Items extends JFrame {
 	private JTextField tFU6;
 	private JTextField tFTax6;
 	private JTextField tFA6;
-	private JButton btnNewButton;
+	private JButton btnCreateTable;
 	private DRESConnectionSQL DRESConOBJ = null;
+	private JButton btnDeleteAll;
+	private JButton btnLoadInvoice;
+	private JButton btnLoadTestData;
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -394,6 +397,10 @@ public class DbFrame6Items extends JFrame {
 		tFQ3.setBounds(399, 549, 70, 20);
 		contentPane.add(tFQ3);
 		
+		btnDeleteAll = new JButton("Delete All");
+		
+		btnDeleteAll.setBounds(335, 17, 134, 23);
+		
 		tFU3 = new JTextField();
 		tFU3.setColumns(10);
 		tFU3.setBounds(479, 549, 70, 20);
@@ -484,6 +491,14 @@ public class DbFrame6Items extends JFrame {
 		tFA6.setBounds(639, 642, 100, 20);
 		contentPane.add(tFA6);
 		setTitle("Joan's SQL PRO");
+		
+		btnLoadInvoice = new JButton("Load Invoice");
+		btnLoadInvoice.setBounds(213, 56, 109, 23);
+		contentPane.add(btnLoadInvoice);
+		
+		btnLoadTestData = new JButton("Load Test Data");
+		btnLoadTestData.setBounds(335, 56, 134, 23);
+		contentPane.add(btnLoadTestData);
 		
 		
 		// tab policy 
@@ -604,6 +619,68 @@ public class DbFrame6Items extends JFrame {
 		tFA5.addFocusListener(new FocusLDouMax_999_999_999(tFA5,"tFA5", tFA5));
 		tFA6.addFocusListener(new FocusLDouMax_999_999_999(tFA6,"tFA6", tFA6));
 		
+		
+		btnLoadTestData.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				compObj.loadTestData();
+				billToObj.loadTestData();
+				inVoiceObj.loadTestData();
+				
+				for(int i =0; i <= itemArr.length -1;i++ )
+				{
+					itemArr[i].loadTestData();
+				}
+				
+				tFNumber.setText(inVoiceObj.getInvoiceID());tFDate.setText(inVoiceObj.getDate());tFComNa.setText(compObj.getName());tFCity.setText(compObj.getCity());
+				tFState.setText(compObj.getState());tFZip.setText(Integer.toString(compObj.getZip()));tFStreAdd.setText(compObj.getStreetAddress());tFPho.setText(compObj.getPhone());
+				tFBName.setText(billToObj.getbName());tFBcompNa.setText(billToObj.getbComp());tFBStreAdd.setText(billToObj.getbSAdd());tFBCity.setText(billToObj.getbCity());
+				tFBState.setText(billToObj.getbState());tFBZip.setText(Integer.toString(billToObj.getbZip()));tFBPho.setText(billToObj.getpPhone());tFBEmailAdd.setText(billToObj.getbEmail());
+				tFTotalAmo.setText("100.00");
+				
+				tFItem1.setText(itemArr[0].getItemD());
+				tFQ1.setText(Integer.toString(itemArr[0].getQty()));
+				tFU1.setText(Double.toString(itemArr[0].getUnit()));
+				tFTax1.setText(Double.toString(itemArr[0].getTaxed()));
+				tFA1.setText(Double.toString(itemArr[0].getAmount()));
+				
+				tFItem2.setText(itemArr[1].getItemD());
+				tFQ2.setText(Integer.toString(itemArr[1].getQty()));
+				tFU2.setText(Double.toString(itemArr[1].getUnit()));
+				tFTax2.setText(Double.toString(itemArr[1].getTaxed()));
+				tFA2.setText(Double.toString(itemArr[1].getAmount()));
+				
+				tFItem3.setText(itemArr[2].getItemD());
+				tFQ3.setText(Integer.toString(itemArr[2].getQty()));
+				tFU3.setText(Double.toString(itemArr[2].getUnit()));
+				tFTax3.setText(Double.toString(itemArr[2].getTaxed()));
+				tFA3.setText(Double.toString(itemArr[2].getAmount()));
+				
+				tFItem4.setText(itemArr[3].getItemD());
+				tFQ4.setText(Integer.toString(itemArr[3].getQty()));
+				tFU4.setText(Double.toString(itemArr[3].getUnit()));
+				tFTax4.setText(Double.toString(itemArr[3].getTaxed()));
+				tFA4.setText(Double.toString(itemArr[3].getAmount()));
+				
+				tFItem5.setText(itemArr[4].getItemD());
+				tFQ5.setText(Integer.toString(itemArr[4].getQty()));
+				tFU5.setText(Double.toString(itemArr[4].getUnit()));
+				tFTax5.setText(Double.toString(itemArr[4].getTaxed()));
+				tFA5.setText(Double.toString(itemArr[4].getAmount()));
+				
+				tFItem6.setText(itemArr[5].getItemD());
+				tFQ6.setText(Integer.toString(itemArr[5].getQty()));
+				tFU6.setText(Double.toString(itemArr[5].getUnit()));
+				tFTax6.setText(Double.toString(itemArr[5].getTaxed()));
+				tFA6.setText(Double.toString(itemArr[5].getAmount()));
+			}
+		});
+		
+		btnLoadInvoice.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		
+		
 		JButton btnConnectAndSave = new JButton("Connect and Save");
 		btnConnectAndSave.addFocusListener(new FocusAdapter() {
 			@Override
@@ -611,11 +688,11 @@ public class DbFrame6Items extends JFrame {
 				
 			}
 		});
-		btnConnectAndSave.setBounds(44, 17, 124, 23);
+		btnConnectAndSave.setBounds(44, 17, 134, 23);
 		contentPane.add(btnConnectAndSave);
 		
-		btnNewButton = new JButton("Create Table");
-		btnNewButton.addActionListener(new ActionListener() {
+		btnCreateTable = new JButton("Create Table");
+		btnCreateTable.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				// write call to createtable 
 				try {
@@ -626,10 +703,7 @@ public class DbFrame6Items extends JFrame {
 					populateTable();
 					populateTableInvoice();
 					
-					// view table works
-					//viewTable10();
 					dbReader();
-					// view table works
 					
 					// static that keeps track if database is null or not
 					wrote = true;
@@ -639,9 +713,14 @@ public class DbFrame6Items extends JFrame {
 				}
 			}
 		});
-		btnNewButton.setBounds(187, 17, 98, 23);
-		contentPane.add(btnNewButton);
-		contentPane.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{tFComNa, tFStreAdd, tFNumber, tFDate, tFCity, tFState, tFZip, tFPho, tFBName, tFBcompNa, tFBStreAdd, tFBCity, tFBState, tFBZip, tFBPho, tFBEmailAdd, tFItem1, tFQ1, tFU1, tFTax1, tFItem2, tFQ2, tFU2, tFTax2, tFItem3, tFQ3, tFU3, tFTax3, tFItem4, tFQ4, tFU4, tFTax4, tFItem5, tFQ5, tFU5, tFTax5, tFItem6, tFQ6, tFU6, tFTax6, lblInvoiceId, lblInvoice, panel_2, lblNewLabel_1, panel, labItemDesc, lblQty, lblUnit, lblTaxed, panel_3, panel_1, lblNewLabel, lblAmout, lblThankYouFor, lblTotal, tFTotalAmo, tFA1, tFA2, tFA3, tFA4, tFA5, tFA6}));
+		
+		
+		btnCreateTable.setBounds(213, 17, 109, 23);
+		contentPane.add(btnCreateTable);
+		
+		contentPane.add(btnDeleteAll);
+		
+		//contentPane.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{tFComNa, tFStreAdd, tFNumber, tFDate, tFCity, tFState, tFZip, tFPho, tFBName, tFBcompNa, tFBStreAdd, tFBCity, tFBState, tFBZip, tFBPho, tFBEmailAdd, tFItem1, tFQ1, tFU1, tFTax1, tFItem2, tFQ2, tFU2, tFTax2, tFItem3, tFQ3, tFU3, tFTax3, tFItem4, tFQ4, tFU4, tFTax4, tFItem5, tFQ5, tFU5, tFTax5, tFItem6, tFQ6, tFU6, tFTax6, lblInvoiceId, lblInvoice, panel_2, lblNewLabel_1, panel, labItemDesc, lblQty, lblUnit, lblTaxed, panel_3, panel_1, lblNewLabel, lblAmout, lblThankYouFor, lblTotal, tFTotalAmo, tFA1, tFA2, tFA3, tFA4, tFA5, tFA6}));
 		
 //		contentPane.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{tFComNa, tFStreAdd, tFNumber, tFDate, tFCity, tFState,
 //		tFZip, tFPho, tFBName, tFBcompNa, tFBStreAdd, tFBCity, tFBState, tFBZip, tFBPho, tFBEmailAdd, tFItem1, tFQ1, tFU1, tFTax1, tFItem2,
@@ -653,6 +732,37 @@ public class DbFrame6Items extends JFrame {
 		// read the date later
 		// read the date later
 		// read the date later
+		btnDeleteAll.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				// need to refactor tf as an array 
+				// need to refactor tf as an array
+				tFNumber.setText("");tFDate.setText("");tFComNa.setText("");tFCity.setText("");
+				tFState.setText("");tFZip.setText("");tFStreAdd.setText("");tFPho.setText("");
+				tFBName.setText("");tFBcompNa.setText("");tFBStreAdd.setText("");tFBCity.setText("");
+				tFBState.setText("");tFBZip.setText("");tFBPho.setText("");tFBEmailAdd.setText("");
+				tFTotalAmo.setText("");tFItem1.setText("");tFQ1.setText("");tFU1.setText("");
+				tFTax1.setText("");tFA1.setText("");tFItem2.setText("");tFQ2.setText("");
+				tFU2.setText("");tFTax2.setText("");tFA2.setText("");tFItem3.setText("");
+				tFQ3.setText("");tFU3.setText("");tFTax3.setText("");tFA3.setText("");
+				tFItem4.setText("");tFQ4.setText("");tFU4.setText("");tFTax4.setText("");
+				tFA4.setText("");tFItem5.setText("");tFQ5.setText("");tFU5.setText("");
+				tFTax5.setText("");tFA5.setText("");tFItem6.setText("");tFQ6.setText("");
+				tFU6.setText("");tFTax6.setText("");tFA6.setText("");
+				
+				compObj.clearAll();
+				billToObj.clearAll();
+				inVoiceObj.clearAll();
+				
+				for(int i = 0; i < itemArr.length; i++)
+				{
+					itemArr[i].clearAll();
+				}
+				
+				// need to clear all text fields and the object
+				
+			}
+		});
 		
 		tFDate.addFocusListener(new FocusAdapter() {
 			@Override
@@ -736,9 +846,6 @@ public class DbFrame6Items extends JFrame {
 						
 					}
 					
-					System.out.println("Got here");
-					System.out.println(temp.length());
-					
 					if(temp.length() == 14)
 					{
 						int truthinc=0;
@@ -746,38 +853,31 @@ public class DbFrame6Items extends JFrame {
 						if(temp.charAt(1) == '-')
 						{
 							++truthinc;
-							System.out.println(truthinc);
 						}
 						
 						if(temp.charAt(5) == '-')
 						{
 							++truthinc;
-							System.out.println(truthinc);
 						}
 						
 						if(temp.charAt(9) == '-')
 						{
 							++truthinc;
-							System.out.println(truthinc);
 						}
 						
-						System.out.println("Got here");
 						for (int i = 0; i < temp.length(); i++)
 						{	
 							Character testChar = temp.charAt(i);
 							if(Character.isDigit(testChar))
 							{
 								++truthinc;
-								System.out.println(truthinc);
 							}
 						}
 						
 						if(truthinc == 14)
 						{
 							compObj.setPhone((tFBPho.getText()));
-							System.out.println(truthinc);
 							truthinc =0;
-							System.out.println("Worked!");
 						}
 						else
 						{
@@ -833,9 +933,6 @@ public class DbFrame6Items extends JFrame {
 						
 					}
 					
-					System.out.println("Got here");
-					System.out.println(temp.length());
-					
 					if(temp.length() == 14)
 					{
 						int truthinc=0;
@@ -843,38 +940,31 @@ public class DbFrame6Items extends JFrame {
 						if(temp.charAt(1) == '-')
 						{
 							++truthinc;
-							System.out.println(truthinc);
 						}
 						
 						if(temp.charAt(5) == '-')
 						{
 							++truthinc;
-							System.out.println(truthinc);
 						}
 						
 						if(temp.charAt(9) == '-')
 						{
 							++truthinc;
-							System.out.println(truthinc);
 						}
 						
-						System.out.println("Got here");
 						for (int i = 0; i < temp.length(); i++)
 						{	
 							Character testChar = temp.charAt(i);
 							if(Character.isDigit(testChar))
 							{
 								++truthinc;
-								System.out.println(truthinc);
 							}
 						}
 						
 						if(truthinc == 14)
 						{
 							compObj.setPhone((tFBPho.getText()));
-							System.out.println(truthinc);
 							truthinc =0;
-							System.out.println("Worked!");
 						}
 						else
 						{

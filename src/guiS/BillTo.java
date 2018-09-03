@@ -8,8 +8,30 @@ public class BillTo {
 	private String bCity;
 	private String bState;
 	private int bZip;
-	private String pPhone;
+	private String bPhone;
 	private String bEmail;
+	
+	public void clearAll() {
+		this.bName = "";
+		this.bComp = "";
+		this.bSAdd = "";
+		this.bCity = "";
+		this.bState = "";
+		this.bZip = 0;
+		this.bPhone = "";
+		this.bEmail = "";
+	}
+	
+	public void loadTestData() {
+		this.bName = "Jimmy P";
+		this.bComp = "Munford and Sons";
+		this.bSAdd = "20 Water Street";
+		this.bCity = "Melville";
+		this.bState = "NM";
+		this.bZip = 17881;
+		this.bPhone = "1-999-999-999";
+		this.bEmail = "George.com@busyst";
+	}
 	
 	public String getbName() {
 		return bName;
@@ -54,10 +76,10 @@ public class BillTo {
 		this.bZip = bZip;
 	}
 	public String getpPhone() {
-		return pPhone;
+		return bPhone;
 	}
 	public void setpPhone(String pPhone) {
-		this.pPhone = pPhone;
+		this.bPhone = pPhone;
 	}
 	public String getbEmail() {
 		return bEmail;
