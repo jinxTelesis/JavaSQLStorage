@@ -8,8 +8,19 @@ public class BillTo {
 	private String bCity;
 	private String bState;
 	private int bZip;
-	private String pPhone;
+	private String bPhone;
 	private String bEmail;
+	
+	public void clearAll() {
+		this.bName = "";
+		this.bComp = "";
+		this.bSAdd = "";
+		this.bCity = "";
+		this.bState = "";
+		this.bZip = 0;
+		this.bPhone = "";
+		this.bEmail = "";
+	}
 	
 	public String getbName() {
 		return bName;
@@ -54,10 +65,10 @@ public class BillTo {
 		this.bZip = bZip;
 	}
 	public String getpPhone() {
-		return pPhone;
+		return bPhone;
 	}
 	public void setpPhone(String pPhone) {
-		this.pPhone = pPhone;
+		this.bPhone = pPhone;
 	}
 	public String getbEmail() {
 		return bEmail;

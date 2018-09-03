@@ -4,6 +4,11 @@ public class InvoiceID {
 	
 	private String invoiceID ="";
 	private String Date ="";
+	
+	public void clearAll(){
+		this.invoiceID = "";
+		this.Date = "";
+	}
 
 	public String getInvoiceID() {
 		return invoiceID;

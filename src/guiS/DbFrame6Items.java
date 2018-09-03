@@ -105,8 +105,9 @@ public class DbFrame6Items extends JFrame {
 	private JTextField tFU6;
 	private JTextField tFTax6;
 	private JTextField tFA6;
-	private JButton btnNewButton;
+	private JButton btnCreateTable;
 	private DRESConnectionSQL DRESConOBJ = null;
+	private JButton btnDeleteAll;
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -394,6 +395,10 @@ public class DbFrame6Items extends JFrame {
 		tFQ3.setBounds(399, 549, 70, 20);
 		contentPane.add(tFQ3);
 		
+		btnDeleteAll = new JButton("Delete All");
+		
+		btnDeleteAll.setBounds(306, 17, 100, 23);
+		
 		tFU3 = new JTextField();
 		tFU3.setColumns(10);
 		tFU3.setBounds(479, 549, 70, 20);
@@ -614,8 +619,8 @@ public class DbFrame6Items extends JFrame {
 		btnConnectAndSave.setBounds(44, 17, 124, 23);
 		contentPane.add(btnConnectAndSave);
 		
-		btnNewButton = new JButton("Create Table");
-		btnNewButton.addActionListener(new ActionListener() {
+		btnCreateTable = new JButton("Create Table");
+		btnCreateTable.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				// write call to createtable 
 				try {
@@ -626,10 +631,7 @@ public class DbFrame6Items extends JFrame {
 					populateTable();
 					populateTableInvoice();
 					
-					// view table works
-					//viewTable10();
 					dbReader();
-					// view table works
 					
 					// static that keeps track if database is null or not
 					wrote = true;
@@ -639,9 +641,13 @@ public class DbFrame6Items extends JFrame {
 				}
 			}
 		});
-		btnNewButton.setBounds(187, 17, 98, 23);
-		contentPane.add(btnNewButton);
-		contentPane.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{tFComNa, tFStreAdd, tFNumber, tFDate, tFCity, tFState, tFZip, tFPho, tFBName, tFBcompNa, tFBStreAdd, tFBCity, tFBState, tFBZip, tFBPho, tFBEmailAdd, tFItem1, tFQ1, tFU1, tFTax1, tFItem2, tFQ2, tFU2, tFTax2, tFItem3, tFQ3, tFU3, tFTax3, tFItem4, tFQ4, tFU4, tFTax4, tFItem5, tFQ5, tFU5, tFTax5, tFItem6, tFQ6, tFU6, tFTax6, lblInvoiceId, lblInvoice, panel_2, lblNewLabel_1, panel, labItemDesc, lblQty, lblUnit, lblTaxed, panel_3, panel_1, lblNewLabel, lblAmout, lblThankYouFor, lblTotal, tFTotalAmo, tFA1, tFA2, tFA3, tFA4, tFA5, tFA6}));
+		
+		
+		btnCreateTable.setBounds(187, 17, 98, 23);
+		contentPane.add(btnCreateTable);
+		
+		contentPane.add(btnDeleteAll);
+		//contentPane.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{tFComNa, tFStreAdd, tFNumber, tFDate, tFCity, tFState, tFZip, tFPho, tFBName, tFBcompNa, tFBStreAdd, tFBCity, tFBState, tFBZip, tFBPho, tFBEmailAdd, tFItem1, tFQ1, tFU1, tFTax1, tFItem2, tFQ2, tFU2, tFTax2, tFItem3, tFQ3, tFU3, tFTax3, tFItem4, tFQ4, tFU4, tFTax4, tFItem5, tFQ5, tFU5, tFTax5, tFItem6, tFQ6, tFU6, tFTax6, lblInvoiceId, lblInvoice, panel_2, lblNewLabel_1, panel, labItemDesc, lblQty, lblUnit, lblTaxed, panel_3, panel_1, lblNewLabel, lblAmout, lblThankYouFor, lblTotal, tFTotalAmo, tFA1, tFA2, tFA3, tFA4, tFA5, tFA6}));
 		
 //		contentPane.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{tFComNa, tFStreAdd, tFNumber, tFDate, tFCity, tFState,
 //		tFZip, tFPho, tFBName, tFBcompNa, tFBStreAdd, tFBCity, tFBState, tFBZip, tFBPho, tFBEmailAdd, tFItem1, tFQ1, tFU1, tFTax1, tFItem2,
@@ -653,6 +659,37 @@ public class DbFrame6Items extends JFrame {
 		// read the date later
 		// read the date later
 		// read the date later
+		btnDeleteAll.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				// need to refactor tf as an array 
+				// need to refactor tf as an array
+				tFNumber.setText("");tFDate.setText("");tFComNa.setText("");tFCity.setText("");
+				tFState.setText("");tFZip.setText("");tFStreAdd.setText("");tFPho.setText("");
+				tFBName.setText("");tFBcompNa.setText("");tFBStreAdd.setText("");tFBCity.setText("");
+				tFBState.setText("");tFBZip.setText("");tFBPho.setText("");tFBEmailAdd.setText("");
+				tFTotalAmo.setText("");tFItem1.setText("");tFQ1.setText("");tFU1.setText("");
+				tFTax1.setText("");tFA1.setText("");tFItem2.setText("");tFQ2.setText("");
+				tFU2.setText("");tFTax2.setText("");tFA2.setText("");tFItem3.setText("");
+				tFQ3.setText("");tFU3.setText("");tFTax3.setText("");tFA3.setText("");
+				tFItem4.setText("");tFQ4.setText("");tFU4.setText("");tFTax4.setText("");
+				tFA4.setText("");tFItem5.setText("");tFQ5.setText("");tFU5.setText("");
+				tFTax5.setText("");tFA5.setText("");tFItem6.setText("");tFQ6.setText("");
+				tFU6.setText("");tFTax6.setText("");tFA6.setText("");
+				
+				compObj.clearAll();
+				billToObj.clearAll();
+				inVoiceObj.clearAll();
+				
+				for(int i = 0; i < itemArr.length; i++)
+				{
+					itemArr[i].clearAll();
+				}
+				
+				// need to clear all text fields and the object
+				
+			}
+		});
 		
 		tFDate.addFocusListener(new FocusAdapter() {
 			@Override

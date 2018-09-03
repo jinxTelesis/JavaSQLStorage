@@ -8,8 +8,6 @@ public class Company {
 	private String state;
 	private int zip;
 	private String  phone;
-	
-	
 
 	Company(){
 		name ="";
@@ -18,6 +16,15 @@ public class Company {
 		state ="";
 		zip = 0;
 		phone ="";
+	}
+	
+	public void clearAll() {
+		this.name = "";
+		this.streetAddress = "";
+		this.city = "";
+		this.state = "";
+		this.zip = 0;
+		this.phone = "";
 	}
 
 

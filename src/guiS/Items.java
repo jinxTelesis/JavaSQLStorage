@@ -11,6 +11,14 @@ public class Items {
 	private double taxed;
 	private double amount;
 	
+	public void clearAll() {
+		this.itemD = "";
+		this.qty = 0;
+		this.unit = 0.0;
+		this.taxed = 0.0;
+		this.amount = 0.0;
+	}
+	
 	public String getItemD() {
 		return itemD;
 	}
