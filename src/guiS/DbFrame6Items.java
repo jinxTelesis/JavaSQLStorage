@@ -622,6 +622,56 @@ public class DbFrame6Items extends JFrame {
 		
 		btnLoadTestData.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				compObj.loadTestData();
+				billToObj.loadTestData();
+				inVoiceObj.loadTestData();
+				
+				for(int i =0; i <= itemArr.length -1;i++ )
+				{
+					itemArr[i].loadTestData();
+				}
+				
+				tFNumber.setText(inVoiceObj.getInvoiceID());tFDate.setText(inVoiceObj.getDate());tFComNa.setText(compObj.getName());tFCity.setText(compObj.getCity());
+				tFState.setText(compObj.getState());tFZip.setText(Integer.toString(compObj.getZip()));tFStreAdd.setText(compObj.getStreetAddress());tFPho.setText(compObj.getPhone());
+				tFBName.setText(billToObj.getbName());tFBcompNa.setText(billToObj.getbComp());tFBStreAdd.setText(billToObj.getbSAdd());tFBCity.setText(billToObj.getbCity());
+				tFBState.setText(billToObj.getbState());tFBZip.setText(Integer.toString(billToObj.getbZip()));tFBPho.setText(billToObj.getpPhone());tFBEmailAdd.setText(billToObj.getbEmail());
+				tFTotalAmo.setText("100.00");
+				
+				tFItem1.setText(itemArr[0].getItemD());
+				tFQ1.setText(Integer.toString(itemArr[0].getQty()));
+				tFU1.setText(Double.toString(itemArr[0].getUnit()));
+				tFTax1.setText(Double.toString(itemArr[0].getTaxed()));
+				tFA1.setText(Double.toString(itemArr[0].getAmount()));
+				
+				tFItem2.setText(itemArr[1].getItemD());
+				tFQ2.setText(Integer.toString(itemArr[1].getQty()));
+				tFU2.setText(Double.toString(itemArr[1].getUnit()));
+				tFTax2.setText(Double.toString(itemArr[1].getTaxed()));
+				tFA2.setText(Double.toString(itemArr[1].getAmount()));
+				
+				tFItem3.setText(itemArr[2].getItemD());
+				tFQ3.setText(Integer.toString(itemArr[2].getQty()));
+				tFU3.setText(Double.toString(itemArr[2].getUnit()));
+				tFTax3.setText(Double.toString(itemArr[2].getTaxed()));
+				tFA3.setText(Double.toString(itemArr[2].getAmount()));
+				
+				tFItem4.setText(itemArr[3].getItemD());
+				tFQ4.setText(Integer.toString(itemArr[3].getQty()));
+				tFU4.setText(Double.toString(itemArr[3].getUnit()));
+				tFTax4.setText(Double.toString(itemArr[3].getTaxed()));
+				tFA4.setText(Double.toString(itemArr[3].getAmount()));
+				
+				tFItem5.setText(itemArr[4].getItemD());
+				tFQ5.setText(Integer.toString(itemArr[4].getQty()));
+				tFU5.setText(Double.toString(itemArr[4].getUnit()));
+				tFTax5.setText(Double.toString(itemArr[4].getTaxed()));
+				tFA5.setText(Double.toString(itemArr[4].getAmount()));
+				
+				tFItem6.setText(itemArr[5].getItemD());
+				tFQ6.setText(Integer.toString(itemArr[5].getQty()));
+				tFU6.setText(Double.toString(itemArr[5].getUnit()));
+				tFTax6.setText(Double.toString(itemArr[5].getTaxed()));
+				tFA6.setText(Double.toString(itemArr[5].getAmount()));
 			}
 		});
 		
@@ -796,9 +846,6 @@ public class DbFrame6Items extends JFrame {
 						
 					}
 					
-					System.out.println("Got here");
-					System.out.println(temp.length());
-					
 					if(temp.length() == 14)
 					{
 						int truthinc=0;
@@ -806,38 +853,31 @@ public class DbFrame6Items extends JFrame {
 						if(temp.charAt(1) == '-')
 						{
 							++truthinc;
-							System.out.println(truthinc);
 						}
 						
 						if(temp.charAt(5) == '-')
 						{
 							++truthinc;
-							System.out.println(truthinc);
 						}
 						
 						if(temp.charAt(9) == '-')
 						{
 							++truthinc;
-							System.out.println(truthinc);
 						}
 						
-						System.out.println("Got here");
 						for (int i = 0; i < temp.length(); i++)
 						{	
 							Character testChar = temp.charAt(i);
 							if(Character.isDigit(testChar))
 							{
 								++truthinc;
-								System.out.println(truthinc);
 							}
 						}
 						
 						if(truthinc == 14)
 						{
 							compObj.setPhone((tFBPho.getText()));
-							System.out.println(truthinc);
 							truthinc =0;
-							System.out.println("Worked!");
 						}
 						else
 						{
@@ -893,9 +933,6 @@ public class DbFrame6Items extends JFrame {
 						
 					}
 					
-					System.out.println("Got here");
-					System.out.println(temp.length());
-					
 					if(temp.length() == 14)
 					{
 						int truthinc=0;
@@ -903,38 +940,31 @@ public class DbFrame6Items extends JFrame {
 						if(temp.charAt(1) == '-')
 						{
 							++truthinc;
-							System.out.println(truthinc);
 						}
 						
 						if(temp.charAt(5) == '-')
 						{
 							++truthinc;
-							System.out.println(truthinc);
 						}
 						
 						if(temp.charAt(9) == '-')
 						{
 							++truthinc;
-							System.out.println(truthinc);
 						}
 						
-						System.out.println("Got here");
 						for (int i = 0; i < temp.length(); i++)
 						{	
 							Character testChar = temp.charAt(i);
 							if(Character.isDigit(testChar))
 							{
 								++truthinc;
-								System.out.println(truthinc);
 							}
 						}
 						
 						if(truthinc == 14)
 						{
 							compObj.setPhone((tFBPho.getText()));
-							System.out.println(truthinc);
 							truthinc =0;
-							System.out.println("Worked!");
 						}
 						else
 						{

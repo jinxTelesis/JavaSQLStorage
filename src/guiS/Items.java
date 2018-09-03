@@ -21,10 +21,10 @@ public class Items {
 	
 	public void loadTestData() {
 		this.itemD = "tank";
-		this.qty = 0;
-		this.unit = 0.0;
-		this.taxed = 0.0;
-		this.amount = 0.0;
+		this.qty = 1;
+		this.unit = 2;
+		this.taxed = .3;
+		this.amount = 2.6;
 	}
 	
 	public String getItemD() {
