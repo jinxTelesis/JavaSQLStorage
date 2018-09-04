@@ -817,10 +817,10 @@ public class DbFrame6Items extends JFrame {
 		tFPho.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent arg0) {
-				
-				if(!tFBPho.getText().equals(""))
+				boolean pass11 = false;
+				if(!tFPho.getText().equals(""))
 				{	
-					String temp = tFBPho.getText();
+					String temp = tFPho.getText();
 					boolean pass = false;
 					if(temp.length() == 11)
 					{
@@ -832,22 +832,29 @@ public class DbFrame6Items extends JFrame {
 						pass = true;
 					}
 					
-					if(!pass)
+					if(!pass) // this worked
 					{
-						tFBPho.setText("");
+						tFPho.setText("");
 						temp = "";
 						JOptionPane.showMessageDialog(null, "Please enter phone number as either 11 digits or \n enter phone number as 1-DDD-DDD-DDDD ", "error", 0);
 					}
 					
-					if(temp.length() == 11)
+					if(temp.length() == 11)// this needs to be changed to check for digits
 					{
+						for(int i = 0; i < tFPho.getText().length(); i++)
+						{
+							
+						}
+						
 						try {
-							Integer.parseInt(tFBPho.getText());
-							compObj.setPhone((tFBPho.getText()));
+							//Integer.parseInt(tFPho.getText());
+							compObj.setPhone((tFPho.getText()));
+							pass11 = true;
 						}
 						catch (NumberFormatException ex)
 						{
-							tFBPho.setText("");
+							System.out.println(ex);
+							tFPho.setText("");
 							JOptionPane.showMessageDialog(null, "Invalid input Please enter phone number as either 11 digits or \n enter phone number as 1-DDD-DDD-DDDD ");
 							temp = "";
 						}
@@ -885,16 +892,17 @@ public class DbFrame6Items extends JFrame {
 						
 						if(truthinc == 14)
 						{
-							compObj.setPhone((tFBPho.getText()));
+							compObj.setPhone((tFPho.getText()));
 							truthinc =0;
 						}
-						else
+						else if(truthinc != 14 && pass11 == false)
 						{
-							tFBPho.setText("");
+							tFPho.setText("");
 							JOptionPane.showMessageDialog(null, "Invalid input Please enter phone number as either 11 digits or \n enter phone number as 1-DDD-DDD-DDDD ");
 							temp = "";
 						}
-					}
+					}// this was removed
+					
 					
 					
 				}
@@ -902,7 +910,7 @@ public class DbFrame6Items extends JFrame {
 			}
 		});
 		
-		tFBPho.addFocusListener(new FocusAdapter() {
+		tFBPho.addFocusListener(new FocusAdapter() { // this is tFBPho
 			@Override
 			public void focusLost(FocusEvent e) {
 				if(!tFBPho.getText().equals(""))
