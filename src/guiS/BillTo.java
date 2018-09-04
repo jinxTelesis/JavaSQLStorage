@@ -75,10 +75,10 @@ public class BillTo {
 		}
 		this.bZip = bZip;
 	}
-	public String getpPhone() {
+	public String getbPhone() {
 		return bPhone;
 	}
-	public void setpPhone(String pPhone) {
+	public void setbPhone(String pPhone) {
 		this.bPhone = pPhone;
 	}
 	public String getbEmail() {

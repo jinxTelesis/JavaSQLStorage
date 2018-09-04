@@ -631,52 +631,60 @@ public class DbFrame6Items extends JFrame {
 					itemArr[i].loadTestData();
 				}
 				
-				tFNumber.setText(inVoiceObj.getInvoiceID());tFDate.setText(inVoiceObj.getDate());tFComNa.setText(compObj.getName());tFCity.setText(compObj.getCity());
-				tFState.setText(compObj.getState());tFZip.setText(Integer.toString(compObj.getZip()));tFStreAdd.setText(compObj.getStreetAddress());tFPho.setText(compObj.getPhone());
-				tFBName.setText(billToObj.getbName());tFBcompNa.setText(billToObj.getbComp());tFBStreAdd.setText(billToObj.getbSAdd());tFBCity.setText(billToObj.getbCity());
-				tFBState.setText(billToObj.getbState());tFBZip.setText(Integer.toString(billToObj.getbZip()));tFBPho.setText(billToObj.getpPhone());tFBEmailAdd.setText(billToObj.getbEmail());
-				tFTotalAmo.setText("100.00");
+				loadObjDataToTextF();
 				
-				tFItem1.setText(itemArr[0].getItemD());
-				tFQ1.setText(Integer.toString(itemArr[0].getQty()));
-				tFU1.setText(Double.toString(itemArr[0].getUnit()));
-				tFTax1.setText(Double.toString(itemArr[0].getTaxed()));
-				tFA1.setText(Double.toString(itemArr[0].getAmount()));
-				
-				tFItem2.setText(itemArr[1].getItemD());
-				tFQ2.setText(Integer.toString(itemArr[1].getQty()));
-				tFU2.setText(Double.toString(itemArr[1].getUnit()));
-				tFTax2.setText(Double.toString(itemArr[1].getTaxed()));
-				tFA2.setText(Double.toString(itemArr[1].getAmount()));
-				
-				tFItem3.setText(itemArr[2].getItemD());
-				tFQ3.setText(Integer.toString(itemArr[2].getQty()));
-				tFU3.setText(Double.toString(itemArr[2].getUnit()));
-				tFTax3.setText(Double.toString(itemArr[2].getTaxed()));
-				tFA3.setText(Double.toString(itemArr[2].getAmount()));
-				
-				tFItem4.setText(itemArr[3].getItemD());
-				tFQ4.setText(Integer.toString(itemArr[3].getQty()));
-				tFU4.setText(Double.toString(itemArr[3].getUnit()));
-				tFTax4.setText(Double.toString(itemArr[3].getTaxed()));
-				tFA4.setText(Double.toString(itemArr[3].getAmount()));
-				
-				tFItem5.setText(itemArr[4].getItemD());
-				tFQ5.setText(Integer.toString(itemArr[4].getQty()));
-				tFU5.setText(Double.toString(itemArr[4].getUnit()));
-				tFTax5.setText(Double.toString(itemArr[4].getTaxed()));
-				tFA5.setText(Double.toString(itemArr[4].getAmount()));
-				
-				tFItem6.setText(itemArr[5].getItemD());
-				tFQ6.setText(Integer.toString(itemArr[5].getQty()));
-				tFU6.setText(Double.toString(itemArr[5].getUnit()));
-				tFTax6.setText(Double.toString(itemArr[5].getTaxed()));
-				tFA6.setText(Double.toString(itemArr[5].getAmount()));
+//				tFNumber.setText(inVoiceObj.getInvoiceID());tFDate.setText(inVoiceObj.getDate());tFComNa.setText(compObj.getName());tFCity.setText(compObj.getCity());
+//				tFState.setText(compObj.getState());tFZip.setText(Integer.toString(compObj.getZip()));tFStreAdd.setText(compObj.getStreetAddress());tFPho.setText(compObj.getPhone());
+//				tFBName.setText(billToObj.getbName());tFBcompNa.setText(billToObj.getbComp());tFBStreAdd.setText(billToObj.getbSAdd());tFBCity.setText(billToObj.getbCity());
+//				tFBState.setText(billToObj.getbState());tFBZip.setText(Integer.toString(billToObj.getbZip()));tFBPho.setText(billToObj.getbPhone());tFBEmailAdd.setText(billToObj.getbEmail());
+//				tFTotalAmo.setText("100.00");
+//				
+//				tFItem1.setText(itemArr[0].getItemD());
+//				tFQ1.setText(Integer.toString(itemArr[0].getQty()));
+//				tFU1.setText(Double.toString(itemArr[0].getUnit()));
+//				tFTax1.setText(Double.toString(itemArr[0].getTaxed()));
+//				tFA1.setText(Double.toString(itemArr[0].getAmount()));
+//				
+//				tFItem2.setText(itemArr[1].getItemD());
+//				tFQ2.setText(Integer.toString(itemArr[1].getQty()));
+//				tFU2.setText(Double.toString(itemArr[1].getUnit()));
+//				tFTax2.setText(Double.toString(itemArr[1].getTaxed()));
+//				tFA2.setText(Double.toString(itemArr[1].getAmount()));
+//				
+//				tFItem3.setText(itemArr[2].getItemD());
+//				tFQ3.setText(Integer.toString(itemArr[2].getQty()));
+//				tFU3.setText(Double.toString(itemArr[2].getUnit()));
+//				tFTax3.setText(Double.toString(itemArr[2].getTaxed()));
+//				tFA3.setText(Double.toString(itemArr[2].getAmount()));
+//				
+//				tFItem4.setText(itemArr[3].getItemD());
+//				tFQ4.setText(Integer.toString(itemArr[3].getQty()));
+//				tFU4.setText(Double.toString(itemArr[3].getUnit()));
+//				tFTax4.setText(Double.toString(itemArr[3].getTaxed()));
+//				tFA4.setText(Double.toString(itemArr[3].getAmount()));
+//				
+//				tFItem5.setText(itemArr[4].getItemD());
+//				tFQ5.setText(Integer.toString(itemArr[4].getQty()));
+//				tFU5.setText(Double.toString(itemArr[4].getUnit()));
+//				tFTax5.setText(Double.toString(itemArr[4].getTaxed()));
+//				tFA5.setText(Double.toString(itemArr[4].getAmount()));
+//				
+//				tFItem6.setText(itemArr[5].getItemD());
+//				tFQ6.setText(Integer.toString(itemArr[5].getQty()));
+//				tFU6.setText(Double.toString(itemArr[5].getUnit()));
+//				tFTax6.setText(Double.toString(itemArr[5].getTaxed()));
+//				tFA6.setText(Double.toString(itemArr[5].getAmount()));
 			}
 		});
 		
 		btnLoadInvoice.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				try {
+					dbReader(compObj,billToObj,itemArr,inVoiceObj);
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+				loadObjDataToTextF();
 			}
 		});
 		
@@ -703,7 +711,8 @@ public class DbFrame6Items extends JFrame {
 					populateTable();
 					populateTableInvoice();
 					
-					dbReader();
+					//dbReader();
+					dbReader(compObj,billToObj,itemArr,inVoiceObj);
 					
 					// static that keeps track if database is null or not
 					wrote = true;
@@ -1679,7 +1688,7 @@ public class DbFrame6Items extends JFrame {
 		        "Amount1 double NOT NULL," + 
 		        "Item2desc Char(250) NULL," + 
 		        "Qty2 int NULL," +  
-		        "Qunit2 double NULL," + 
+		        "Unit2 double NULL," + 
 		        "Taxed2 double NULL," + 
 		        "Amount2 double NULL," +  
 		        "Item3desc Char(250) NULL," + 
@@ -1725,7 +1734,7 @@ public class DbFrame6Items extends JFrame {
 			        "Amount1 double NULL," + 
 			        "Item2desc Char(250) NULL," + 
 			        "Qty2 int NULL," + 
-			        "Qunit2 double NULL," + 
+			        "Unit2 double NULL," + 
 			        "Taxed2 double NULL," + 
 			        "Amount2 double NULL," +  
 			        "Item3desc Char(250) NULL," + 
@@ -1929,34 +1938,90 @@ public class DbFrame6Items extends JFrame {
 //			        "SALES, TOTAL " +
 //			        "from " + dbName + ".COFFEES";
 		
-		public static void dbReader() throws SQLException
+		public static void dbReader(Company compObj, BillTo billToObj, Items[] itemArr, InvoiceID inVoiceObj) throws SQLException
 		{
 			String dbName = "sql_invoice_pro";
 			Statement stmt = null;
 			String query = "select INVID, IDate, CompanyName, " + 
-				"StreetAddress, City " +
+				"StreetAddress, City, State, Zip, Phone, " +
+				"BName, BCompanyName, BStreetAddress, BCity, BState, " +
+				"BZip, BPhone, BEmailAddress, " +
+				"Item1Desc, Qty1, Unit1, Taxed1, Amount1, " +
+				"Item2Desc, Qty2, Unit2, Taxed2, Amount2, " +
+				"Item3Desc, Qty3, Unit3, Taxed3, Amount3, " +
+				"Item4Desc, Qty4, Unit4, Taxed4, Amount4, " +
+				"Item5Desc, Qty5, Unit5, Taxed5, Amount5, " +
+				"Item6Desc, Qty6, Unit6, Taxed6, Amount6 " +
 				"from " + dbName + ".INVOICE";
+			
 			
 			try {
 				stmt = con.createStatement();
 		        ResultSet rs = stmt.executeQuery(query);
 		        while (rs.next()) {
-//		            String INVID = rs.getString("INVID");
-//		            String IDate = rs.getString("IDate");
-//		            String CompanyName = rs.getString("CompanyName");
-//		            String StreetAddress = rs.getString("StreetAddress");
-//		            String City = rs.getString("City");
+		        	inVoiceObj.setInvoiceID(rs.getString("INVID"));
+		        	inVoiceObj.setDate(rs.getString("IDate"));
+		        	compObj.setName(rs.getString("CompanyName"));
+		        	compObj.setStreetAddress(rs.getString("StreetAddress"));
+		        	compObj.setCity(rs.getString("City"));
+		        	compObj.setState(rs.getString("State"));
+		        	compObj.setZip(rs.getInt("Zip"));
+		        	compObj.setPhone(rs.getString("Phone"));
+		        	billToObj.setbName(rs.getString("BName"));
+		        	billToObj.setbComp(rs.getString("BCompanyName"));
+		        	billToObj.setbSAdd(rs.getString("BStreetAddress"));
+		        	billToObj.setbCity(rs.getString("BCity"));
+		        	billToObj.setbState(rs.getString("BState"));
+		        	billToObj.setbZip(rs.getInt("BZip"));
+		        	billToObj.setbPhone("BPhone");
+		        	billToObj.setbEmail(rs.getString("BEmailAddress")); // wrong
+		        	itemArr[0].setItemD(rs.getString("Item1Desc"));
+		        	itemArr[0].setQty(rs.getInt("Qty1"));
+		        	itemArr[0].setUnit(rs.getDouble("Unit1"));
+		        	itemArr[0].setTaxed(rs.getDouble("Taxed1"));
+		        	itemArr[0].setAmount(rs.getDouble("Amount1"));
+		        	
+		        	itemArr[1].setItemD(rs.getString("Item2Desc"));
+		        	itemArr[1].setQty(rs.getInt("Qty2"));
+		        	itemArr[1].setUnit(rs.getDouble("Unit2"));
+		        	itemArr[1].setTaxed(rs.getDouble("Taxed2"));
+		        	itemArr[1].setAmount(rs.getDouble("Amount2"));
+		        	
+		        	itemArr[2].setItemD(rs.getString("Item3Desc"));
+		        	itemArr[2].setQty(rs.getInt("Qty3"));
+		        	itemArr[2].setUnit(rs.getDouble("Unit3"));
+		        	itemArr[2].setTaxed(rs.getDouble("Taxed3"));
+		        	itemArr[2].setAmount(rs.getDouble("Amount3"));
+		        	
+		        	itemArr[3].setItemD(rs.getString("Item4Desc"));
+		        	itemArr[3].setQty(rs.getInt("Qty4"));
+		        	itemArr[3].setUnit(rs.getDouble("Unit4"));
+		        	itemArr[3].setTaxed(rs.getDouble("Taxed4"));
+		        	itemArr[3].setAmount(rs.getDouble("Amount4"));
+		        	
+		        	itemArr[4].setItemD(rs.getString("Item5Desc"));
+		        	itemArr[4].setQty(rs.getInt("Qty5"));
+		        	itemArr[4].setUnit(rs.getDouble("Unit5"));
+		        	itemArr[4].setTaxed(rs.getDouble("Taxed5"));
+		        	itemArr[4].setAmount(rs.getDouble("Amount5"));
+		        	
+		        	itemArr[5].setItemD(rs.getString("Item6Desc"));
+		        	itemArr[5].setQty(rs.getInt("Qty6"));
+		        	itemArr[5].setUnit(rs.getDouble("Unit6"));
+		        	itemArr[5].setTaxed(rs.getDouble("Taxed6"));
+		        	itemArr[5].setAmount(rs.getDouble("Amount6"));
+		        	
+		            System.out.println(inVoiceObj.getInvoiceID() + "\t" + inVoiceObj.getDate() +
+		                               "\t" + compObj.getName() + "\t" + compObj.getStreetAddress() +
+		                               "\t" + compObj.getCity());
+//		            String INVID = rs.getString(1);
+//		            String IDate = rs.getString(2);
+//		            String CompanyName = rs.getString(3);
+//		            String StreetAddress = rs.getString(4);
+//		            String City = rs.getString(5);
 //		            System.out.println(INVID + "\t" + IDate +
 //		                               "\t" + CompanyName + "\t" + StreetAddress +
 //		                               "\t" + City);
-		            String INVID = rs.getString(1);
-		            String IDate = rs.getString(2);
-		            String CompanyName = rs.getString(3);
-		            String StreetAddress = rs.getString(4);
-		            String City = rs.getString(5);
-		            System.out.println(INVID + "\t" + IDate +
-		                               "\t" + CompanyName + "\t" + StreetAddress +
-		                               "\t" + City);
 				
 		        }
 		    } catch (SQLException e) {
@@ -1998,6 +2063,52 @@ public class DbFrame6Items extends JFrame {
 	        if (stmt != null) { stmt.close(); }
 	    }
 	}
+	
+	public void loadObjDataToTextF()
+	{
+		tFNumber.setText(inVoiceObj.getInvoiceID());tFDate.setText(inVoiceObj.getDate());tFComNa.setText(compObj.getName());tFCity.setText(compObj.getCity());
+		tFState.setText(compObj.getState());tFZip.setText(Integer.toString(compObj.getZip()));tFStreAdd.setText(compObj.getStreetAddress());tFPho.setText(compObj.getPhone());
+		tFBName.setText(billToObj.getbName());tFBcompNa.setText(billToObj.getbComp());tFBStreAdd.setText(billToObj.getbSAdd());tFBCity.setText(billToObj.getbCity());
+		tFBState.setText(billToObj.getbState());tFBZip.setText(Integer.toString(billToObj.getbZip()));tFBPho.setText(billToObj.getbPhone());tFBEmailAdd.setText(billToObj.getbEmail());
+		tFTotalAmo.setText("100.00");
+		
+		tFItem1.setText(itemArr[0].getItemD());
+		tFQ1.setText(Integer.toString(itemArr[0].getQty()));
+		tFU1.setText(Double.toString(itemArr[0].getUnit()));
+		tFTax1.setText(Double.toString(itemArr[0].getTaxed()));
+		tFA1.setText(Double.toString(itemArr[0].getAmount()));
+		
+		tFItem2.setText(itemArr[1].getItemD());
+		tFQ2.setText(Integer.toString(itemArr[1].getQty()));
+		tFU2.setText(Double.toString(itemArr[1].getUnit()));
+		tFTax2.setText(Double.toString(itemArr[1].getTaxed()));
+		tFA2.setText(Double.toString(itemArr[1].getAmount()));
+		
+		tFItem3.setText(itemArr[2].getItemD());
+		tFQ3.setText(Integer.toString(itemArr[2].getQty()));
+		tFU3.setText(Double.toString(itemArr[2].getUnit()));
+		tFTax3.setText(Double.toString(itemArr[2].getTaxed()));
+		tFA3.setText(Double.toString(itemArr[2].getAmount()));
+		
+		tFItem4.setText(itemArr[3].getItemD());
+		tFQ4.setText(Integer.toString(itemArr[3].getQty()));
+		tFU4.setText(Double.toString(itemArr[3].getUnit()));
+		tFTax4.setText(Double.toString(itemArr[3].getTaxed()));
+		tFA4.setText(Double.toString(itemArr[3].getAmount()));
+		
+		tFItem5.setText(itemArr[4].getItemD());
+		tFQ5.setText(Integer.toString(itemArr[4].getQty()));
+		tFU5.setText(Double.toString(itemArr[4].getUnit()));
+		tFTax5.setText(Double.toString(itemArr[4].getTaxed()));
+		tFA5.setText(Double.toString(itemArr[4].getAmount()));
+		
+		tFItem6.setText(itemArr[5].getItemD());
+		tFQ6.setText(Integer.toString(itemArr[5].getQty()));
+		tFU6.setText(Double.toString(itemArr[5].getUnit()));
+		tFTax6.setText(Double.toString(itemArr[5].getTaxed()));
+		tFA6.setText(Double.toString(itemArr[5].getAmount()));
+		
+	}
 	 
 	 public void populateTableInvoice() throws SQLException {
 		 String dbName = "sql_invoice_pro";
@@ -2022,7 +2133,7 @@ public class DbFrame6Items extends JFrame {
 		 	billToObj.getbCity() + "','" +
 		 	billToObj.getbState() + "'," +
 		 	billToObj.getbZip() + ",'" +
-		 	billToObj.getpPhone() + "','" +
+		 	billToObj.getbPhone() + "','" +
 		 	billToObj.getbEmail() + "','" +
 		 	
 		 	// faster to write out like this sql ending chars are consistent in the loop
@@ -2057,37 +2168,13 @@ public class DbFrame6Items extends JFrame {
 	 	 	itemArr[5].getUnit() + "," +
 			itemArr[5].getTaxed() + "," +
 	 		itemArr[5].getAmount() + ")";
-		 	
-//		 	itemArr[0].getItemD() + "'," +
-//		 	itemArr[0].getQty() + "," +
-//		 	itemArr[0].getUnit() + "," +
-//		 	itemArr[0].getTaxed() + "," +
-//		 	itemArr[0].getAmount() + ")";
-		 	
-//			 Company compObj =
-//			 BillTo billtoObj = 
-//			 InvoiceID inVoiceObj = 
-//			 Items[] itemArr =  	
+		   	
 		    
 		    Statement stmt = null;
 		    try {
 		        stmt = con.createStatement();
 		        stmt.executeUpdate(createStringObj);
 
-//		        stmt.executeUpdate(
-//		            "insert into " + dbName +
-//		            ".SUPPLIERS " +
-//		            "values(101, 'Acme, Inc.', " +
-//		            "'99 Market Street', " +
-//		            "'Groundsville', 'CA', '95199')");
-	//
-//		        stmt.executeUpdate(
-//		            "insert into " + dbName +
-//		            ".SUPPLIERS " +
-//		            "values(150, " +
-//		            "'The High Ground', " +
-//		            "'100 Coffee Lane', " +
-//		            "'Meadows', 'CA', '93966')");
 		 	
 		    } catch (SQLException e) {
 		        System.out.println(e);
