@@ -10,7 +10,8 @@ public class BillTo {
 	private int bZip;
 	private String bPhone;
 	private String bEmail;
-	
+	private double total;
+
 	public void clearAll() {
 		this.bName = "";
 		this.bComp = "";
@@ -20,6 +21,7 @@ public class BillTo {
 		this.bZip = 0;
 		this.bPhone = "";
 		this.bEmail = "";
+		this.total = 0.0;
 	}
 	
 	public void loadTestData() {
@@ -31,6 +33,7 @@ public class BillTo {
 		this.bZip = 17881;
 		this.bPhone = "1-999-999-999";
 		this.bEmail = "George.com@busyst";
+		this.total = 15.6;
 	}
 	
 	public String getbName() {
@@ -75,10 +78,10 @@ public class BillTo {
 		}
 		this.bZip = bZip;
 	}
-	public String getpPhone() {
+	public String getbPhone() {
 		return bPhone;
 	}
-	public void setpPhone(String pPhone) {
+	public void setbPhone(String pPhone) {
 		this.bPhone = pPhone;
 	}
 	public String getbEmail() {
@@ -88,7 +91,13 @@ public class BillTo {
 		this.bEmail = bEmail;
 	}
 	
-	
+	public double getTotal() {
+		return total;
+	}
+
+	public void setTotal(double total) {
+		this.total = total;
+	}
 	
 
 }
