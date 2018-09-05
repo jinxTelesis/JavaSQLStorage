@@ -40,7 +40,9 @@ public class DbFrame6Items extends JFrame {
 	// put phone filter in company object
 	// put all the filters in the setters?
 	// other than the type parse which should be in frame
+	// add the buttons to add and remove bars
 	
+	private static JTextField tFTotalAmo;
 	static Connection con = null;
 	static boolean wrote = false;
 	
@@ -71,7 +73,7 @@ public class DbFrame6Items extends JFrame {
 	private JTextField tFBEmailAdd;
 	private JPanel panel_1;
 	private JPanel panel_2;
-	private JTextField tFTotalAmo;
+	
 	private JLabel lblQty;
 	private JLabel lblUnit;
 	private JLabel lblTaxed;
@@ -332,6 +334,7 @@ public class DbFrame6Items extends JFrame {
 		contentPane.add(lblTotal);
 		
 		tFTotalAmo = new JTextField();
+		tFTotalAmo.setEditable(false);
 		tFTotalAmo.setText("$100.00");
 		tFTotalAmo.setBounds(653, 760, 86, 20);
 		contentPane.add(tFTotalAmo);
@@ -841,19 +844,24 @@ public class DbFrame6Items extends JFrame {
 					
 					if(temp.length() == 11)// this needs to be changed to check for digits
 					{
-						for(int i = 0; i < tFPho.getText().length(); i++)
-						{
-							
+						int truthinc = 0;
+						for (int i = 0; i < temp.length(); i++)
+						{	
+							Character testChar = temp.charAt(i);
+							if(Character.isDigit(testChar))
+							{
+								++truthinc;
+							}
 						}
 						
-						try {
-							//Integer.parseInt(tFPho.getText());
+						if(truthinc == 11)
+						{
 							compObj.setPhone((tFPho.getText()));
 							pass11 = true;
+							
 						}
-						catch (NumberFormatException ex)
+						else
 						{
-							System.out.println(ex);
 							tFPho.setText("");
 							JOptionPane.showMessageDialog(null, "Invalid input Please enter phone number as either 11 digits or \n enter phone number as 1-DDD-DDD-DDDD ");
 							temp = "";
@@ -895,18 +903,14 @@ public class DbFrame6Items extends JFrame {
 							compObj.setPhone((tFPho.getText()));
 							truthinc =0;
 						}
-						else if(truthinc != 14 && pass11 == false)
+						else
 						{
 							tFPho.setText("");
 							JOptionPane.showMessageDialog(null, "Invalid input Please enter phone number as either 11 digits or \n enter phone number as 1-DDD-DDD-DDDD ");
 							temp = "";
 						}
 					}// this was removed
-					
-					
-					
 				}
-				
 			}
 		});
 		
@@ -936,17 +940,27 @@ public class DbFrame6Items extends JFrame {
 					
 					if(temp.length() == 11)
 					{
-						try {
-							Integer.parseInt(tFBPho.getText());
-							compObj.setPhone((tFBPho.getText()));
+						int truthinc = 0;
+						for (int i = 0; i < temp.length(); i++)
+						{	
+							Character testChar = temp.charAt(i);
+							if(Character.isDigit(testChar))
+							{
+								++truthinc;
+							}
 						}
-						catch (NumberFormatException ex)
+						
+						if(truthinc == 11)
+						{
+							compObj.setPhone((tFBPho.getText()));
+							
+						}
+						else
 						{
 							tFBPho.setText("");
 							JOptionPane.showMessageDialog(null, "Invalid input Please enter phone number as either 11 digits or \n enter phone number as 1-DDD-DDD-DDDD ");
 							temp = "";
 						}
-						
 						
 					}
 					
@@ -1049,7 +1063,7 @@ public class DbFrame6Items extends JFrame {
 						otherResult = 0;
 					}
 					
-					if(caller.equals("tFTax5") && i+1 == 6) {
+					if(caller.equals("tFTax6") && i+1 == 6) {
 						otherResult = calc(itemArr,userOverride,i);
 						this.amountTF.setText(Double.toString(otherResult));
 						otherResult = 0;
@@ -1060,6 +1074,9 @@ public class DbFrame6Items extends JFrame {
 
 		@Override
 		public void focusLost(FocusEvent arg0) {
+			
+			// data not updated yet?
+			
 			if(!this.tFRef.getText().equals(""))
 			{
 				double result =0;
@@ -1070,13 +1087,20 @@ public class DbFrame6Items extends JFrame {
 				{
 					result = 0;
 					JOptionPane.showMessageDialog(null, "You entered invalid characters \n Please"
-							+ " enter again \n please only enter the number example 30% would be 30");
+							+ " enter again \n please only enter the number example 30% would be .30");
 					this.tFRef.setText("");
 				}
 				
-				if(result > 300) {
+				if(result > 3) {
 					result = 0;
 					JOptionPane.showMessageDialog(null, "percentage of tax too large, max 300 percent", "error", 0);
+					this.tFRef.setText("");
+				}
+				
+				if(result < 0)
+				{
+					result = 0;
+					JOptionPane.showMessageDialog(null, "no negative tax please, apply discounts to unit price before entering", "error", 0);
 					this.tFRef.setText("");
 				}
 				
@@ -1096,8 +1120,52 @@ public class DbFrame6Items extends JFrame {
 				}
 			}
 			
+			for(int i = 0; i < itemArr.length; i++)
+			{
+				
+				if(itemArr[i].getQty() != 0 && itemArr[i].getUnit() != 0 && userOverride[i] != true)
+				{
+					double otherResult = 0;
+					if(caller.equals("tFTax1") && i+1 == 1) {  
+					otherResult = calc(itemArr,userOverride,i);
+					this.amountTF.setText(Double.toString(otherResult));
+					otherResult = 0;
+					}
+					
+					if(caller.equals("tFTax2") && i+1 == 2) {  
+						otherResult = calc(itemArr,userOverride,i);
+						this.amountTF.setText(Double.toString(otherResult));
+						otherResult = 0;
+					}
+					
+					if(caller.equals("tFTax3") && i+1 == 3) {  
+						otherResult = calc(itemArr,userOverride,i);
+						this.amountTF.setText(Double.toString(otherResult));
+						otherResult = 0;
+					}
+					
+					if(caller.equals("tFTax4") && i+1 == 4) {  
+						otherResult = calc(itemArr,userOverride,i);
+						this.amountTF.setText(Double.toString(otherResult));
+						otherResult = 0;
+					}
+					
+					if(caller.equals("tFTax5") && i+1 == 5) {  
+						otherResult = calc(itemArr,userOverride,i);
+						this.amountTF.setText(Double.toString(otherResult));
+						otherResult = 0;
+					}
+					
+					if(caller.equals("tFTax6") && i+1 == 6) { 
+						otherResult = calc(itemArr,userOverride,i);
+						this.amountTF.setText(Double.toString(otherResult));
+						otherResult = 0;
+					}
+				}
+			}
+			// sets total amount if changed
+			totalCalc();
 		}
-		
 	}
 	
 	public class FocusLDouMax_999_999_999 implements FocusListener{
@@ -1157,7 +1225,9 @@ public class DbFrame6Items extends JFrame {
 						otherResult = 0;
 					}
 				}
-			}	
+				
+			}
+			
 		}
 
 		@Override
@@ -1222,7 +1292,55 @@ public class DbFrame6Items extends JFrame {
 						}
 					}
 				}
-			}	
+			}
+			
+			
+			for(int i = 0; i < itemArr.length; i++)
+			{
+				
+				if(itemArr[i].getQty() != 0 && itemArr[i].getUnit() != 0 && userOverride[i] != true)
+				{
+					double otherResult = 0;
+					if(caller.equals("tFA1") && i+1 == 1) {
+					otherResult = calc(itemArr,userOverride,i);
+					this.amountTF.setText(Double.toString(otherResult));
+					otherResult = 0;
+					}
+					
+					if(caller.equals("tFA2") && i+1 == 2) {
+						otherResult = calc(itemArr,userOverride,i);
+						this.amountTF.setText(Double.toString(otherResult));
+						otherResult = 0;
+					}
+					
+					if(caller.equals("tFA3") && i+1 == 3) {
+						otherResult = calc(itemArr,userOverride,i);
+						this.amountTF.setText(Double.toString(otherResult));
+						otherResult = 0;
+					}
+					
+					if(caller.equals("tFA4") && i+1 == 4) {
+						otherResult = calc(itemArr,userOverride,i);
+						this.amountTF.setText(Double.toString(otherResult));
+						otherResult = 0;
+					}
+					
+					if(caller.equals("tFA5") && i+1 == 5) {
+						otherResult = calc(itemArr,userOverride,i);
+						this.amountTF.setText(Double.toString(otherResult));
+						otherResult = 0;
+					}
+					
+					if(caller.equals("tFA6") && i+1 == 6) {
+						otherResult = calc(itemArr,userOverride,i);
+						this.amountTF.setText(Double.toString(otherResult));
+						otherResult = 0;
+					}
+				}
+			}
+			
+			// sets total amount if changed
+			totalCalc();
 		}
 	}
 	
@@ -1283,6 +1401,7 @@ public class DbFrame6Items extends JFrame {
 						otherResult = 0;
 					}
 				}
+				
 			}
 		}
 
@@ -1323,8 +1442,53 @@ public class DbFrame6Items extends JFrame {
 				}
 			}
 			
-		}
+			for(int i = 0; i < itemArr.length; i++)
+			{
+				
+				if(itemArr[i].getQty() != 0 && itemArr[i].getUnit() != 0 && userOverride[i] != true)
+				{
+					double otherResult = 0;
+					if(caller.equals("tFU1") && i+1 == 1) {
+					otherResult = calc(itemArr,userOverride,i);
+					this.amountTF.setText(Double.toString(otherResult));
+					otherResult = 0;
+					}
+					
+					if(caller.equals("tFU2") && i+1 == 2) {
+						otherResult = calc(itemArr,userOverride,i);
+						this.amountTF.setText(Double.toString(otherResult));
+						otherResult = 0;
+					}
+					
+					if(caller.equals("tFU3") && i+1 == 3) {
+						otherResult = calc(itemArr,userOverride,i);
+						this.amountTF.setText(Double.toString(otherResult));
+						otherResult = 0;
+					}
+					
+					if(caller.equals("tFU4") && i+1 == 4) {
+						otherResult = calc(itemArr,userOverride,i);
+						this.amountTF.setText(Double.toString(otherResult));
+						otherResult = 0;
+					}
+					
+					if(caller.equals("tFU5") && i+1 == 5) {
+						otherResult = calc(itemArr,userOverride,i);
+						this.amountTF.setText(Double.toString(otherResult));
+						otherResult = 0;
+					}
+					
+					if(caller.equals("tFU6") && i+1 == 6) {
+						otherResult = calc(itemArr,userOverride,i);
+						this.amountTF.setText(Double.toString(otherResult));
+						otherResult = 0;
+					}
+				}
+			}
 		
+			// sets total amount if changed
+			totalCalc();
+		}
 	}
 	
 	public class FocusLIntMax10000 implements FocusListener{
@@ -1421,7 +1585,54 @@ public class DbFrame6Items extends JFrame {
 					}
 				}
 			}
+			
+			// solves it 
+			for(int i = 0; i < itemArr.length; i++)
+			{
+				
+				if(itemArr[i].getQty() != 0 && itemArr[i].getUnit() != 0 && userOverride[i] != true)
+				{
+					double otherResult = 0;
+					if(caller.equals("tFQ1") && i+1 == 1) {
+					otherResult = calc(itemArr,userOverride,i);
+					this.amountTF.setText(Double.toString(otherResult));
+					otherResult = 0;
+					}
+					
+					if(caller.equals("tFQ2") && i+1 == 2) {
+						otherResult = calc(itemArr,userOverride,i);
+						this.amountTF.setText(Double.toString(otherResult));
+						otherResult = 0;
+					}
+					
+					if(caller.equals("tFQ3") && i+1 == 3) {
+						otherResult = calc(itemArr,userOverride,i);
+						this.amountTF.setText(Double.toString(otherResult));
+						otherResult = 0;
+					}
+					
+					if(caller.equals("tFQ4") && i+1 == 4) {
+						otherResult = calc(itemArr,userOverride,i);
+						this.amountTF.setText(Double.toString(otherResult));
+						otherResult = 0;
+					}
+					
+					if(caller.equals("tFQ5") && i+1 == 5) {
+						otherResult = calc(itemArr,userOverride,i);
+						this.amountTF.setText(Double.toString(otherResult));
+						otherResult = 0;
+					}
+					
+					if(caller.equals("tFQ6") && i+1 == 6) {
+						otherResult = calc(itemArr,userOverride,i);
+						this.amountTF.setText(Double.toString(otherResult));
+						otherResult = 0;
+					}
+				}
+			}
+			totalCalc();
 		}
+		
 	}
 	
 	public class FocusLChar250 implements FocusListener {
@@ -1585,7 +1796,8 @@ public class DbFrame6Items extends JFrame {
 	// needs items object, and boolean and needs to be called by gained and lost events
 	public static double calc(Items[] itemArr, boolean[] userOverride, int i2) {
 		double result = 0;
-		// 1 + Taxed prevents errors
+		//double tax = 0;
+		
 		result = itemArr[i2].getQty() * itemArr[i2].getUnit() * (1 + itemArr[i2].getTaxed());
 	
 		return result;
@@ -2116,6 +2328,16 @@ public class DbFrame6Items extends JFrame {
 		tFTax6.setText(Double.toString(itemArr[5].getTaxed()));
 		tFA6.setText(Double.toString(itemArr[5].getAmount()));
 		
+	}
+	
+	private void totalCalc()
+	{
+		double sum = 0;
+		for(int i = 0; i < itemArr.length; i++) {
+			sum += itemArr[i].getAmount();
+		}
+		billToObj.setTotal(sum);
+		tFTotalAmo.setText(Double.toString(billToObj.getTotal()));
 	}
 	 
 	 public void populateTableInvoice() throws SQLException {
